@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Diagnóstica</title>
+    <style>
+        /* COLORES INSTITUCIONALES (VERDE) */
+        :root {
+            --verde-primario: #2e7d32;
+            --verde-hover: #1b5e20;
+            --verde-claro: #e8f5e9;
+            --gris-texto: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: var(--gris-texto);
+            margin: 0;
+            padding: 20px;
+        }
+        .contenedor {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        /* Estilos para las pantallas */
+        .pantalla { display: none; }
+        .pantalla.activa { display: block; animation: aparecer 0.5s ease-in-out; }
+        @keyframes aparecer { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Indicador de sección (Sin números) */
+        .progreso-texto { text-align: center; color: var(--verde-primario); font-weight: bold; font-size: 18px; margin-bottom: 20px; padding: 12px; background: var(--verde-claro); border-radius: 5px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Mensaje de Bienvenida */
+        .bienvenida-box { background-color: white; border: 2px solid var(--verde-claro); padding: 25px; border-radius: 8px; margin-bottom: 30px; }
+        .bienvenida-box h2 { color: var(--verde-primario); margin-top: 0; }
+        .bienvenida-box ul { list-style: none; padding: 0; margin-top: 20px; }
+        .bienvenida-box li { margin-bottom: 12px; font-size: 16px; }
+
+        .seccion-datos { background-color: var(--verde-claro); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .grupo-input { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #5f6368; }
+        input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+
+        /* Estilos de botones */
+        .botones-nav { display: flex; justify-content: space-between; margin-top: 30px; }
+        button { padding: 12px 25px; font-size: 16px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .btn-siguiente { background-color: var(--verde-primario); color: white; }
+        .btn-siguiente:hover { background-color: var(--verde-hover); }
+        .btn-atras { background-color: #e0e0e0; color: #333; }
+        .btn-atras:hover { background-color: #ccc; }
+        .btn-finalizar { background-color: #198754; color: white; width: 100%; font-size: 18px; margin-top: 20px; }
+        .btn-finalizar:hover { background-color: #146c43; }
+
+        /* Estilos de preguntas */
+        .pregunta-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .lectura-box { background: #fdf6e3; padding: 15px; border-left: 4px solid #f39c12; margin-bottom: 15px; border-radius: 0 4px 4px 0; font-style: italic; white-space: pre-wrap; }
+        .instrucciones { background: var(--verde-claro); padding: 15px; border-left: 4px solid var(--verde-primario); margin-bottom: 20px; font-size: 15px; color: var(--gris-texto); }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <!-- ESCUDO Y TÍTULO -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="https://i.postimg.cc/gj4dt7hH/Secu-20-SF-Org.png" alt="Escudo Secundaria" style="max-width: 150px;">
+        </div>
+        <h1 style="text-align: center; color: var(--verde-primario); border-bottom: 2px solid var(--verde-claro); padding-bottom: 10px; margin-top: 0;">Evaluación Diagnóstica de Nuevo Ingreso</h1>
+        
+        <div id="progreso" class="progreso-texto">Datos del Alumno</div>
+
+        <!-- PANTALLA 0: DATOS Y BIENVENIDA -->
+        <div id="pantalla-0" class="pantalla activa">
+            
+            <!-- CAJA DE BIENVENIDA -->
+            <div class="bienvenida-box">
+                <h2>¡Hola! 👋</h2>
+                <p>Estás por comenzar tu Evaluación Diagnóstica. Tu examen consta de <strong>125 preguntas</strong> (Español, Matemáticas, Ciencias, Ciencias Sociales e Inglés) y una breve encuesta de <strong>20 preguntas</strong> sobre tus hábitos de estudio.</p>
+                <p>Es muy importante que hagas tu mejor esfuerzo. Este examen nos ayudará a conocer tu nivel académico y a planear las mejores actividades para ti.</p>
+                <ul>
+                    <li>📌 <strong>Lee bien</strong> cada pregunta y responde con calma.</li>
+                    <li>⏳ <strong>Administra tu tiempo:</strong> recuerda que debes completar todas las materias.</li>
+                    <li>📝 <strong>Pon atención</strong> en cada detalle.</li>
+                </ul>
+                <h3 style="text-align: center; color: var(--verde-primario); font-size: 22px; margin-bottom: 0;">¡Tú puedes! 💪</h3>
+            </div>
+
+            <div class="seccion-datos">
+                <h2 style="margin-top: 0; color: var(--verde-primario);">Ingresa tus datos</h2>
+                <div class="grupo-input">
+                    <label>Apellido Paterno:</label>
+                    <input type="text" id="apellidoPaterno" placeholder="Ej. García">
+                </div>
+                <div class="grupo-input">
+                    <label>Apellido Materno:</label>
+                    <input type="text" id="apellidoMaterno" placeholder="Ej. López">
+                </div>
+                <div class="grupo-input">
+                    <label>Nombre(s):</label>
+                    <input type="text" id="nombres" placeholder="Ej. Juan Carlos">
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <button class="btn-siguiente" onclick="cambiarPantalla(1)">Comenzar Examen ➔</button>
+            </div>
+        </div>
+
+        <!-- PANTALLAS 1 AL 5: ACADÉMICAS -->
+        <div id="pantalla-1" class="pantalla"><div id="contenido-espanol"></div></div>
+        <div id="pantalla-2" class="pantalla"><div id="contenido-matematicas"></div></div>
+        <div id="pantalla-3" class="pantalla"><div id="contenido-ciencias"></div></div>
+        <div id="pantalla-4" class="pantalla"><div id="contenido-sociales"></div></div>
+        <div id="pantalla-5" class="pantalla"><div id="contenido-ingles"></div></div>
+
+        <!-- PANTALLA 6: ENCUESTA -->
+        <div id="pantalla-6" class="pantalla">
+            <div class="instrucciones">
+                <strong>Instrucciones:</strong> A continuación encontrarás una serie de preguntas sobre tus hábitos de estudio y formas preferidas de aprender. <strong>No hay respuestas correctas o incorrectas.</strong> Responde con sinceridad.
+            </div>
+            <div id="contenido-encuesta"></div>
+            <div class="botones-nav">
+                <button class="btn-atras" onclick="cambiarPantalla(5)">⬅ Atrás</button>
+                <button class="btn-finalizar" onclick="finalizarExamen()">Terminar y Enviar Todo</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // BANCO DE PREGUNTAS ACADÉMICAS (125)
+        // ==========================================
+        const bancoDePreguntas = [
+          // ESPAÑOL
+          { id: "esp_1", area: "Español", imagen: "https://i.postimg.cc/KjPJDXdW/Captura_de_pantalla_2026_03_19_172905.png", lectura: "Los estornudos son una explosión de aire desde los pulmones a través de la nariz y la boca. Por lo común es provocado por partículas extrañas que provocan la irritación de la mucosa nasal. Ese tipo de irritación puede deberse a: Alergia al polen, polvo, talcos y algunos alimentos. Gracias a la ciencia hoy sabemos con exactitud por qué estornudamos. En cambió no es difícil imaginar que a nuestros antepasados más lejanos ese acto de expulsar aire súbitamente por la nariz les causaba desconcierto y preocupación, pues a diferencia de nosotros, ellos creían que los estornudos eran un presagio de mala suerte causados por espíritus malignos.", pregunta: "De acuerdo con el texto ¿Qué provoca un estornudo?", opciones: { a: "Son provocados por los espíritus malignos.", b: "Partículas extrañas que irritan la mucosa nasal.", c: "Al expulsar aire por la nariz.", d: "Cuando miramos directo al sol por unos segundos." }, respuestaCorrecta: "b" },
+          { id: "esp_2", area: "Español", pregunta: "¿A qué puede deberse ese tipo de irritación en la mucosa nasal?", opciones: { a: "Comer chile", b: "Respirar profundamente.", c: "Polvo, polen, algunos alimentos.", d: "Respirar por la boca." }, respuestaCorrecta: "c" },
+          { id: "esp_3", area: "Español", pregunta: "De acuerdo con el texto ¿Qué creían nuestros antepasados que provocaba los estornudos?", opciones: { a: "Que eran provocados por los espíritus malignos", b: "Que eran partículas extrañas que irritan la mucosa nasal.", c: "Que se producían al expulsar aire por la nariz.", d: "Que eran causados cuando miramos directo al sol por unos segundos." }, respuestaCorrecta: "a" },
+          { id: "esp_4", area: "Español", pregunta: "Las frases remarcadas en el texto anterior: En cambio, a diferencia de, son:", opciones: { a: "Pronombres", b: "Verbos", c: "Adverbios", d: "Conectores" }, respuestaCorrecta: "d" },
+          { id: "esp_5", area: "Español", lectura: "Los estornudos son una explosión de aire desde los pulmones a través de la nariz y la boca. Por lo común es provocado por partículas extrañas que provocan la irritación de la mucosa nasal.", pregunta: "La información del fragmento anterior es de origen:", opciones: { a: "Científico", b: "Teológico", c: "Popular", d: "Religioso" }, respuestaCorrecta: "a" },
+          { id: "esp_6", area: "Español", pregunta: "¿Qué quiere decir que México sea un país multicultural?", opciones: { a: "Que muchas culturas están en riesgo de desaparecer.", b: "Que tiene muy pocas culturas.", c: "Que mezcla una gran cantidad de culturas y lenguas.", d: "Que tenemos una gran variedad de especies animales." }, respuestaCorrecta: "c" },
+          { id: "esp_7", area: "Español", pregunta: "Las siguientes son lenguas indígenas de México.", opciones: { a: "Inglés, Español, Francés.", b: "Raramuris, Taraumaras, Huicholes.", c: "Náhuatl, Chol, Totonaca", d: "Chino, Árabe, Alemán" }, respuestaCorrecta: "c" },
+          { id: "esp_8", area: "Español", pregunta: "¿De qué lengua son originarias palabras como: aguacate, mecate, chocolate?", opciones: { a: "Del Náhuatl.", b: "Del inglés.", c: "Del español.", d: "Del Totonaca." }, respuestaCorrecta: "a" },
+          { id: "esp_9", area: "Español", pregunta: "Se usa para indicar cuando comienza un diálogo o cuando el narrador interviene para dar alguna explicación:", opciones: { a: "El guión corto.", b: "El guión largo.", c: "Dos puntos", d: "Punto y aparte" }, respuestaCorrecta: "b" },
+          { id: "esp_10", area: "Español", imagen: "https://i.postimg.cc/dQZ1tQYG/Chat_GPT_Image_19_mar_2026_05_44_10_p_m.png", lectura: "Ciudad de México, a 15 de mayo de 2019\nQuerida Daniela: Espero que te la estes pasando bien en tus vacaciones. Yo sigo aqui estudiando. Solo te escribo para saludarte y para invitarte el próximo fin de semana que me dijiste que regresarias, a que vengas a la casa, queremos verte pronto.\nTe quiere: Joaquin", pregunta: "¿Quién es el remitente de la carta anterior?", opciones: { a: "Ciudad de México", b: "15 de mayo de 2019.", c: "Daniela.", d: "Joaquín." }, respuestaCorrecta: "d" },
+          { id: "esp_11", area: "Español", pregunta: "¿Quién es el destinatario de la carta anterior?", opciones: { a: "Ciudad de México", b: "15 de mayo de 2019.", c: "Daniela.", d: "Joaquín." }, respuestaCorrecta: "c" },
+          { id: "esp_12", area: "Español", pregunta: "Selecciona la opción que complete las siguientes palabras: tragalu_, ter_iopelo, _o_obrar", opciones: { a: "S, C, Z, S", b: "S, S, S, Z", c: "Z, C, Z, Z", d: "Z, S, S, S" }, respuestaCorrecta: "c" },
+          { id: "esp_13", area: "Español", pregunta: "Todo acento que se pone en forma escrita, o sea con 'tilde', se llama...", opciones: { a: "numeral", b: "gramático", c: "ortográfico", d: "literario" }, respuestaCorrecta: "c" },
+          { id: "esp_14", area: "Español", pregunta: "En la poesía hay líneas que se llaman versos, y determinado número (1, 2, 3, 4) de versos forman....", opciones: { a: "Párrafos", b: "Guiones", c: "Conjuntos", d: "Estrofas" }, respuestaCorrecta: "d" },
+          { id: "esp_15", area: "Español", pregunta: "Identifica las palabras que se escriben con 'z'.", opciones: { a: "acce_o, tena_es", b: "pelli_co, melli_o", c: "natali_io, _opilote", d: "gracio_o, pa_es" }, respuestaCorrecta: "b" },
+          { id: "esp_16", area: "Español", pregunta: "Es una representación dramatizada por medio de personajes quienes presentan una historia por medio de diálogos.", opciones: { a: "Monografía", b: "Exposición", c: "Obra de teatro", d: "La reseña" }, respuestaCorrecta: "c" },
+          { id: "esp_17", area: "Español", pregunta: "'Dejaron mucha tarea las maestras a las niñas'. Es una oración cuyo sujeto es:", opciones: { a: "Las maestras", b: "Mucha tarea", c: "Las niñas", d: "Tarea" }, respuestaCorrecta: "a" },
+          { id: "esp_18", area: "Español", pregunta: "Las partes de una noticia son:", opciones: { a: "Título, copete, entrevista, pie de foto.", b: "Título, copete, cuerpo de la noticia, fotografía, pie de foto.", c: "Título, Inicio, desarrollo, desenlace, publicidad, noticias", d: "Personajes, actores, ambientación, final, titulares." }, respuestaCorrecta: "b" },
+          { id: "esp_19", area: "Español", pregunta: "Son palabras que significan lo mismo y tienen escritura diferente.", opciones: { a: "Sinónimos", b: "Homónimos", c: "Antónimos", d: "Parónimos" }, respuestaCorrecta: "a" },
+          { id: "esp_20", area: "Español", pregunta: "Son los datos que deben ir en el sobre de una carta:", opciones: { a: "Firma, fecha y dirección.", b: "Calle, número y firma.", c: "Calle, número y fecha.", d: "Remitente, destinatario y fecha." }, respuestaCorrecta: "d" },
+          { id: "esp_21", area: "Español", pregunta: "Las palabras homófonas están marcadas en la opción...", opciones: { a: "Guapa - bonita", b: "Hasta - asta", c: "Cavilar - pensar", d: "Subir - bajar" }, respuestaCorrecta: "b" },
+          { id: "esp_22", area: "Español", pregunta: "Son las preposiciones que significan dirección.", opciones: { a: "De, desde", b: "A, hacia", c: "Hasta, para", d: "Entre, en" }, respuestaCorrecta: "b" },
+          { id: "esp_23", area: "Español", pregunta: "Son palabras que nos permiten enlazar ideas, por ejemplo:", opciones: { a: "y, bajo, son.", b: "En principio, finalmente, dado que, en contraparte, porque, pues, sin embargo.", c: "no sé, ahora, ir, sabiendo.", d: "Al que madruga Dios lo ayuda." }, respuestaCorrecta: "b" },
+          { id: "esp_24", area: "Español", pregunta: "'Yo tendría buenas calificaciones'... Es una oración en tiempo...", opciones: { a: "Pretérito", b: "Antepresente", c: "Pospretérito", d: "Futuro" }, respuestaCorrecta: "c" },
+          { id: "esp_25", area: "Español", pregunta: "Las palabras que se acentúan en la última sílaba que terminan en consonante diferente a 'n', 's' o vocal.", opciones: { a: "Graves", b: "Agudas", c: "Sobresdrújulas", d: "Esdrújulas" }, respuestaCorrecta: "b" },
+
+          // MATEMÁTICAS
+          { id: "mat_1", area: "Matemáticas", pregunta: "125 + 83 + 131.89 + 12.158 =", opciones: { a: "351.038", b: "350.058", c: "352.048", d: "351.138" }, respuestaCorrecta: "c" },
+          { id: "mat_2", area: "Matemáticas", pregunta: "Juan Carlos pagó este mes $1250.70 de energía eléctrica, $4,800 de renta, $550 de servicio telefónico y aún le quedan $1265.30 de su sueldo mensual. ¿Cuánto gana al mes?", opciones: { a: "7896", b: "7866", c: "7965", d: "7857" }, respuestaCorrecta: "b" },
+          { id: "mat_3", area: "Matemáticas", pregunta: "Chihuahua tiene una extensión territorial de 247,455 km² y Sonora de 179,355 km². ¿Cuál es la diferencia entre las extensiones territoriales de estos estados?", opciones: { a: "68,100 km²", b: "67,100 km²", c: "66,100 km²", d: "69,100 km²" }, respuestaCorrecta: "a" },
+          { id: "mat_4", area: "Matemáticas", pregunta: "18.30 - 9.406 =", opciones: { a: "8.894", b: "8.983", c: "8.792", d: "8.693" }, respuestaCorrecta: "a" },
+          { id: "mat_5", area: "Matemáticas", pregunta: "78 x 36 =", opciones: { a: "2908", b: "2818", c: "2907", d: "2808" }, respuestaCorrecta: "d" },
+          { id: "mat_6", area: "Matemáticas", pregunta: "7.36 x 0.45 =", opciones: { a: "3.414", b: "3.312", c: "3.332", d: "3.422" }, respuestaCorrecta: "b" },
+          { id: "mat_7", area: "Matemáticas", pregunta: "0.48 ÷ 1.5 =", opciones: { a: "0.12", b: "3.22", c: "0.32", d: "0.22" }, respuestaCorrecta: "c" },
+          { id: "mat_8", area: "Matemáticas", pregunta: "Una panadería preparó 315 piezas de pan, si las mete al horno en charolas donde caben 21 panes, ¿cuántas charolas necesitan para hornearlos todos?", opciones: { a: "15", b: "17", c: "13", d: "16" }, respuestaCorrecta: "a" },
+          { id: "mat_9", area: "Matemáticas", pregunta: "Resuelve: 1/3 + 2/9 =", opciones: { a: "2/27", b: "3/12", c: "5/9", d: "3/27" }, respuestaCorrecta: "c" },
+          { id: "mat_10", area: "Matemáticas", pregunta: "Resuelve: 2 1/2 + 1 3/5 =", opciones: { a: "3 4/7", b: "4 4/10", c: "3 3/10", d: "4 1/10" }, respuestaCorrecta: "d" },
+          { id: "mat_11", area: "Matemáticas", pregunta: "Resuelve: 3/8 - 1/4 =", opciones: { a: "2/4", b: "1/8", c: "3/32", d: "2/32" }, respuestaCorrecta: "b" },
+          { id: "mat_12", area: "Matemáticas", pregunta: "Resuelve: 3 4/7 - 2 3/5 =", opciones: { a: "112/32", b: "34/35", c: "112/35", d: "1/2" }, respuestaCorrecta: "b" },
+          { id: "mat_13", area: "Matemáticas", pregunta: "Selecciona la opción que tiene 3 fracciones equivalentes a la fracción común dada: 2/3 =", opciones: { a: "4/6, 6/9, 8/12", b: "4/6, 8/12, 10/18", c: "3/6, 6/9, 8/12", d: "6/9, 8/10, 10/15" }, respuestaCorrecta: "a" },
+          { id: "mat_14", area: "Matemáticas", imagen: "https://i.postimg.cc/65T8ZVnk/Captura_de_pantalla_2026_03_19_173643.png", pregunta: "Selecciona el nombre de la siguiente figura geométrica.", opciones: { a: "Rectángulo", b: "Círculo", c: "Cuadrado", d: "Triángulo" }, respuestaCorrecta: "c" },
+          { id: "mat_15", area: "Matemáticas", imagen: "https://i.postimg.cc/yNCx2wtq/Captura_de_pantalla_2026_03_19_173635.png", pregunta: "Selecciona el nombre de la siguiente figura geométrica.", opciones: { a: "Cuadrado", b: "Trapecio", c: "Triángulo", d: "Hexágono" }, respuestaCorrecta: "c" },
+          { id: "mat_16", area: "Matemáticas", imagen: "https://i.postimg.cc/pT2TLKPc/Captura_de_pantalla_2026_03_19_173623.png", pregunta: "Selecciona el nombre de la siguiente figura geométrica.", opciones: { a: "Círculo", b: "Pentágono", c: "Hexágono", d: "Cuadrado" }, respuestaCorrecta: "a" },
+          { id: "mat_17", area: "Matemáticas", imagen: "https://i.postimg.cc/90kFbSZ8/Captura_de_pantalla_2026_03_19_173613.png", pregunta: "Selecciona el nombre de la siguiente figura geométrica.", opciones: { a: "Círculo", b: "Pentágono", c: "Hexágono", d: "Trapecio" }, respuestaCorrecta: "b" },
+          { id: "mat_18", area: "Matemáticas", imagen: "https://i.postimg.cc/767pdWFG/Chat-GPT-Image-19-mar-2026-05-46-54-p-m.png", pregunta: "Identifica 1.2 en la siguiente recta numérica.", opciones: { a: "Punto A", b: "Punto B", c: "Punto C", d: "Punto D" }, respuestaCorrecta: "b" },
+          { id: "mat_19", area: "Matemáticas", imagen: "https://i.postimg.cc/767pdWFG/Chat-GPT-Image-19-mar-2026-05-46-54-p-m.png", pregunta: "Identifica 0.85 en la siguiente recta numérica.", opciones: { a: "Punto A", b: "Punto B", c: "Punto C", d: "Punto D" }, respuestaCorrecta: "c" },
+          { id: "mat_20", area: "Matemáticas", imagen: "https://i.postimg.cc/0jXdf8VT/Captura-de-pantalla-2026-03-19-175234.png", pregunta: "Encuentra el perímetro (P) y área (A) del rectángulo.", opciones: { a: "P = 24 cm, A = 12 cm²", b: "P = 12 cm, A = 27 cm²", c: "P = 24 cm, A = 27 cm²", d: "P = 27 cm, A = 12 cm²" }, respuestaCorrecta: "c" },
+          { id: "mat_21", area: "Matemáticas", imagen: "https://i.postimg.cc/05XphyCY/Captura-de-pantalla-2026-03-19-175249.png", pregunta: "Encuentra el perímetro (P) y área (A) de la figura.", opciones: { a: "P = 15 cm, A = 5 cm²", b: "P = 10 cm, A = 2 cm²", c: "P = 20 cm, A = 5 cm²", d: "P = 14 cm, A = 10 cm²" }, respuestaCorrecta: "d" },
+          { id: "mat_22", area: "Matemáticas", imagen: "https://i.postimg.cc/prWqCcR5/Captura-de-pantalla-2026-03-19-175314.png", pregunta: "Identifica el nombre del siguiente ángulo.", opciones: { a: "Agudo", b: "Llano", c: "Obtuso", d: "Recto" }, respuestaCorrecta: "a" },
+          { id: "mat_23", area: "Matemáticas", imagen: "https://i.postimg.cc/7YLKTRKs/Captura-de-pantalla-2026-03-19-175323.png", pregunta: "Identifica el nombre del siguiente ángulo.", opciones: { a: "Agudo", b: "Llano", c: "Obtuso", d: "Recto" }, respuestaCorrecta: "c" },
+          { id: "mat_24", area: "Matemáticas", imagen: "https://i.postimg.cc/T3LQtDMK/Captura-de-pantalla-2026-03-19-175301.png", pregunta: "Identifica el nombre del siguiente ángulo.", opciones: { a: "Agudo", b: "Llano", c: "Obtuso", d: "Recto" }, respuestaCorrecta: "d" },
+          { id: "mat_25", area: "Matemáticas", imagen: "https://i.postimg.cc/s2JWmjXS/Captura-de-pantalla-2026-03-19-175411.png", lectura: "Relación de costo por botellas de agua:\n2 botellas = $15\n8 botellas = $60\n20 botellas = $150", pregunta: "Completa la tabla. ¿Cuáles son los costos para 4, 6 y 10 botellas respectivamente?", opciones: { a: "25, 45, 70", b: "30, 55, 75", c: "25, 55, 70", d: "30, 45, 75" }, respuestaCorrecta: "d" },
+
+          // CIENCIAS
+          { id: "cie_1", area: "Ciencias", pregunta: "Célula sexual masculina.", opciones: { a: "Óvulo", b: "Proteína", c: "Espermatozoide", d: "Testosterona" }, respuestaCorrecta: "c" },
+          { id: "cie_2", area: "Ciencias", pregunta: "Nutrimento indispensables en la alimentación que intervienen directamente al crecimiento del individuo.", opciones: { a: "Progesterona", b: "Núcleo", c: "Proteína", d: "Célula" }, respuestaCorrecta: "c" },
+          { id: "cie_3", area: "Ciencias", pregunta: "Hormona endocrina femenina que permite el desarrollo sexual secundario.", opciones: { a: "Óvulo", b: "Progesterona", c: "Espermatozoide", d: "Testosterona" }, respuestaCorrecta: "b" },
+          { id: "cie_4", area: "Ciencias", pregunta: "Estructura fundamental de todo ser vivo y esta constituida por 3 estructuras básicas: membrana, citoplasma y núcleo.", opciones: { a: "Óvulo", b: "Núcleo", c: "Proteína", d: "Célula" }, respuestaCorrecta: "d" },
+          { id: "cie_5", area: "Ciencias", pregunta: "Es la unión del ovulo y un espermatozoide en cuyo proceso se fusionan para formar una célula llamada cigoto.", opciones: { a: "Óvulo", b: "Célula", c: "Testosterona", d: "Fecundación" }, respuestaCorrecta: "d" },
+          { id: "cie_6", area: "Ciencias", pregunta: "Es el conjunto de alimentos que provee lo necesario en calorías para el buen desarrollo del cuerpo humano.", opciones: { a: "Agua y sales minerales", b: "Proteína", c: "Testosterona", d: "Plato del buen comer" }, respuestaCorrecta: "d" },
+          { id: "cie_7", area: "Ciencias", pregunta: "Célula sexual femenina.", opciones: { a: "Óvulo", b: "Progesterona", c: "Espermatozoide", d: "Testosterona" }, respuestaCorrecta: "a" },
+          { id: "cie_8", area: "Ciencias", pregunta: "Es un instrumento que permite observar objetos no perceptibles al ojo humano", opciones: { a: "Telescopio", b: "Microscopio", c: "Periscopio", d: "Lupa" }, respuestaCorrecta: "b" },
+          { id: "cie_9", area: "Ciencias", pregunta: "¿Qué aumenta la concentración de dióxido de carbono en el aire?", opciones: { a: "Uso de combustibles fósiles", b: "Agricultura, ganadería y deforestación", c: "Uso ineficiente en la energía", d: "Todas las anteriores" }, respuestaCorrecta: "d" },
+          { id: "cie_10", area: "Ciencias", pregunta: "Principal fuente de energía en nuestro planeta", opciones: { a: "El viento", b: "El agua", c: "La luna", d: "El sol" }, respuestaCorrecta: "d" },
+          { id: "cie_11", area: "Ciencias", pregunta: "¿Qué acciones hacen que disminuya el calentamiento global?", opciones: { a: "Usar fuente de energía renovable", b: "Caminar o ir en bicicleta", c: "Arrojar desechos a los océanos", d: "Incrementar emisiones de CO2" }, respuestaCorrecta: "b" },
+          { id: "cie_12", area: "Ciencias", pregunta: "¿Cuál es el tipo de energía que más se utiliza para el funcionamiento de los aparatos domésticos?", opciones: { a: "Nuclear", b: "Geotérmica", c: "Eléctrica", d: "Solar" }, respuestaCorrecta: "c" },
+          { id: "cie_13", area: "Ciencias", pregunta: "¿Qué instrumento óptico nos permite estudiar objetos que están a muy grandes distancias de la Tierra?", opciones: { a: "Microscopio", b: "Binoculares", c: "Anteojos", d: "Telescopio" }, respuestaCorrecta: "d" },
+          { id: "cie_14", area: "Ciencias", pregunta: "Central eléctrica que funciona por la caída de agua que genera el movimiento de turbinas", opciones: { a: "Eólica", b: "Nucleoeléctrica", c: "Hidroeléctrica", d: "Termoeléctrica" }, respuestaCorrecta: "c" },
+          { id: "cie_15", area: "Ciencias", pregunta: "¿Qué tipo de energía representa el agua hirviendo?", opciones: { a: "Térmica", b: "Luminosa", c: "Sonora", d: "Mecánica" }, respuestaCorrecta: "a" },
+          { id: "cie_16", area: "Ciencias", pregunta: "Un material que recobra su forma original después de deformarlo es...", opciones: { a: "Duro", b: "Tenaz", c: "Fuerte", d: "Elástico" }, respuestaCorrecta: "d" },
+          { id: "cie_17", area: "Ciencias", pregunta: "Son objetos que el ser humano ha construido, enviado al espacio y colocado en órbita alrededor de la Tierra.", opciones: { a: "Asteroides", b: "Satélites artificiales", c: "Estrellas", d: "Constelaciones" }, respuestaCorrecta: "b" },
+          { id: "cie_18", area: "Ciencias", pregunta: "Son ejemplos de fenómenos naturales", opciones: { a: "Tala de árboles", b: "Los terremotos", c: "La contaminación", d: "La deforestación" }, respuestaCorrecta: "b" },
+          { id: "cie_19", area: "Ciencias", pregunta: "La Eucariota, vegetal, procariota y animal, son tipos de...", opciones: { a: "Tipos de animales", b: "Tipos de tierras", c: "Tipos de huesos", d: "Tipos de células" }, respuestaCorrecta: "d" },
+          { id: "cie_20", area: "Ciencias", pregunta: "Instrumento óptico de una sola lente que puedes utilizar en casa para ver objetos de cerca.", opciones: { a: "Telescopio", b: "Lupa", c: "Microscopio", d: "Binoculares" }, respuestaCorrecta: "b" },
+          { id: "cie_21", area: "Ciencias", imagen: "https://i.postimg.cc/J0HtfM13/Captura-de-pantalla-2026-03-19-180202.png", pregunta: "La siguiente imagen hace referencia a:", opciones: { a: "Las 3 R: Reducir, reutilizar y reciclar", b: "Las 3 R: Reducir, reutilizar y realizar", c: "Las 3 R: Reducir, reacomodar y reciclar", d: "Ninguna de las anteriores" }, respuestaCorrecta: "a" },
+          { id: "cie_22", area: "Ciencias", pregunta: "Son los cambios de estado de la materia.", opciones: { a: "Agua, sólido, gaseoso", b: "Agua, tierra, fuego y aire", c: "Líquido, sólido y fuego", d: "Líquido, sólido, gaseoso" }, respuestaCorrecta: "d" },
+          { id: "cie_23", area: "Ciencias", pregunta: "¿Cuál es el órgano principal del sistema respiratorio encargado del intercambio de gases?", opciones: { a: "Corazón", b: "Hígado", c: "Pulmones", d: "Estómago" }, respuestaCorrecta: "c" },
+          { id: "cie_24", area: "Ciencias", pregunta: "¿Cómo se llama la fuerza invisible que atrae los objetos hacia el centro de la Tierra?", opciones: { a: "Magnetismo", b: "Fricción", c: "Gravedad", d: "Inercia" }, respuestaCorrecta: "c" },
+          { id: "cie_25", area: "Ciencias", pregunta: "Es el estado de la materia donde las partículas están muy juntas y tienen una forma definida.", opciones: { a: "Sólido", b: "Líquido", c: "Gaseoso", d: "Plasma" }, respuestaCorrecta: "a" },
+
+          // SOCIALES E HISTORIA
+          { id: "soc_1", area: "Sociales", pregunta: "Se les considera como la cultura madre de las civilizaciones Mesoamericanas.", opciones: { a: "Mayas", b: "Olmecas", c: "Aztecas", d: "Chichimecas" }, respuestaCorrecta: "b" },
+          { id: "soc_2", area: "Sociales", pregunta: "Fue el centro de poder político, religioso y económico más importante del México antiguo donde se establecieron los mexicas.", opciones: { a: "Teotihuacan", b: "Tenochtitlan", c: "La Venta", d: "Aztlán" }, respuestaCorrecta: "b" },
+          { id: "soc_3", area: "Sociales", pregunta: "La mayor alianza mesoamericana, conocida como 'La Triple Alianza' estaba conformada por estos señoríos, excepto...", opciones: { a: "Tlacopan", b: "Tenochtitlan", c: "Texcoco", d: "Tlaxcala" }, respuestaCorrecta: "d" },
+          { id: "soc_4", area: "Sociales", pregunta: "Fue la fecha en la cual, Cristóbal Colón llegó a tierras americanas.", opciones: { a: "15 de septiembre de 1810", b: "20 de noviembre de 1910", c: "12 de octubre de 1492", d: "27 de septiembre de 1821" }, respuestaCorrecta: "c" },
+          { id: "soc_5", area: "Sociales", pregunta: "Fue el navegante español que hizo amistad con el imperio mexica.", opciones: { a: "Diego Velázquez", b: "Jerónimo Aguilar", c: "Juan de Grijalba", d: "Hernán Cortez" }, respuestaCorrecta: "d" },
+          { id: "soc_6", area: "Sociales", pregunta: "Así se le conoce a la fecha donde el imperio mexica derrota a los españoles, acabando la amistad con Cortez.", opciones: { a: "La noche triste", b: "Un día trágico", c: "Derrota por la tarde", d: "Mala organización militar" }, respuestaCorrecta: "a" },
+          { id: "soc_7", area: "Sociales", pregunta: "Fecha en la que dio inicio la Guerra de Independencia de México.", opciones: { a: "15 de septiembre de 1810", b: "20 de noviembre de 1910", c: "12 de octubre de 1492", d: "27 de septiembre de 1821" }, respuestaCorrecta: "a" },
+          { id: "soc_8", area: "Sociales", pregunta: "Nombre del primer Emperador de México.", opciones: { a: "Guadalupe Victoria", b: "Agustín de Iturbide", c: "Vicente Guerrero", d: "Miguel Hidalgo" }, respuestaCorrecta: "b" },
+          { id: "soc_9", area: "Sociales", pregunta: "Nombre del primer presidente de México.", opciones: { a: "Guadalupe Victoria", b: "Agustín de Iturbide", c: "Vicente Guerrero", d: "Miguel Hidalgo" }, respuestaCorrecta: "a" },
+          { id: "soc_10", area: "Sociales", pregunta: "Presidente de México en crear las leyes de reforma.", opciones: { a: "Venustiano Carranza", b: "Benito Juárez", c: "Porfirio Díaz", d: "Lerdo de Tejada" }, respuestaCorrecta: "b" },
+          { id: "soc_11", area: "Sociales", pregunta: "Nombre del segundo Emperador de México.", opciones: { a: "Napoleón Bonaparte", b: "Luis XVI", c: "Maximiliano de Habsburgo", d: "Carlos V" }, respuestaCorrecta: "c" },
+          { id: "soc_12", area: "Sociales", pregunta: "Presidente de México que duró más de 30 años en el poder.", opciones: { a: "Venustiano Carranza", b: "Benito Juárez", c: "Porfirio Díaz", d: "Lerdo de Tejada" }, respuestaCorrecta: "c" },
+          { id: "soc_13", area: "Sociales", pregunta: "Fecha en la que dio inicio la Revolución Mexicana", opciones: { a: "15 de septiembre de 1810", b: "20 de noviembre de 1910", c: "12 de octubre de 1492", d: "27 de septiembre de 1821" }, respuestaCorrecta: "b" },
+          { id: "soc_14", area: "Sociales", pregunta: "Es la Constitución por la cual se rigen las leyes en nuestro país actualmente.", opciones: { a: "Constitución de 1857", b: "Constitución de Apatzingán 1814", c: "Constitución de 1917", d: "Constitución de 1824" }, respuestaCorrecta: "c" },
+          { id: "soc_15", area: "Sociales", pregunta: "Presidente que expropió el petróleo en México.", opciones: { a: "Lázaro Cárdenas", b: "Álvaro Obregón", c: "Plutarco Elías Calles", d: "Adolfo Ruiz Cortines" }, respuestaCorrecta: "a" },
+          { id: "soc_16", area: "Sociales", pregunta: "Monterrey y su área metropolitana es una ciudad que por sus oportunidades de empleo está en constante crecimiento, en consecuencia, la posibilidad de los riesgos antrópicos está siempre presente, ¿qué riesgo antrópico es el que más afecta a esta ciudad?", opciones: { a: "Accidentes industriales", b: "Epidemias", c: "Guerras", d: "Inseguridad" }, respuestaCorrecta: "d" },
+          { id: "soc_17", area: "Sociales", lectura: "En el mundo que actualmente vivimos se habla mucho del concepto de sustentabilidad ambiental. Uno de los aspectos importantes a cambiar es el uso de las diferentes fuentes de energía.\n\nI. El petróleo\nII. Energía solar\nIII. La electricidad\nIV. Energía eólica", pregunta: "¿Cuáles de las siguientes es necesario utilizar lo más rápido posible como una forma de mejorar el medio ambiente?", opciones: { a: "I y II", b: "I y III", c: "II y IV", d: "III y IV" }, respuestaCorrecta: "c" },
+          { id: "soc_18", area: "Sociales", lectura: "La maestra de sexto grado plantea a los alumnos la siguiente noticia: 'El crecimiento ilimitado de la población urbana conduce a una expansión desordenada de las ciudades que alcanzan densidades críticas, provocando graves problemas sociales y ambientales'.", pregunta: "De los problemas a que se refiere la noticia, ¿cuáles son los que más se presentan en la ciudad en donde vives?", opciones: { a: "Desempleo e inseguridad", b: "Marginación y analfabetismo", c: "Contaminación y pandillerismo", d: "Marginación e inseguridad" }, respuestaCorrecta: "d" },
+          { id: "soc_19", area: "Sociales", lectura: "Mario encontró que México es un país en su mayor parte montañoso, con importantes volcanes como el Popocatépetl y el Pico de Orizaba.", pregunta: "Pero quiere saber cuál es la montaña más alta del mundo y en qué continente se localiza.", opciones: { a: "El K2 en Pakistán y China en Asia", b: "El Aconcagua en Argentina, América", c: "El Pico de Orizaba, en México, América", d: "El Everest en Nepal-China en Asia" }, respuestaCorrecta: "d" },
+          { id: "soc_20", area: "Sociales", pregunta: "Andrea pregunta a la maestra sobre la cadena montañosa más importante y larga del mundo.", opciones: { a: "La cordillera de los Andes en América", b: "La cordillera del Himalaya en Asia", c: "La cordillera de los Pirineos en Europa", d: "La cordillera de los Alpes en Europa" }, respuestaCorrecta: "a" },
+          { id: "soc_21", area: "Sociales", pregunta: "Para cuidar mi cuerpo debo:", opciones: { a: "Alimentarme poco y con chatarra", b: "Comer mucho y pasar mucho tiempo sin hacer nada", c: "Cuidar mi alimentación y hacer ejercicio", d: "Dejar que los demás se preocupen por eso" }, respuestaCorrecta: "c" },
+          { id: "soc_22", area: "Sociales", pregunta: "Todas las personas que trabajan o estudiamos en la escuela merecemos:", opciones: { a: "Un trato justo y solidario", b: "El desprecio de los alumnos de otras escuelas", c: "La indiferencia de nuestros padres", d: "Tener preferencias sobre los alumnos de otras escuelas" }, respuestaCorrecta: "a" },
+          { id: "soc_23", area: "Sociales", pregunta: "Es el conjunto de cambios de la conducta del pensamiento y del cuerpo que surgen después del consumo repetido de una sustancia psicoactiva.", opciones: { a: "La integridad psíquica", b: "La integridad moral", c: "La integridad física", d: "La adicción" }, respuestaCorrecta: "d" },
+          { id: "soc_24", area: "Sociales", pregunta: "Es un sinónimo de adicción", opciones: { a: "Satisfacción", b: "Dependencia", c: "Esparcimiento", d: "Enfermedad" }, respuestaCorrecta: "b" },
+          { id: "soc_25", area: "Sociales", pregunta: "Estrés significa:", opciones: { a: "Vivir tranquilamente", b: "Tener problemas pero no preocuparse", c: "Que los demás se preocupen por sus problemas", d: "Tener preocupaciones con angustia o ansiedad" }, respuestaCorrecta: "d" },
+
+          // INGLÉS
+          { id: "ing_1", area: "Inglés", pregunta: "Complete the sentence: Which ________ go to the town centre?", opciones: { a: "buses", b: "children", c: "photos", d: "women" }, respuestaCorrecta: "a" },
+          { id: "ing_2", area: "Inglés", pregunta: "Complete the sentence: Shakira and Rihanna are famous ________.", opciones: { a: "buses", b: "children", c: "university", d: "women" }, respuestaCorrecta: "d" },
+          { id: "ing_3", area: "Inglés", pregunta: "Complete the sentence: Look at these ________ of my holiday.", opciones: { a: "university", b: "children", c: "photos", d: "shelves" }, respuestaCorrecta: "c" },
+          { id: "ing_4", area: "Inglés", pregunta: "Complete the sentence: My aunt and uncle have got five ________.", opciones: { a: "university", b: "children", c: "buses", d: "shelves" }, respuestaCorrecta: "b" },
+          { id: "ing_5", area: "Inglés", pregunta: "Complete the sentence: Please put all the books on the ________.", opciones: { a: "university", b: "children", c: "photos", d: "shelves" }, respuestaCorrecta: "d" },
+          { id: "ing_6", area: "Inglés", pregunta: "Complete the sentence with the correct verb: My parents ________ early on Sundays.", opciones: { a: "has", b: "get up", c: "speak", d: "watches" }, respuestaCorrecta: "b" },
+          { id: "ing_7", area: "Inglés", pregunta: "Complete the sentence with the correct verb: Anna ________ TV in her bedroom.", opciones: { a: "like", b: "get up", c: "speak", d: "watches" }, respuestaCorrecta: "d" },
+          { id: "ing_8", area: "Inglés", pregunta: "Complete the sentence with the correct verb: My brother and I ________ five languages.", opciones: { a: "speak", b: "get up", c: "like", d: "watches" }, respuestaCorrecta: "a" },
+          { id: "ing_9", area: "Inglés", pregunta: "Complete the sentence with the correct verb: Do you ________ tomatoes?", opciones: { a: "has", b: "get up", c: "like", d: "watches" }, respuestaCorrecta: "c" },
+          { id: "ing_10", area: "Inglés", pregunta: "Complete the sentence with the correct verb: My sister ________ swimming lessons.", opciones: { a: "has", b: "get up", c: "speak", d: "watches" }, respuestaCorrecta: "a" },
+          { id: "ing_11", area: "Inglés", pregunta: "Write the question. Use the present simple: ________ Anna play tennis?", opciones: { a: "Do", b: "Does", c: "Don't", d: "Doesn't" }, respuestaCorrecta: "b" },
+          { id: "ing_12", area: "Inglés", pregunta: "Write the question. Use the present simple: ________ your cousins live near here?", opciones: { a: "Do", b: "Does", c: "Don't", d: "Doesn't" }, respuestaCorrecta: "a" },
+          { id: "ing_13", area: "Inglés", pregunta: "Write the question. Use the present simple: ________ your dad speak French?", opciones: { a: "Do", b: "Does", c: "Don't", d: "Doesn't" }, respuestaCorrecta: "b" },
+          { id: "ing_14", area: "Inglés", imagen: "https://i.postimg.cc/FHTdkPnb/Captura-de-pantalla-2026-03-19-180548.png", pregunta: "Select the correct verb for the image.", opciones: { a: "read", b: "cry", c: "jump", d: "write" }, respuestaCorrecta: "c" },
+          { id: "ing_15", area: "Inglés", imagen: "https://i.postimg.cc/1z4gGpk4/Captura-de-pantalla-2026-03-19-180559.png", pregunta: "Select the correct verb for the image.", opciones: { a: "sing", b: "write", c: "jump", d: "sleep" }, respuestaCorrecta: "a" },
+          { id: "ing_16", area: "Inglés", imagen: "https://i.postimg.cc/cC76xTnP/Captura-de-pantalla-2026-03-19-180612.png", pregunta: "Select the correct verb for the image.", opciones: { a: "read", b: "sing", c: "jump", d: "paint" }, respuestaCorrecta: "d" },
+          { id: "ing_17", area: "Inglés", imagen: "https://i.postimg.cc/LsrsjGkj/Captura-de-pantalla-2026-03-19-180622.png", pregunta: "Select the correct verb for the image.", opciones: { a: "read", b: "cry", c: "jump", d: "write" }, respuestaCorrecta: "a" },
+          { id: "ing_18", area: "Inglés", imagen: "https://i.postimg.cc/ZYPqy7WN/Captura-de-pantalla-2026-03-19-180631.png", pregunta: "Select the correct verb for the image.", opciones: { a: "paint", b: "sing", c: "eat", d: "write" }, respuestaCorrecta: "d" },
+          { id: "ing_19", area: "Inglés", imagen: "https://i.postimg.cc/MKdK9nbv/Captura-de-pantalla-2026-03-19-180640.png", pregunta: "Select the correct verb for the image.", opciones: { a: "jump", b: "sleep", c: "eat", d: "cry" }, respuestaCorrecta: "b" },
+          { id: "ing_20", area: "Inglés", imagen: "https://i.postimg.cc/L8W4MGWm/Captura-de-pantalla-2026-03-19-180652.png", pregunta: "Select the correct verb for the image.", opciones: { a: "jump", b: "sing", c: "eat", d: "write" }, respuestaCorrecta: "c" },
+          { id: "ing_21", area: "Inglés", pregunta: "Select the correct number for the word: one hundred", opciones: { a: "100", b: "1", c: "1000", d: "10" }, respuestaCorrecta: "a" },
+          { id: "ing_22", area: "Inglés", pregunta: "Select the correct number for the word: Fifty", opciones: { a: "5", b: "55", c: "500", d: "50" }, respuestaCorrecta: "d" },
+          { id: "ing_23", area: "Inglés", pregunta: "Select the correct number for the word: Eight", opciones: { a: "80", b: "18", c: "8", d: "88" }, respuestaCorrecta: "c" },
+          { id: "ing_24", area: "Inglés", pregunta: "Select the correct number for the word: nineteen", opciones: { a: "9", b: "19", c: "90", d: "900" }, respuestaCorrecta: "b" },
+          { id: "ing_25", area: "Inglés", pregunta: "Select the correct number for the word: ten", opciones: { a: "1", b: "10", c: "11", d: "100" }, respuestaCorrecta: "b" }
+        ];
+
+        // ==========================================
+        // ENCUESTA DE ESTILOS DE APRENDIZAJE E INTERESES
+        // ==========================================
+        const bancoEncuesta = [
+          {
+            id: "enc_1",
+            pregunta: "1. Aprendo mejor es cuando...",
+            tipo: "radio",
+            opciones: {
+              a: "Uso imágenes, colores o mapas.",
+              b: "Escucho música o sonidos.",
+              c: "Me muevo o actúo.",
+              d: "Trabajo en equipo.",
+              e: "Reflexiono solo.",
+              f: "Estoy en contacto con la naturaleza.",
+              g: "Leo o escribo.",
+              h: "Resuelvo problemas y uso números."
+            }
+          },
+          {
+            id: "enc_2",
+            pregunta: "2. En mi tiempo libre prefiero...",
+            tipo: "radio",
+            opciones: {
+              a: "Dibujar, hacer manualidades, crear cosas.",
+              b: "Escuchar música o cantar.",
+              c: "Hacer ejercicio o deportes.",
+              d: "Estar con amigos.",
+              e: "Estar solo pensando o escribiendo.",
+              f: "Cuidar plantas o animales.",
+              g: "Leer cuentos o escribir historias.",
+              h: "Hacer rompecabezas, juegos de lógica o matemáticas."
+            }
+          },
+          {
+            id: "enc_3",
+            pregunta: "3. Cuando tengo que aprender algo nuevo, me ayuda más...",
+            tipo: "radio",
+            opciones: {
+              a: "Verlo con imágenes o esquemas.",
+              b: "Escucharlo en una canción o grabación.",
+              c: "Hacerlo con las manos o el cuerpo.",
+              d: "Que alguien me lo explique en grupo.",
+              e: "Pensarlo tranquilo y solo.",
+              f: "Relacionarlo con el mundo natural.",
+              g: "Leerlo en un libro o escribirlo.",
+              h: "Resolverlo con lógica o pasos."
+            }
+          },
+          {
+            id: "enc_4",
+            pregunta: "4. En la escuela, disfruto más...",
+            tipo: "radio",
+            opciones: {
+              a: "Hacer dibujos, mapas o carteles.",
+              b: "Cantar o tocar instrumentos.",
+              c: "Actividades físicas o juegos.",
+              d: "Trabajos en equipo.",
+              e: "Escribir en mi cuaderno o reflexionar.",
+              f: "Salidas al campo o experiencias naturales.",
+              g: "Leer en voz alta o escribir historias.",
+              h: "Resolver problemas o experimentos."
+            }
+          },
+          {
+            id: "enc_5",
+            pregunta: "5. Me va mejor en actividades donde puedo...",
+            tipo: "radio",
+            opciones: {
+              a: "Imaginar y representar ideas con dibujos.",
+              b: "Escuchar sonidos, ritmos o música.",
+              c: "Moverme, construir o usar mi cuerpo.",
+              d: "Compartir ideas con otras personas.",
+              e: "Reflexionar sobre lo que siento o pienso.",
+              f: "Observar la naturaleza.",
+              g: "Usar el lenguaje.",
+              h: "Usar la lógica o las matemáticas."
+            }
+          },
+          {
+            id: "enc_6",
+            pregunta: "6. Me siento más seguro cuando...",
+            tipo: "radio",
+            opciones: {
+              a: "Puedo ver cómo se hacen las cosas.",
+              b: "Hay música o sonidos que me ayudan.",
+              c: "Puedo moverme o tocar materiales.",
+              d: "Trabajo con compañeros.",
+              e: "Trabajo solo y tranquilo.",
+              f: "Estoy en un ambiente natural.",
+              g: "Leo o escribo.",
+              h: "Me explican con pasos lógicos."
+            }
+          },
+          {
+            id: "enc_7",
+            pregunta: "7. En mi casa, suelo...",
+            tipo: "radio",
+            opciones: {
+              a: "Dibujar, armar cosas o usar colores.",
+              b: "Escuchar música o cantar.",
+              c: "Brincar, correr o moverme mucho.",
+              d: "Platicar con familia o amigos.",
+              e: "Escribir en mi diario o pensar solo.",
+              f: "Salir al jardín o cuidar plantas/mascotas.",
+              g: "Leer por gusto.",
+              h: "Jugar juegos de lógica o estrategia."
+            }
+          },
+          {
+            id: "enc_8",
+            pregunta: "8. Cuando tengo un problema, lo resuelvo...",
+            tipo: "radio",
+            opciones: {
+              a: "Dibujando lo que pasa.",
+              b: "Escuchando música para relajarme.",
+              c: "Moviéndome o haciendo algo con el cuerpo.",
+              d: "Pidiendo ayuda a alguien.",
+              e: "Pensando a solas.",
+              f: "Dando un paseo al aire libre.",
+              g: "Escribiéndolo o leyendo sobre eso.",
+              h: "Pensando en los pasos a seguir."
+            }
+          },
+          {
+            id: "enc_9",
+            pregunta: "9. Me identifico más con personas que...",
+            tipo: "radio",
+            opciones: {
+              a: "Son creativas con lo visual.",
+              b: "Aman la música.",
+              c: "Son activas y deportivas.",
+              d: "Son sociables y trabajan en grupo.",
+              e: "Son tranquilas y reflexivas.",
+              f: "Aman a los animales y la naturaleza.",
+              g: "Hablan y escriben bien.",
+              h: "Son lógicas y organizadas."
+            }
+          },
+          {
+            id: "enc_10",
+            pregunta: "10. Cuando estoy en clase, aprendo mejor si...",
+            tipo: "radio",
+            opciones: {
+              a: "Hay imágenes, colores o videos.",
+              b: "Hay canciones o ritmos.",
+              c: "Me dejan moverme o actuar.",
+              d: "Trabajo con otros compañeros.",
+              e: "Me dejan trabajar en silencio.",
+              f: "Hay contacto con la naturaleza.",
+              g: "Me dejan leer o escribir.",
+              h: "Me dan ejercicios para resolver."
+            }
+          },
+          {
+            id: "enc_11",
+            pregunta: "11. ¿En qué momento del día prefieres estudiar o hacer tarea?",
+            tipo: "radio",
+            opciones: {
+              a: "Por la mañana antes de ir a la escuela",
+              b: "Al llegar de la escuela",
+              c: "Por la tarde",
+              d: "Por la noche"
+            }
+          },
+          {
+            id: "enc_12",
+            pregunta: "12. ¿Dónde te concentras mejor para estudiar?",
+            tipo: "radio",
+            opciones: {
+              a: "En un lugar en silencio y solo",
+              b: "Escuchando música suave",
+              c: "Estudiando en grupo",
+              d: "Mientras me muevo o hago otra actividad"
+            }
+          },
+          {
+            id: "enc_13",
+            pregunta: "13. ¿Con quién prefieres estudiar?",
+            tipo: "radio",
+            opciones: {
+              a: "Solo",
+              b: "Con uno o dos amigos",
+              c: "En grupo",
+              d: "Con un adulto (papá, mamá u otro)"
+            }
+          },
+          {
+            id: "enc_14",
+            pregunta: "14. ¿Cómo prefieres aprender algo nuevo?",
+            tipo: "radio",
+            opciones: {
+              a: "Leyendo o escuchando explicaciones",
+              b: "Viendo imágenes, videos o esquemas",
+              c: "Haciendo ejercicios o practicando",
+              d: "Explicándolo o debatiendo con alguien más"
+            }
+          },
+          {
+            id: "enc_15",
+            pregunta: "15. ¿Con qué frecuencia estudias en casa o haces tarea?",
+            tipo: "radio",
+            opciones: {
+              a: "Todos los días sin falta",
+              b: "3 o 4 veces por semana",
+              c: "Solo cuando tengo examen o hay tarea",
+              d: "Casi nunca"
+            }
+          },
+          {
+            id: "enc_16",
+            pregunta: "16. ¿Cuántos libros lees al año, aproximadamente?",
+            tipo: "radio",
+            opciones: {
+              a: "Ninguno",
+              b: "1 a 2",
+              c: "3 a 5",
+              d: "Más de 5"
+            }
+          },
+          {
+            id: "enc_17",
+            pregunta: "17. ¿En qué formato prefieres leer?",
+            tipo: "radio",
+            opciones: {
+              a: "Libro impreso",
+              b: "Celular",
+              c: "Tableta",
+              d: "Kindle u otro lector digital"
+            }
+          },
+          {
+            id: "enc_18",
+            pregunta: "18. ¿Qué tipo de lectura te llama más la atención?",
+            tipo: "radio",
+            opciones: {
+              a: "Narrativa (cuentos, novelas, leyendas)",
+              b: "Informativa (temas reales, curiosidades, ciencia, historia)",
+              c: "Biográfica (vidas reales, autobiografías)",
+              d: "Libros con actividades (experimentos, juegos, manualidades)"
+            }
+          },
+          {
+            id: "enc_19",
+            pregunta: "19. ¿Qué géneros literarios disfrutas más? (Puedes marcar hasta 3)",
+            tipo: "checkbox",
+            opciones: {
+              a: "Poesía",
+              b: "Teatro",
+              c: "Cuento",
+              d: "Novela",
+              e: "Cómic",
+              f: "Crónica",
+              g: "Leyenda",
+              h: "Realismo mágico"
+            }
+          },
+          {
+            id: "enc_20",
+            pregunta: "20. ¿Qué temas te interesan más al leer? (Puedes marcar hasta 3)",
+            tipo: "checkbox",
+            opciones: {
+              a: "Romance",
+              b: "Ciencia ficción",
+              c: "Misterio / Policíaco",
+              d: "Humor",
+              e: "Historia",
+              f: "Naturaleza",
+              g: "Cuerpo humano",
+              h: "Experimentos y curiosidades",
+              i: "Viajes y aventuras",
+              j: "Cultura y personas",
+              k: "Tecnología y objetos"
+            }
+          }
+        ];
+
+        // ==========================================
+        // MOTOR DE DIBUJO Y PAGINACIÓN
+        // ==========================================
+        const areas = ["Español", "Matemáticas", "Ciencias", "Sociales", "Inglés"];
+        let pantallaActual = 0;
+
+        function renderizarExamen() {
+            // 1. Dibujar materias académicas
+            areas.forEach((area, index) => {
+                let htmlMateria = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">${area}</h2>`;
+                let preguntasArea = bancoDePreguntas.filter(p => p.area === area);
+                
+                preguntasArea.forEach((item, i) => {
+                    htmlMateria += `<div class="pregunta-card">`;
+                    htmlMateria += `<h3 style="margin-top:0; color:#5f6368;">Pregunta ${i + 1}</h3>`;
+                    if (item.lectura) htmlMateria += `<div class="lectura-box">${item.lectura}</div>`;
+                    if (item.imagen) htmlMateria += `<img src="${item.imagen}" style="max-width: 100%; margin-bottom: 15px; border-radius: 4px;">`;
+                    htmlMateria += `<p style="font-weight:bold; font-size:16px;">${item.pregunta}</p><div>`;
+                    
+                    for (let letra in item.opciones) {
+                        htmlMateria += `
+                            <label style="display:block; margin-bottom:10px; cursor:pointer;">
+                                <input type="radio" name="${item.id}" value="${letra}" style="margin-right:10px; transform:scale(1.2);"> 
+                                <strong>${letra})</strong> ${item.opciones[letra]}
+                            </label>`;
+                    }
+                    htmlMateria += `</div></div>`;
+                });
+
+                // Botones de navegación para materias
+                htmlMateria += `
+                    <div class="botones-nav">
+                        <button class="btn-atras" onclick="cambiarPantalla(${index})">⬅ Atrás</button>
+                        <button class="btn-siguiente" onclick="cambiarPantalla(${index + 2})">Siguiente ➔</button>
+                    </div>`;
+
+                let idDiv = "contenido-" + area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                document.getElementById(idDiv).innerHTML = htmlMateria;
+            });
+
+            // 2. Dibujar Encuesta
+            let htmlEncuesta = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">Encuesta de Hábitos y Lectura</h2>`;
+            bancoEncuesta.forEach((item) => {
+                htmlEncuesta += `<div class="pregunta-card">`;
+                htmlEncuesta += `<p style="font-weight:bold; font-size:16px;">${item.pregunta}</p><div>`;
+                
+                let tipoInput = item.tipo; // "radio" o "checkbox"
+                let funcionLimite = tipoInput === 'checkbox' ? `onchange="limitarCheckboxes('${item.id}')"` : '';
+
+                for (let letra in item.opciones) {
+                    htmlEncuesta += `
+                        <label style="display:block; margin-bottom:10px; cursor:pointer;">
+                            <input type="${tipoInput}" name="${item.id}" value="${letra}" ${funcionLimite} style="margin-right:10px; transform:scale(1.2);"> 
+                            <strong>${letra})</strong> ${item.opciones[letra]}
+                        </label>`;
+                }
+                htmlEncuesta += `</div></div>`;
+            });
+            document.getElementById('contenido-encuesta').innerHTML = htmlEncuesta;
+        }
+
+        // Función para cambiar entre pestañas
+        function cambiarPantalla(numeroPantalla) {
+            // Validar que en la pantalla 0 haya puesto su nombre
+            if (pantallaActual === 0 && numeroPantalla === 1) {
+                let paterno = document.getElementById('apellidoPaterno').value.trim();
+                let nombres = document.getElementById('nombres').value.trim();
+                if (!paterno || !nombres) {
+                    alert("Por favor, ingresa al menos tu Apellido Paterno y Nombre(s) para comenzar.");
+                    return;
+                }
+            }
+
+            document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+            document.getElementById('pantalla-' + numeroPantalla).classList.add('activa');
+            pantallaActual = numeroPantalla;
+
+            // NOMBRES DE LAS SECCIONES PARA LA BARRA
+            const titulosPasos = ["Datos del Alumno", "Sección: Español", "Sección: Matemáticas", "Sección: Ciencias", "Sección: Sociales e Historia", "Sección: Inglés", "Encuesta de Hábitos"];
+            
+            // Actualizar la barra sin números
+            document.getElementById('progreso').innerText = titulosPasos[numeroPantalla];
+            
+            // Subir la página al inicio al cambiar de sección
+            window.scrollTo(0, 0);
+        }
+
+        // Función para limitar los checkboxes a máximo 3
+        function limitarCheckboxes(nombreGrupo) {
+            let seleccionados = document.querySelectorAll(`input[name="${nombreGrupo}"]:checked`);
+            if (seleccionados.length > 3) {
+                alert("Solo puedes seleccionar un máximo de 3 opciones en esta pregunta.");
+                event.target.checked = false;
+            }
+        }
+
+        // Arrancar el motor al cargar la página
+        // ==========================================
+        // SISTEMA DE ENVÍO A GOOGLE SHEETS
+        // ==========================================
+        function finalizarExamen() {
+            // 1. Capturar datos básicos (OBLIGATORIOS)
+            const paterno = document.getElementById('apellidoPaterno').value.trim().toUpperCase();
+            const materno = document.getElementById('apellidoMaterno').value.trim().toUpperCase();
+            const nombres = document.getElementById('nombres').value.trim().toUpperCase();
+
+            if(!paterno || !nombres) {
+                alert("⚠️ Por favor, ingresa al menos tu Apellido Paterno y Nombres en el Paso 1.");
+                cambiarPantalla(1); // Regresa al alumno al inicio
+                return;
+            }
+
+            // 2. Calificar parte Académica (Tratamiento de vacíos)
+            let calificaciones = { espanol: 0, matematicas: 0, ciencias: 0, sociales: 0, ingles: 0, total: 0 };
+            bancoDePreguntas.forEach(pregunta => {
+                let areaKey = pregunta.area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                if(areaKey.includes("sociales")) areaKey = "sociales";
+                
+                let opciones = document.getElementsByName(pregunta.id);
+                let seleccionada = "";
+                for (let i = 0; i < opciones.length; i++) {
+                    if (opciones[i].checked) { seleccionada = opciones[i].value; break; }
+                }
+                // Solo suma si la respuesta existe Y es correcta
+                if (seleccionada && seleccionada === pregunta.respuestaCorrecta) {
+                    calificaciones[areaKey]++;
+                    calificaciones.total++;
+                }
+            });
+
+            // 3. Recopilar Encuesta (Tratamiento de vacíos para gráficas)
+            let encuesta = {};
+            bancoEncuesta.forEach(pregunta => {
+                let opciones = document.getElementsByName(pregunta.id);
+                let respuestasTexto = [];
+                for (let i = 0; i < opciones.length; i++) {
+                    if (opciones[i].checked) {
+                        let letra = opciones[i].value;
+                        // Protección: Solo si la opción existe en el banco
+                        if(pregunta.opciones && pregunta.opciones[letra]) {
+                            respuestasTexto.push(pregunta.opciones[letra]);
+                        }
+                    }
+                }
+                // Si está vacío, manda "Sin respuesta" en lugar de fallar
+                encuesta[pregunta.id] = respuestasTexto.length > 0 ? respuestasTexto.join(", ") : "Sin respuesta";
+            });
+
+            // 4. Preparar el envío
+            const paquete = { alumno: { apellidoPaterno: paterno, apellidoMaterno: materno, nombres: nombres }, calificaciones: calificaciones, encuesta: encuesta };
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzILWVACzWd-RRF7oYlaurg9HE3ZXMHD8l_Jr5MSOQznI0szWNIkOAGavFSHWCnOiIK/exec'; 
+            
+            const btn = document.querySelector('.btn-finalizar');
+            btn.innerText = "Enviando respuestas... ⏳";
+            btn.disabled = true;
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(paquete)
+            })
+            .then(() => {
+                alert("Felicidades !!!!Terminaste tu examne!!!!.");
+                window.location.reload(); 
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Hubo un error de conexión. Intenta enviar de nuevo.");
+                btn.innerText = "Terminar y Enviar Todo";
+                btn.disabled = false;
+            });
+        }
+        window.onload = renderizarExamen;
+    </script>
+</body>
+</html>
