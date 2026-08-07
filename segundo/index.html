@@ -1,1 +1,460 @@
-hola!
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación Diagnóstica - Segundo Grado</title>
+    <style>
+        /* COLORES INSTITUCIONALES (VERDE) */
+        :root {
+            --verde-primario: #2e7d32;
+            --verde-hover: #1b5e20;
+            --verde-claro: #e8f5e9;
+            --gris-texto: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: var(--gris-texto);
+            margin: 0;
+            padding: 20px;
+        }
+        .contenedor {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        /* Estilos para las pantallas */
+        .pantalla { display: none; }
+        .pantalla.activa { display: block; animation: aparecer 0.5s ease-in-out; }
+        @keyframes aparecer { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Indicador de sección */
+        .progreso-texto { text-align: center; color: var(--verde-primario); font-weight: bold; font-size: 18px; margin-bottom: 20px; padding: 12px; background: var(--verde-claro); border-radius: 5px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Mensaje de Bienvenida */
+        .bienvenida-box { background-color: white; border: 2px solid var(--verde-claro); padding: 25px; border-radius: 8px; margin-bottom: 30px; }
+        .bienvenida-box h2 { color: var(--verde-primario); margin-top: 0; }
+        .bienvenida-box ul { list-style: none; padding: 0; margin-top: 20px; }
+        .bienvenida-box li { margin-bottom: 12px; font-size: 16px; }
+
+        .seccion-datos { background-color: var(--verde-claro); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .grupo-input { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #5f6368; }
+        input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+
+        /* Estilos de botones */
+        .botones-nav { display: flex; justify-content: space-between; margin-top: 30px; }
+        button { padding: 12px 25px; font-size: 16px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .btn-siguiente { background-color: var(--verde-primario); color: white; }
+        .btn-siguiente:hover { background-color: var(--verde-hover); }
+        .btn-atras { background-color: #e0e0e0; color: #333; }
+        .btn-atras:hover { background-color: #ccc; }
+        .btn-finalizar { background-color: #198754; color: white; width: 100%; font-size: 18px; margin-top: 20px; }
+        .btn-finalizar:hover { background-color: #146c43; }
+
+        /* Estilos de preguntas */
+        .pregunta-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .lectura-box { background: #fdf6e3; padding: 15px; border-left: 4px solid #f39c12; margin-bottom: 15px; border-radius: 0 4px 4px 0; font-style: italic; white-space: pre-wrap; }
+        .instrucciones { background: var(--verde-claro); padding: 15px; border-left: 4px solid var(--verde-primario); margin-bottom: 20px; font-size: 15px; color: var(--gris-texto); }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <!-- ESCUDO Y TÍTULO -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="https://i.postimg.cc/gj4dt7hH/Secu-20-SF-Org.png" alt="Escudo Secundaria" style="max-width: 150px;">
+        </div>
+        <h1 style="text-align: center; color: var(--verde-primario); border-bottom: 2px solid var(--verde-claro); padding-bottom: 10px; margin-top: 0;">Evaluación Diagnóstica - Segundo Grado</h1>
+        
+        <div id="progreso" class="progreso-texto">Datos del Alumno</div>
+
+        <!-- PANTALLA 0: DATOS Y BIENVENIDA -->
+        <div id="pantalla-0" class="pantalla activa">
+            
+            <div class="bienvenida-box">
+                <h2>¡Hola! 👋</h2>
+                <p>Estás por comenzar tu Evaluación Diagnóstica para <strong>Segundo Grado</strong>. Tu examen consta de <strong>125 preguntas</strong> y una breve encuesta de <strong>20 preguntas</strong> sobre tus hábitos de estudio.</p>
+                <p>Es muy importante que hagas tu mejor esfuerzo para planear las mejores actividades para ti durante este ciclo escolar.</p>
+                <ul>
+                    <li>📌 <strong>Lee bien</strong> cada pregunta y responde con calma.</li>
+                    <li>⏳ <strong>Administra tu tiempo:</strong> recuerda que debes completar todas las materias.</li>
+                </ul>
+                <h3 style="text-align: center; color: var(--verde-primario); font-size: 22px; margin-bottom: 0;">¡Tú puedes! 💪</h3>
+            </div>
+
+            <div class="seccion-datos">
+                <h2 style="margin-top: 0; color: var(--verde-primario);">Ingresa tus datos</h2>
+                <div class="grupo-input">
+                    <label>Apellido Paterno:</label>
+                    <input type="text" id="apellidoPaterno" placeholder="Ej. García">
+                </div>
+                <div class="grupo-input">
+                    <label>Apellido Materno:</label>
+                    <input type="text" id="apellidoMaterno" placeholder="Ej. López">
+                </div>
+                <div class="grupo-input">
+                    <label>Nombre(s):</label>
+                    <input type="text" id="nombres" placeholder="Ej. Juan Carlos">
+                </div>
+            </div>
+            <div style="text-align: right;">
+                <button class="btn-siguiente" onclick="cambiarPantalla(1)">Comenzar Examen ➔</button>
+            </div>
+        </div>
+
+        <!-- PANTALLAS 1 AL 5: ACADÉMICAS -->
+        <div id="pantalla-1" class="pantalla"><div id="contenido-espanol"></div></div>
+        <div id="pantalla-2" class="pantalla"><div id="contenido-matematicas"></div></div>
+        <div id="pantalla-3" class="pantalla"><div id="contenido-ciencias"></div></div>
+        <div id="pantalla-4" class="pantalla"><div id="contenido-sociales"></div></div>
+        <div id="pantalla-5" class="pantalla"><div id="contenido-ingles"></div></div>
+
+        <!-- PANTALLA 6: ENCUESTA -->
+        <div id="pantalla-6" class="pantalla">
+            <div class="instrucciones">
+                <strong>Instrucciones:</strong> A continuación encontrarás una serie de preguntas sobre tus hábitos de estudio y formas preferidas de aprender. <strong>No hay respuestas correctas o incorrectas.</strong> Responde con sinceridad.
+            </div>
+            <div id="contenido-encuesta"></div>
+            <div class="botones-nav">
+                <button class="btn-atras" onclick="cambiarPantalla(5)">⬅ Atrás</button>
+                <button class="btn-finalizar" onclick="finalizarExamen()">Terminar y Enviar Todo</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ==========================================
+        // BANCO DE PREGUNTAS ACADÉMICAS - SEGUNDO GRADO
+        // ==========================================
+        const bancoDePreguntas = [
+          // ESPAÑOL (Segundo Grado)
+          { id: "esp2_1", area: "Español", lectura: "Stefani, Marta. Historia de la ciencia y la tecnología: La revolución científica. SEP-Diana. México, 2002.", pregunta: "Es un ejemplo de ficha de:", opciones: { a: "Resumen", b: "Síntesis", c: "Bibliográfica", d: "Cartográfica" }, respuestaCorrecta: "c" },
+          { id: "esp2_2", area: "Español", pregunta: "¿En cuál de las siguientes oraciones se presenta una comparación?", opciones: { a: "El albañil luce como si hubiera trabajado en exceso.", b: "La explanada tiene jardines llenos de árboles.", c: "El gato parece manso.", d: "La antigua hacienda semeja un castillo medieval." }, respuestaCorrecta: "d" },
+          { id: "esp2_3", area: "Español", pregunta: "Es el significado de tener una buena dicción.", opciones: { a: "Hablar fluidamente", b: "Hablar con un volumen alto de voz", c: "Escribir correctamente todas las palabras", d: "Pronunciar bien las palabras" }, respuestaCorrecta: "d" },
+          { id: "esp2_4", area: "Español", pregunta: "Identifica la oración en que no aparece un nexo temporal.", opciones: { a: "Te llamaré por teléfono después de almorzar.", b: "El enfermo murió cuando ya amanecía.", c: "Estábamos cansados, así que nos fuimos.", d: "Trataré de llegar a mi casa antes de que comience a llover." }, respuestaCorrecta: "c" },
+          { id: "esp2_5", area: "Español", pregunta: "Selecciona la oración en la que se observa la debida concordancia entre el sujeto y el predicado:", opciones: { a: "La selección nacional arribaron al aeropuerto del norte.", b: "El carpintero reparan el baúl del abuelo.", c: "El maestro de historia fue el más sorprendido.", d: "Los libros son nuestro mejor amigo" }, respuestaCorrecta: "c" },
+          { id: "esp2_6", area: "Español", pregunta: "¿Cuál es el primer paso para realizar una exposición de un tema?", opciones: { a: "Investigar el tema", b: "Seleccionar la información", c: "Elegir el tema", d: "Hacer un resumen" }, respuestaCorrecta: "c" },
+          { id: "esp2_7", area: "Español", pregunta: "Es lo más sobresaliente de un párrafo, aportan datos, definiciones y conceptos.", opciones: { a: "Resumen", b: "Paráfrasis", c: "Ideas principales", d: "Ideas secundarias" }, respuestaCorrecta: "c" },
+          { id: "esp2_8", area: "Español", lectura: "Cuando yo era niño, mi abuelo me contaba de una señora que se aparecía en el pueblo. Decía que varias veces la llego a ver: era una señora que siempre iba vestida de la misma manera, con una falda blanca muy sucia... Mi abuelo contaba que algunas veces la llegó a escuchar hablando sola...", pregunta: "¿Qué tipo de texto es el anterior?", opciones: { a: "Texto poético", b: "Texto narrativo", c: "Texto dramático", d: "Texto informativo" }, respuestaCorrecta: "b" },
+          { id: "esp2_9", area: "Español", pregunta: "¿Cuáles son algunas de las características de este tipo de texto (narrativo)?", opciones: { a: "Presenta datos verificables y es objetivo.", b: "Tiene un narrador y participan personajes.", c: "El autor expresa sus emociones y sentimientos.", d: "Está hecho para ser representado y tiene acotaciones." }, respuestaCorrecta: "b" },
+          { id: "esp2_10", area: "Español", pregunta: "¿Sabes cuál es el origen de las palabras como 'huipil' o 'huaraches'?", opciones: { a: "Sí, es del latín.", b: "Sí, es náhuatl.", c: "Sí, vienen del árabe.", d: "Sí, vienen del griego." }, respuestaCorrecta: "b" },
+          { id: "esp2_11", area: "Español", pregunta: "¿Por qué consideras que la leyenda de la Llorona es significativa dentro de nuestra cultura?", opciones: { a: "Es muy antigua", b: "Es una historia arraigada en nuestro folclor y se ha transmitido de generación en generación.", c: "Contiene hechos fantásticos", d: "Está basada en hechos reales" }, respuestaCorrecta: "b" },
+          { id: "esp2_12", area: "Español", pregunta: "¿Textos que se basan en hechos fantásticos, sus protagonistas son dioses o semidioses?", opciones: { a: "Fábulas", b: "Cuentos", c: "Leyendas", d: "Mitos" }, respuestaCorrecta: "d" },
+          { id: "esp2_13", area: "Español", pregunta: "¿Cuál es un ejemplo de hipérbole?", opciones: { a: "Tengo tanta hambre como si fuera un león.", b: "Tengo tanta hambre que me comería un león.", c: "Tanta hambre y sin comer, tanta sed y sin beber.", d: "Soy un león hambriento que no ha comido en una semana." }, respuestaCorrecta: "b" },
+          { id: "esp2_14", area: "Español", pregunta: "¿Cuál es un ejemplo de comparación?", opciones: { a: "Su música me hace sentir como un pájaro en el aire.", b: "Nada más como y paso por ti para irnos al concierto.", c: "Como no llegamos a tiempo, ya no nos dejaron entrar.", d: "No hallo cómo hacer para convencerlo de ir al concierto." }, respuestaCorrecta: "a" },
+          { id: "esp2_15", area: "Español", pregunta: "Explica algunas de las características que tiene el protagonista de una obra narrativa.", opciones: { a: "Es muy atractivo", b: "Alrededor de él, gira toda la historia.", c: "Aparece esporádicamente.", d: "Siempre es bueno" }, respuestaCorrecta: "b" },
+          { id: "esp2_16", area: "Español", pregunta: "¿Qué es una autobiografía?", opciones: { a: "La vida de una persona escrita por ella misma.", b: "La vida de una persona escrita por otra persona.", c: "La novela de la vida de algún personaje histórico.", d: "La historia de lo que a una persona le hubiera gustado vivir." }, respuestaCorrecta: "a" },
+          { id: "esp2_17", area: "Español", pregunta: "¿Qué significa interpretar?", opciones: { a: "Darle un nuevo sentido a algo.", b: "Dar la definición de algo.", c: "Encontrar el sentido y explicarlo.", d: "Convencer a alguien del significado de algo." }, respuestaCorrecta: "c" },
+          { id: "esp2_18", area: "Español", pregunta: "¿Cómo son los hechos que se presentan en una autobiografía?", opciones: { a: "Son hechos insignificantes en la vida del autor.", b: "Son los hechos más significativos en la vida del autor.", c: "Son eventos sobrenaturales que le suceden a los personajes.", d: "Son los sucesos más extraordinarios en la vida del antagonista." }, respuestaCorrecta: "b" },
+          { id: "esp2_19", area: "Español", lectura: "En los últimos años, he visto una tendencia en los problemas graves de salud mental que afectan a nuestros hijos que se derivan de su uso de las redes sociales. En aplicaciones como Instagram, nuestros niños están inundados constantemente con imágenes de personas con cuerpos 'perfectos' poco realistas...", pregunta: "¿Qué tipo de texto es este?", opciones: { a: "Un ensayo", b: "Una noticia", c: "Un artículo de opinión", d: "Un artículo de divulgación científica" }, respuestaCorrecta: "c" },
+          { id: "esp2_20", area: "Español", pregunta: "Este tipo de textos pertenece al género...", opciones: { a: "Literario", b: "Científico", c: "Publicitario", d: "Periodístico" }, respuestaCorrecta: "d" },
+          { id: "esp2_21", area: "Español", pregunta: "¿Se podría debatir sobre el tema de los efectos de las redes sociales en los jóvenes?", opciones: { a: "Sí, porque en un debate se pueden discutir temas polémicos.", b: "Sí, porque en un debate se discuten temas relacionados con los adolescentes.", c: "No, porque en un debate solo se discuten temas de carácter científico.", d: "No, porque en un debate no se pueden tratar tema relacionados con los adolescentes." }, respuestaCorrecta: "a" },
+          { id: "esp2_22", area: "Español", pregunta: "¿Qué significa argumentar?", opciones: { a: "Presentar datos que respalden lo que se dice.", b: "Dar opiniones sobre algún tema polémico.", c: "Ofrecer un punto de vista sobre algo.", d: "Proporcionar información complementaria sobre un tema." }, respuestaCorrecta: "a" },
+          { id: "esp2_23", area: "Español", pregunta: "¿Cuál es el propósito principal del autor al escribir este fragmento?", opciones: { a: "Informar sobre los beneficios de las redes sociales para los jóvenes.", b: "Exponer los problemas de salud mental causados por las redes sociales.", c: "Promover el uso responsable de las redes sociales en los jóvenes.", d: "Definir los conceptos clave relacionados con el uso de las redes sociales." }, respuestaCorrecta: "b" },
+          { id: "esp2_24", area: "Español", pregunta: "Tipo de narrador que presenta los acontecimientos como si supiera todo lo que acontece y sabe también lo que piensan los personajes", opciones: { a: "Narrador omnisciente", b: "Narrador equisciente", c: "Narrador personaje principal", d: "Narrador observador" }, respuestaCorrecta: "a" },
+          { id: "esp2_25", area: "Español", pregunta: "¿Como se le denomina a la posibilidad de entender varias lenguas?", opciones: { a: "Hablante", b: "Multilingüismo", c: "Bilingüismo", d: "Variante" }, respuestaCorrecta: "b" },
+
+          // MATEMÁTICAS (Segundo Grado)
+          { id: "mat2_1", area: "Matemáticas", pregunta: "Algunas fracciones no se pueden expresar exactamente como decimales, por ejemplo 2/3. ¿Cuál es el número decimal más próximo?", opciones: { a: "0.6", b: "0.63", c: "0.66", d: "0.7" }, respuestaCorrecta: "c" },
+          { id: "mat2_2", area: "Matemáticas", pregunta: "Si queremos expresar el número π, que vale aproximadamente 3.14, en forma de fracción, su valor más próximo es:", opciones: { a: "7/2", b: "10/3", c: "13/4", d: "31/10" }, respuestaCorrecta: "d" },
+          { id: "mat2_3", area: "Matemáticas", pregunta: "En una recta numérica, el número indicado antes del 1 se aproxima más a:", opciones: { a: "-1.15", b: "1.15", c: "0.8", d: "0.85" }, respuestaCorrecta: "c" },
+          { id: "mat2_4", area: "Matemáticas", pregunta: "¿En qué cuadrante de una recta numérica se ubicaría el número -1/5?", opciones: { a: "A (Izquierda del 0)", b: "B", c: "C", d: "D" }, respuestaCorrecta: "a" },
+          { id: "mat2_5", area: "Matemáticas", pregunta: "Para recorrer una pista de 800m Angélica tarda 4 minutos, Miguel 3 minutos y Luis 2 minutos, si los tres salen al mismo tiempo, ¿cuánto tardarán en encontrase de nuevo en la salida?", opciones: { a: "3 min", b: "5 min", c: "6 min", d: "12 min" }, respuestaCorrecta: "d" },
+          { id: "mat2_6", area: "Matemáticas", pregunta: "En un campamento hay 42 hombres y 60 mujeres, se van a hacer equipos sin mezclar hombres con mujeres y que todos sean de la misma cantidad y la mayor posible. ¿De cuántas personas deben de ser?", opciones: { a: "2", b: "3", c: "6", d: "8" }, respuestaCorrecta: "c" },
+          { id: "mat2_7", area: "Matemáticas", pregunta: "Un tanque de gasolina tiene una capacidad de 60 litros. Si al momento de llenar el tanque, éste contiene 1/4 de su capacidad, ¿cuántos litros le faltan para llenarse?", opciones: { a: "15 litros", b: "20 litros", c: "35 litros", d: "45 litros" }, respuestaCorrecta: "d" },
+          { id: "mat2_8", area: "Matemáticas", pregunta: "Una llave vierte 9 1/5 litros de agua por minuto. ¿Cuántos minutos se necesitan para llenar, con esa llave, un depósito cuya capacidad es 128 4/5 litros?", opciones: { a: "45/6 minutos", b: "14 minutos", c: "15 minutos", d: "4/25 minutos" }, respuestaCorrecta: "b" },
+          { id: "mat2_9", area: "Matemáticas", pregunta: "Una caja de refrescos contiene 24 envases y cada envase tiene 0.355 litros. ¿Cuántos litros tiene una caja de refrescos?", opciones: { a: "8 litros", b: "8.52 litros", c: "9 litros", d: "9.34 litros" }, respuestaCorrecta: "b" },
+          { id: "mat2_10", area: "Matemáticas", pregunta: "Un recipiente tiene 50 litros de leche, si lo quiero repartir en envases de 0.35 litros, ¿cuántos puedo llenar?", opciones: { a: "89", b: "100", c: "142", d: "268" }, respuestaCorrecta: "c" },
+          { id: "mat2_11", area: "Matemáticas", pregunta: "El doble de un número aumentado en dos es igual a veinte, esta expresión es equivalente a la expresión algebraica:", opciones: { a: "x + 2 = 20", b: "2x + 2 = 20", c: "2x + 4 = 20", d: "x + 4 = 20" }, respuestaCorrecta: "b" },
+          { id: "mat2_12", area: "Matemáticas", pregunta: "Para resolver la ecuación x - 5 = 27, ¿qué paso se recomienda dar primero?", opciones: { a: "restar cinco en ambos lados de la igualdad", b: "sumar cinco en ambos lados de la igualdad", c: "multiplicar por cinco en ambos lados", d: "dividir entre cinco" }, respuestaCorrecta: "b" },
+          { id: "mat2_13", area: "Matemáticas", pregunta: "Una lona tiene forma triangular y mide de base 3.4m y de altura 1.8m, ¿cuánto mide de área?", opciones: { a: "3.06 m²", b: "4.4 m²", c: "5.8 m²", d: "6.12 m²" }, respuestaCorrecta: "a" },
+          { id: "mat2_14", area: "Matemáticas", pregunta: "Si el perímetro de un cuadrilátero regular (cuadrado) es 20cm entonces su área es de:", opciones: { a: "5 cm²", b: "10 cm²", c: "20 cm²", d: "25 cm²" }, respuestaCorrecta: "d" },
+          { id: "mat2_15", area: "Matemáticas", pregunta: "La suma de dos números es igual a 7 y uno de ellos es 10. ¿Cuál es el otro número?", opciones: { a: "-3", b: "-4", c: "3", d: "no existe" }, respuestaCorrecta: "a" },
+          { id: "mat2_16", area: "Matemáticas", pregunta: "Mariano compró una camisa por $198.47; una corbata por $76.25 y pañuelos por $51.32. Si pagó con dos billetes de $200, ¿cuánto le devolvieron?", opciones: { a: "$73.96", b: "$72.43", c: "$150.21", d: "$125.28" }, respuestaCorrecta: "a" },
+          { id: "mat2_17", area: "Matemáticas", pregunta: "Un jardinero sembró 10 árboles en dos días y medio. ¿Cuánto tardan en sembrar 15, suponiendo que mantiene el mismo ritmo de trabajo?", opciones: { a: "3 días", b: "3 3/4 días", c: "4 días", d: "4 1/2 días" }, respuestaCorrecta: "b" },
+          { id: "mat2_18", area: "Matemáticas", pregunta: "Determina la solución del siguiente problema: 8 - 2 x 2 + 10 ÷ 5", opciones: { a: "2.6", b: "2.8", c: "5", d: "6" }, respuestaCorrecta: "d" },
+          { id: "mat2_19", area: "Matemáticas", pregunta: "Observa una gráfica de barras de ventas mensuales. Si marzo tiene 8, abril 7 y mayo 2. ¿En qué mes el decremento en las ventas fue mayor?", opciones: { a: "febrero", b: "marzo", c: "abril a mayo", d: "junio" }, respuestaCorrecta: "c" },
+          { id: "mat2_20", area: "Matemáticas", pregunta: "En una gráfica circular de preferencia de colores, el azul tiene 49%. ¿Qué color prefiere aproximadamente la mitad del grupo?", opciones: { a: "azul", b: "rojo", c: "amarillo", d: "verde" }, respuestaCorrecta: "a" },
+          { id: "mat2_21", area: "Matemáticas", pregunta: "Resuelve el siguiente problema: (-10)(3)(-2)", opciones: { a: "60", b: "-60", c: "30", d: "-30" }, respuestaCorrecta: "a" },
+          { id: "mat2_22", area: "Matemáticas", pregunta: "Resuelve el siguiente problema: -40 ÷ 5", opciones: { a: "8", b: "-8", c: "80", d: "-80" }, respuestaCorrecta: "b" },
+          { id: "mat2_23", area: "Matemáticas", pregunta: "Determina el número faltante de la siguiente sucesión: 2, 5, 8, 11, ___", opciones: { a: "13", b: "14", c: "15", d: "16" }, respuestaCorrecta: "b" },
+          { id: "mat2_24", area: "Matemáticas", pregunta: "Convierte la fracción impropia 12/7 a mixta.", opciones: { a: "1 3/7", b: "1 4/7", c: "1 5/7", d: "1 6/7" }, respuestaCorrecta: "c" },
+          { id: "mat2_25", area: "Matemáticas", pregunta: "¿Cuál es el nombre de la figura geométrica que tiene dos lados paralelos y dos no paralelos?", opciones: { a: "Rectángulo", b: "Trapecio", c: "Romboide", d: "Pentágono" }, respuestaCorrecta: "b" },
+
+          // CIENCIAS (Segundo Grado)
+          { id: "cie2_1", area: "Ciencias", pregunta: "2784.3 - 4.2", opciones: { a: "2780.1", b: "650.0", c: "2788.5", d: "2780.5" }, respuestaCorrecta: "a" },
+          { id: "cie2_2", area: "Ciencias", pregunta: "68.567 - 2.4", opciones: { a: "66.167", b: "28.56", c: "27.56", d: "26.56" }, respuestaCorrecta: "a" },
+          { id: "cie2_3", area: "Ciencias", pregunta: "46.77 ÷ 3", opciones: { a: "15.59", b: "21.59", c: "20.59", d: "21.50" }, respuestaCorrecta: "a" },
+          { id: "cie2_4", area: "Ciencias", pregunta: "830.00 - 165", opciones: { a: "665", b: "503", c: "5.03", d: ".503" }, respuestaCorrecta: "a" },
+          { id: "cie2_5", area: "Ciencias", pregunta: "Un saco lleno de globos pesa 75.6 gramos y cada globo pesa 1.2 gramos. ¿Cuántos globos hay en el saco?", opciones: { a: "6.3 gramos", b: "0.63 gramos", c: "63", d: "63.03" }, respuestaCorrecta: "c" },
+          { id: "cie2_6", area: "Ciencias", pregunta: "La vuelta ciclista tiene 3 etapas planas y 4 de montaña. En total son 100 km. Si cada etapa plana tiene 20 km, ¿cuántos km tiene cada etapa de montaña?", opciones: { a: "5 Km", b: "15 Km", c: "10 Km", d: "12 Km" }, respuestaCorrecta: "c" },
+          { id: "cie2_7", area: "Ciencias", pregunta: "Por el revelado de cada rollo cobran $53.00. Si este mes hay descuento del 25%, ¿cuánto pagará por 2 rollos?", opciones: { a: "$24.30", b: "$28.00", c: "$39.75", d: "$79.50" }, respuestaCorrecta: "d" },
+          { id: "cie2_8", area: "Ciencias", pregunta: "En una tienda se reciben 7 cajas de refrescos 3 veces a la semana. Si cada caja contiene 24 refrescos, ¿cuántos refrescos se reciben en 4 semanas (un mes)?", opciones: { a: "504", b: "168", c: "2,016", d: "2,060" }, respuestaCorrecta: "c" },
+          { id: "cie2_9", area: "Ciencias", pregunta: "Resuelve la siguiente potencia: 2²", opciones: { a: "4", b: "6", c: "8", d: "16" }, respuestaCorrecta: "a" },
+          { id: "cie2_10", area: "Ciencias", pregunta: "Resuelve la siguiente potencia: 4³", opciones: { a: "16", b: "36", c: "64", d: "96" }, respuestaCorrecta: "c" },
+          { id: "cie2_11", area: "Ciencias", pregunta: "Resuelve la siguiente potencia: 3²", opciones: { a: "6", b: "9", c: "13", d: "16" }, respuestaCorrecta: "b" },
+          { id: "cie2_12", area: "Ciencias", pregunta: "Resuelve la siguiente potencia: 5²", opciones: { a: "15", b: "25", c: "35", d: "45" }, respuestaCorrecta: "b" },
+          { id: "cie2_13", area: "Ciencias", pregunta: "Resuelve la siguiente potencia: 10³", opciones: { a: "100", b: "1,000", c: "10,000", d: "100,000" }, respuestaCorrecta: "b" },
+          { id: "cie2_14", area: "Ciencias", pregunta: "Cuál de las siguientes letras se utiliza para representar a los Celsius", opciones: { a: "°C", b: "°F", c: "K", d: "G" }, respuestaCorrecta: "a" },
+          { id: "cie2_15", area: "Ciencias", pregunta: "Termómetro que marca el punto de congelación en 0 y ebullición en 100", opciones: { a: "Termómetro A (Celsius)", b: "Termómetro B (Kelvin)", c: "Termómetro C (Fahrenheit)", d: "Ninguno" }, respuestaCorrecta: "a" },
+          { id: "cie2_16", area: "Ciencias", pregunta: "Cuál de las siguientes letras se utiliza para representar a los Fahrenheit", opciones: { a: "K", b: "G", c: "°C", d: "°F" }, respuestaCorrecta: "d" },
+          { id: "cie2_17", area: "Ciencias", pregunta: "¿Qué unidad de medición se utiliza regularmente para medir la temperatura corporal a los enfermos en México?", opciones: { a: "°F", b: "G", c: "K", d: "°C" }, respuestaCorrecta: "d" },
+          { id: "cie2_18", area: "Ciencias", pregunta: "Cuál de las siguientes letras se utiliza para representar a los Kelvin", opciones: { a: "°C", b: "G", c: "°F", d: "K" }, respuestaCorrecta: "d" },
+          { id: "cie2_19", area: "Ciencias", pregunta: "¿A cuánto equivale un metro en centímetros?", opciones: { a: "10 centímetros", b: "100 centímetros", c: "1,000 centímetros", d: "10,000 centímetros" }, respuestaCorrecta: "b" },
+          { id: "cie2_20", area: "Ciencias", pregunta: "¿Cuánto son 16.5 kilos convertidos en gramos?", opciones: { a: "1,500 gramos", b: "6,500 gramos", c: "10,500 gramos", d: "16,500 gramos" }, respuestaCorrecta: "d" },
+          { id: "cie2_21", area: "Ciencias", pregunta: "¿Cuánto son 23.3 metros a centímetros?", opciones: { a: "230", b: "233", c: "2300", d: "2330" }, respuestaCorrecta: "d" },
+          { id: "cie2_22", area: "Ciencias", pregunta: "¿A cuánto equivale una tonelada en kilos?", opciones: { a: "100", b: "1,000", c: "10,000", d: "100,000" }, respuestaCorrecta: "b" },
+          { id: "cie2_23", area: "Ciencias", pregunta: "Según el ciclo del agua, un hielo derritiéndose está pasando de un estado...", opciones: { a: "líquido a gas", b: "gas a líquido", c: "solido a liquido", d: "líquido a sólido" }, respuestaCorrecta: "c" },
+          { id: "cie2_24", area: "Ciencias", pregunta: "Cuál de los siguientes enunciados es un ejemplo de fusión", opciones: { a: "Cuando mi helado se derrite por las altas temperaturas", b: "Cuando mi botella de agua se congela por las bajas temperaturas", c: "Cuando el agua desaparece después de calentarla mucho tiempo", d: "Cuando se generan gotas de agua a mi botella que saque del refrigerador" }, respuestaCorrecta: "a" },
+          { id: "cie2_25", area: "Ciencias", pregunta: "El paso de estado líquido a gaseoso se conoce como:", opciones: { a: "Fusión", b: "Evaporación", c: "Condensación", d: "Solidificación" }, respuestaCorrecta: "b" },
+
+          // SOCIALES (Segundo Grado)
+          { id: "soc2_1", area: "Sociales", pregunta: "¿Qué teoría del poblamiento sugiere que hombres y mujeres arribaron desde Asia cruzando por hielo?", opciones: { a: "Teoría Clovis/ Preclovis", b: "Teoría de la caminata", c: "Teoría del Estrecho de Bering", d: "Teoría Africana" }, respuestaCorrecta: "c" },
+          { id: "soc2_2", area: "Sociales", pregunta: "Es una categoría que logra incorporar la fe y la razón, y establece un diálogo con quienes no piensan como nosotros.", opciones: { a: "Testimonio", b: "Mito", c: "Leyenda", d: "Tolerancia / Respeto" }, respuestaCorrecta: "d" },
+          { id: "soc2_3", area: "Sociales", pregunta: "¿Qué tipo de plantas predominaron en las tierras cultivables en Mesoamérica?", opciones: { a: "Frijol, calabaza, chile y maíz", b: "Aguacate, amaranto y agave", c: "Jitomate, pollo y leche", d: "Trigo, cebada y avena" }, respuestaCorrecta: "a" },
+          { id: "soc2_4", area: "Sociales", pregunta: "En el centro del país las tradiciones relacionadas con la muerte, buscando que el espíritu del difunto llegue a descansar. ¿Qué cultura originó esto?", opciones: { a: "Mexica", b: "Maya", c: "Olmeca", d: "Zapoteca" }, respuestaCorrecta: "a" },
+          { id: "soc2_5", area: "Sociales", pregunta: "Utiliza pictogramas para representar ideas mediante signos, plasmada en estelas y códices. ¿A qué tipo de escritura se refiere?", opciones: { a: "Cursiva", b: "Cuneiforme", c: "Pictográfica", d: "Alfabética" }, respuestaCorrecta: "c" },
+          { id: "soc2_6", area: "Sociales", pregunta: "Son aquellas evidencias que se producen cuando los acontecimientos se están desarrollando, son testigos de hechos; ¿a qué tipo de fuente hace referencia?", opciones: { a: "Primaria", b: "Secundaria", c: "Terciaria", d: "Ninguna" }, respuestaCorrecta: "a" },
+          { id: "soc2_7", area: "Sociales", pregunta: "Es cualquier grupo nacional étnico, religioso, lingüístico, integrado por un número de personas que es menor en proporción al total.", opciones: { a: "Mayoría", b: "Minoría", c: "Plenaria", d: "Secta" }, respuestaCorrecta: "b" },
+          { id: "soc2_8", area: "Sociales", pregunta: "En febrero de 1947 fue hallado un fósil humano antiguo en México. ¿A qué hombre refiere el texto?", opciones: { a: "Hombre de Java", b: "Hombre de Tepexpan", c: "Hombre Neanderthal", d: "Hombre de Pekín" }, respuestaCorrecta: "b" },
+          { id: "soc2_9", area: "Sociales", pregunta: "Se ha considerado que la población africana esclavizada en la Nueva España se asentó cerca de...", opciones: { a: "Los Puertos y costas", b: "Los Ríos", c: "Las montañas", d: "El desierto" }, respuestaCorrecta: "a" },
+          { id: "soc2_10", area: "Sociales", pregunta: "Los infantes en la sociedad mexica eran castigados de acuerdo a lo mostrado en el códice...", opciones: { a: "Mendoza", b: "De Paris", c: "Norteamericano", d: "Maya" }, respuestaCorrecta: "a" },
+          { id: "soc2_11", area: "Sociales", pregunta: "En esta escuela los alumnos aprendían medicina, medición del tiempo, música, filosofía, religión, porque eran considerados clase noble.", opciones: { a: "Tepocalli", b: "Calmécac", c: "De la vida", d: "Universidad" }, respuestaCorrecta: "b" },
+          { id: "soc2_12", area: "Sociales", pregunta: "Entre 1580 y 1650 se realizó un comercio de personas esclavizadas. ¿Qué continentes formaron esta ruta comercial?", opciones: { a: "Asia, África y Europa", b: "China, América y Europa", c: "África, Europa, América", d: "Oceanía y América" }, respuestaCorrecta: "c" },
+          { id: "soc2_13", area: "Sociales", pregunta: "La Cultura Olmeca pertenece al periodo...", opciones: { a: "Preclásico", b: "Clásico", c: "Postclásico", d: "Colonial" }, respuestaCorrecta: "a" },
+          { id: "soc2_14", area: "Sociales", pregunta: "Forma parte de la tercera raíz cultural en México, usamos palabras como marimba o mochila.", opciones: { a: "Indígena", b: "Mestiza", c: "Afromexicana", d: "Española" }, respuestaCorrecta: "c" },
+          { id: "soc2_15", area: "Sociales", pregunta: "¿Qué característica ideológica principal tenía la familia implantada en los siglos XVI?", opciones: { a: "Laica", b: "Cristiana - Católica", c: "Atea", d: "Politeísta" }, respuestaCorrecta: "b" },
+          { id: "soc2_16", area: "Sociales", pregunta: "La vestimenta, el idioma, el comportamiento social y las preferencias, forman parte de tu...", opciones: { a: "Libertad", b: "Dignidad", c: "Identidad personal", d: "Estereotipo" }, respuestaCorrecta: "c" },
+          { id: "soc2_17", area: "Sociales", pregunta: "Gamers, skatos, bloggers, youtubers y frikis, son algunos ejemplos de....", opciones: { a: "Grupos políticos", b: "Organizaciones civiles", c: "Modas pasajeras", d: "Identidades juveniles" }, respuestaCorrecta: "d" },
+          { id: "soc2_18", area: "Sociales", pregunta: "Son algunas de las razones por las cuales se agrupan las juventudes:", opciones: { a: "Se confunden con los demás y pierden el tiempo", b: "Se sienten parte de un grupo y cubren necesidades afectivas", c: "Expresan su individualidad y pierden su identidad", d: "Pierden su libertad y dejan de lado su autoestima" }, respuestaCorrecta: "b" },
+          { id: "soc2_19", area: "Sociales", pregunta: "Todas las identidades juveniles merecen...", opciones: { a: "Ser respetadas", b: "Desparecer", c: "Ser mejores que otras", d: "Ser ignoradas" }, respuestaCorrecta: "a" },
+          { id: "soc2_20", area: "Sociales", pregunta: "Son acciones que evitan la tolerancia y fomentan el respeto mutuo entre las identidades juveniles.", opciones: { a: "Promover la indiferencia", b: "Regularlas y reprimirlas", c: "Educar para crear una cultura de la paz y respeto mutuo", d: "Ignorarlas por completo" }, respuestaCorrecta: "c" },
+          { id: "soc2_21", area: "Sociales", pregunta: "Uno de los elementos tecnológicos que más influyen en la conformación de identidades juveniles actuales es:", opciones: { a: "El telégrafo", b: "Las tecnologías de la comunicación y redes sociales", c: "El reglamento escolar", d: "El currículum escolar" }, respuestaCorrecta: "b" },
+          { id: "soc2_22", area: "Sociales", pregunta: "La capacidad de decir 'NO' ante presiones grupales negativas tiene relación directa a tu libertad personal.", opciones: { a: "Verdadero", b: "Falso", c: "A veces", d: "Nunca" }, respuestaCorrecta: "a" },
+          { id: "soc2_23", area: "Sociales", pregunta: "Los jóvenes se agrupan expresando su identidad de múltiples formas porque....", opciones: { a: "Están genéticamente predeterminados", b: "Cubren necesidades afectivas, de pertenencia y expresión creativa", c: "Es una manera de canalizar su agresividad", d: "Para evitar a sus familias" }, respuestaCorrecta: "b" },
+          { id: "soc2_24", area: "Sociales", pregunta: "Tus amigos, tu equipo deportivo y tus compañeros de clase forman parte de tus:", opciones: { a: "Problemas", b: "Grupos sociales de pertenencia", c: "Movimientos políticos", d: "Obligaciones civiles" }, respuestaCorrecta: "b" },
+          { id: "soc2_25", area: "Sociales", pregunta: "Grupo social primario. Se le considera la primera institución de la sociedad donde se practican los valores.", opciones: { a: "La escuela", b: "La familia", c: "El trabajo", d: "La iglesia" }, respuestaCorrecta: "b" },
+
+          // INGLÉS (Segundo Grado)
+          { id: "ing2_1", area: "Inglés", pregunta: "Complete the sentence: Which ________ go to the town centre?", opciones: { a: "buses", b: "children", c: "photos", d: "women" }, respuestaCorrecta: "a" },
+          { id: "ing2_2", area: "Inglés", pregunta: "Complete the sentence: Shakira and Rihanna are famous ________.", opciones: { a: "buses", b: "children", c: "university", d: "women" }, respuestaCorrecta: "d" },
+          { id: "ing2_3", area: "Inglés", pregunta: "Complete the sentence: Look at these ________ of my holiday.", opciones: { a: "university", b: "children", c: "photos", d: "shelves" }, respuestaCorrecta: "c" },
+          { id: "ing2_4", area: "Inglés", pregunta: "Complete the sentence: My aunt and uncle have got five ________.", opciones: { a: "university", b: "children", c: "buses", d: "shelves" }, respuestaCorrecta: "b" },
+          { id: "ing2_5", area: "Inglés", pregunta: "Complete the sentence: Please put all the books on the ________.", opciones: { a: "university", b: "children", c: "photos", d: "shelves" }, respuestaCorrecta: "d" },
+          { id: "ing2_6", area: "Inglés", pregunta: "Complete the sentence with the correct verb: My parents ________ early on Sundays.", opciones: { a: "has", b: "get up", c: "speak", d: "watches" }, respuestaCorrecta: "b" },
+          { id: "ing2_7", area: "Inglés", pregunta: "Complete the sentence with the correct verb: Anna ________ TV in her bedroom.", opciones: { a: "like", b: "get up", c: "speak", d: "watches" }, respuestaCorrecta: "d" },
+          { id: "ing2_8", area: "Inglés", pregunta: "Complete the sentence with the correct verb: My brother and I ________ five languages.", opciones: { a: "speak", b: "get up", c: "like", d: "watches" }, respuestaCorrecta: "a" },
+          { id: "ing2_9", area: "Inglés", pregunta: "Complete the sentence with the correct verb: Do you ________ tomatoes?", opciones: { a: "has", b: "get up", c: "like", d: "watches" }, respuestaCorrecta: "c" },
+          { id: "ing2_10", area: "Inglés", pregunta: "Complete the sentence with the correct verb: My sister ________ swimming lessons.", opciones: { a: "has", b: "get up", c: "speak", d: "watches" }, respuestaCorrecta: "a" },
+          { id: "ing2_11", area: "Inglés", pregunta: "Write the question. Use the present simple: ________ Anna play tennis?", opciones: { a: "Do", b: "Does", c: "Don't", d: "Doesn't" }, respuestaCorrecta: "b" },
+          { id: "ing2_12", area: "Inglés", pregunta: "Write the question. Use the present simple: ________ your cousins live near here?", opciones: { a: "Do", b: "Does", c: "Don't", d: "Doesn't" }, respuestaCorrecta: "a" },
+          { id: "ing2_13", area: "Inglés", pregunta: "Write the question. Use the present simple: ________ your dad speak French?", opciones: { a: "Do", b: "Does", c: "Don't", d: "Doesn't" }, respuestaCorrecta: "b" },
+          { id: "ing2_14", area: "Inglés", pregunta: "What is the translation for: 'Leer'?", opciones: { a: "read", b: "cry", c: "jump", d: "write" }, respuestaCorrecta: "a" },
+          { id: "ing2_15", area: "Inglés", pregunta: "What is the translation for: 'Cantar'?", opciones: { a: "sing", b: "write", c: "jump", d: "sleep" }, respuestaCorrecta: "a" },
+          { id: "ing2_16", area: "Inglés", pregunta: "What is the translation for: 'Pintar'?", opciones: { a: "read", b: "sing", c: "jump", d: "paint" }, respuestaCorrecta: "d" },
+          { id: "ing2_17", area: "Inglés", pregunta: "What is the translation for: 'Escribir'?", opciones: { a: "read", b: "cry", c: "jump", d: "write" }, respuestaCorrecta: "d" },
+          { id: "ing2_18", area: "Inglés", pregunta: "What is the translation for: 'Dormir'?", opciones: { a: "paint", b: "sing", c: "sleep", d: "write" }, respuestaCorrecta: "c" },
+          { id: "ing2_19", area: "Inglés", pregunta: "What is the translation for: 'Llorar'?", opciones: { a: "jump", b: "sleep", c: "eat", d: "cry" }, respuestaCorrecta: "d" },
+          { id: "ing2_20", area: "Inglés", pregunta: "What is the translation for: 'Comer'?", opciones: { a: "jump", b: "sing", c: "eat", d: "write" }, respuestaCorrecta: "c" },
+          { id: "ing2_21", area: "Inglés", pregunta: "Select the correct number for the word: one hundred", opciones: { a: "100", b: "1", c: "1000", d: "10" }, respuestaCorrecta: "a" },
+          { id: "ing2_22", area: "Inglés", pregunta: "Select the correct number for the word: Fifty", opciones: { a: "5", b: "55", c: "500", d: "50" }, respuestaCorrecta: "d" },
+          { id: "ing2_23", area: "Inglés", pregunta: "Select the correct number for the word: Eight", opciones: { a: "80", b: "18", c: "8", d: "88" }, respuestaCorrecta: "c" },
+          { id: "ing2_24", area: "Inglés", pregunta: "Select the correct number for the word: nineteen", opciones: { a: "9", b: "19", c: "90", d: "900" }, respuestaCorrecta: "b" },
+          { id: "ing2_25", area: "Inglés", pregunta: "Select the correct number for the word: ten", opciones: { a: "1", b: "10", c: "11", d: "100" }, respuestaCorrecta: "b" }
+        ];
+
+        // ==========================================
+        // ENCUESTA DE ESTILOS DE APRENDIZAJE E INTERESES
+        // ==========================================
+        const bancoEncuesta = [
+          { id: "enc_1", pregunta: "1. Aprendo mejor cuando...", tipo: "radio", opciones: { a: "Uso imágenes, colores o mapas.", b: "Escucho música o sonidos.", c: "Me muevo o actúo.", d: "Trabajo en equipo." } },
+          { id: "enc_2", pregunta: "2. En mi tiempo libre prefiero...", tipo: "radio", opciones: { a: "Dibujar o hacer manualidades.", b: "Escuchar música o cantar.", c: "Hacer ejercicio o deportes.", d: "Estar con amigos." } },
+          { id: "enc_3", pregunta: "3. Cuando tengo que aprender algo nuevo, me ayuda más...", tipo: "radio", opciones: { a: "Verlo con imágenes o esquemas.", b: "Escucharlo.", c: "Hacerlo con las manos o el cuerpo.", d: "Que alguien me lo explique." } },
+          { id: "enc_4", pregunta: "4. En la escuela, disfruto más...", tipo: "radio", opciones: { a: "Hacer dibujos y carteles.", b: "Cantar o tocar instrumentos.", c: "Actividades físicas o juegos.", d: "Trabajos en equipo." } },
+          { id: "enc_5", pregunta: "5. Me va mejor en actividades donde puedo...", tipo: "radio", opciones: { a: "Imaginar y representar ideas con dibujos.", b: "Escuchar sonidos o música.", c: "Moverme o construir.", d: "Compartir ideas con otras personas." } },
+          { id: "enc_6", pregunta: "6. Me siento más seguro cuando...", tipo: "radio", opciones: { a: "Puedo ver cómo se hacen las cosas.", b: "Hay música que me ayuda.", c: "Puedo moverme o tocar materiales.", d: "Trabajo con compañeros." } },
+          { id: "enc_7", pregunta: "7. En mi casa, suelo...", tipo: "radio", opciones: { a: "Dibujar o usar colores.", b: "Escuchar música o cantar.", c: "Brincar, correr o moverme mucho.", d: "Platicar con familia o amigos." } },
+          { id: "enc_8", pregunta: "8. Cuando tengo un problema, lo resuelvo...", tipo: "radio", opciones: { a: "Dibujando lo que pasa.", b: "Escuchando música para relajarme.", c: "Haciendo algo físico.", d: "Pidiendo ayuda a alguien." } },
+          { id: "enc_9", pregunta: "9. Me identifico más con personas que...", tipo: "radio", opciones: { a: "Son creativas con lo visual.", b: "Aman la música.", c: "Son activas y deportivas.", d: "Son sociables." } },
+          { id: "enc_10", pregunta: "10. Cuando estoy en clase, aprendo mejor si...", tipo: "radio", opciones: { a: "Hay imágenes o videos.", b: "Hay canciones o ritmos.", c: "Me dejan moverme o actuar.", d: "Trabajo con otros compañeros." } },
+          { id: "enc_11", pregunta: "11. ¿En qué momento del día prefieres estudiar o hacer tarea?", tipo: "radio", opciones: { a: "Por la mañana", b: "Al llegar de la escuela", c: "Por la tarde", d: "Por la noche" } },
+          { id: "enc_12", pregunta: "12. ¿Dónde te concentras mejor para estudiar?", tipo: "radio", opciones: { a: "En un lugar en silencio", b: "Escuchando música suave", c: "Estudiando en grupo", d: "Mientras me muevo" } },
+          { id: "enc_13", pregunta: "13. ¿Con quién prefieres estudiar?", tipo: "radio", opciones: { a: "Solo", b: "Con uno o dos amigos", c: "En grupo", d: "Con un adulto" } },
+          { id: "enc_14", pregunta: "14. ¿Cómo prefieres aprender algo nuevo?", tipo: "radio", opciones: { a: "Leyendo", b: "Viendo imágenes o videos", c: "Haciendo ejercicios o practicando", d: "Debatiendo con alguien" } },
+          { id: "enc_15", pregunta: "15. ¿Con qué frecuencia estudias en casa o haces tarea?", tipo: "radio", opciones: { a: "Todos los días", b: "3 o 4 veces por semana", c: "Solo cuando tengo examen", d: "Casi nunca" } },
+          { id: "enc_16", pregunta: "16. ¿Cuántos libros lees al año?", tipo: "radio", opciones: { a: "Ninguno", b: "1 a 2", c: "3 a 5", d: "Más de 5" } },
+          { id: "enc_17", pregunta: "17. ¿En qué formato prefieres leer?", tipo: "radio", opciones: { a: "Libro impreso", b: "Celular", c: "Tableta", d: "Lector digital" } },
+          { id: "enc_18", pregunta: "18. ¿Qué tipo de lectura te llama más la atención?", tipo: "radio", opciones: { a: "Narrativa", b: "Informativa", c: "Biográfica", d: "Actividades/Juegos" } },
+          { id: "enc_19", pregunta: "19. ¿Qué géneros literarios disfrutas más?", tipo: "radio", opciones: { a: "Cuentos/Novelas", b: "Poesía/Teatro", c: "Cómics", d: "Misterio" } },
+          { id: "enc_20", pregunta: "20. ¿Qué temas te interesan más al leer?", tipo: "radio", opciones: { a: "Ciencia ficción", b: "Historia/Personajes", c: "Naturaleza/Animales", d: "Tecnología/Inventos" } }
+        ];
+
+        // ==========================================
+        // MOTOR DE DIBUJO Y PAGINACIÓN
+        // ==========================================
+        const areas = ["Español", "Matemáticas", "Ciencias", "Sociales", "Inglés"];
+        let pantallaActual = 0;
+
+        function renderizarExamen() {
+            // 1. Dibujar materias académicas
+            areas.forEach((area, index) => {
+                let htmlMateria = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">${area}</h2>`;
+                let preguntasArea = bancoDePreguntas.filter(p => p.area === area);
+                
+                preguntasArea.forEach((item, i) => {
+                    htmlMateria += `<div class="pregunta-card">`;
+                    htmlMateria += `<h3 style="margin-top:0; color:#5f6368;">Pregunta ${i + 1}</h3>`;
+                    if (item.lectura) htmlMateria += `<div class="lectura-box">${item.lectura}</div>`;
+                    if (item.imagen) htmlMateria += `<img src="${item.imagen}" style="max-width: 100%; margin-bottom: 15px; border-radius: 4px;">`;
+                    htmlMateria += `<p style="font-weight:bold; font-size:16px;">${item.pregunta}</p><div>`;
+                    
+                    for (let letra in item.opciones) {
+                        htmlMateria += `
+                            <label style="display:block; margin-bottom:10px; cursor:pointer;">
+                                <input type="radio" name="${item.id}" value="${letra}" style="margin-right:10px; transform:scale(1.2);"> 
+                                <strong>${letra})</strong> ${item.opciones[letra]}
+                            </label>`;
+                    }
+                    htmlMateria += `</div></div>`;
+                });
+
+                htmlMateria += `
+                    <div class="botones-nav">
+                        <button class="btn-atras" onclick="cambiarPantalla(${index})">⬅ Atrás</button>
+                        <button class="btn-siguiente" onclick="cambiarPantalla(${index + 2})">Siguiente ➔</button>
+                    </div>`;
+
+                let idDiv = "contenido-" + area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                document.getElementById(idDiv).innerHTML = htmlMateria;
+            });
+
+            // 2. Dibujar Encuesta
+            let htmlEncuesta = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">Encuesta de Hábitos y Lectura</h2>`;
+            bancoEncuesta.forEach((item) => {
+                htmlEncuesta += `<div class="pregunta-card">`;
+                htmlEncuesta += `<p style="font-weight:bold; font-size:16px;">${item.pregunta}</p><div>`;
+                
+                let tipoInput = item.tipo;
+                
+                for (let letra in item.opciones) {
+                    htmlEncuesta += `
+                        <label style="display:block; margin-bottom:10px; cursor:pointer;">
+                            <input type="${tipoInput}" name="${item.id}" value="${letra}" style="margin-right:10px; transform:scale(1.2);"> 
+                            <strong>${letra})</strong> ${item.opciones[letra]}
+                        </label>`;
+                }
+                htmlEncuesta += `</div></div>`;
+            });
+            document.getElementById('contenido-encuesta').innerHTML = htmlEncuesta;
+        }
+
+        // Función para cambiar entre pestañas
+        function cambiarPantalla(numeroPantalla) {
+            if (pantallaActual === 0 && numeroPantalla === 1) {
+                let paterno = document.getElementById('apellidoPaterno').value.trim();
+                let nombres = document.getElementById('nombres').value.trim();
+                if (!paterno || !nombres) {
+                    alert("Por favor, ingresa al menos tu Apellido Paterno y Nombre(s) para comenzar.");
+                    return;
+                }
+            }
+
+            document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+            document.getElementById('pantalla-' + numeroPantalla).classList.add('activa');
+            pantallaActual = numeroPantalla;
+
+            const titulosPasos = ["Datos del Alumno", "Sección: Español", "Sección: Matemáticas", "Sección: Ciencias", "Sección: Sociales e Historia", "Sección: Inglés", "Encuesta de Hábitos"];
+            
+            document.getElementById('progreso').innerText = titulosPasos[numeroPantalla];
+            window.scrollTo(0, 0);
+        }
+
+        // ==========================================
+        // SISTEMA DE ENVÍO A GOOGLE SHEETS
+        // ==========================================
+        function finalizarExamen() {
+            const paterno = document.getElementById('apellidoPaterno').value.trim().toUpperCase();
+            const materno = document.getElementById('apellidoMaterno').value.trim().toUpperCase();
+            const nombres = document.getElementById('nombres').value.trim().toUpperCase();
+
+            if(!paterno || !nombres) {
+                alert("⚠️ Por favor, ingresa al menos tu Apellido Paterno y Nombres en el Paso 1.");
+                cambiarPantalla(1);
+                return;
+            }
+
+            // Calificación (Agregué variable 'grado' para Sheets)
+            let calificaciones = { grado: "Segundo", espanol: 0, matematicas: 0, ciencias: 0, sociales: 0, ingles: 0, total: 0 };
+            bancoDePreguntas.forEach(pregunta => {
+                let areaKey = pregunta.area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                if(areaKey.includes("sociales")) areaKey = "sociales";
+                
+                let opciones = document.getElementsByName(pregunta.id);
+                let seleccionada = "";
+                for (let i = 0; i < opciones.length; i++) {
+                    if (opciones[i].checked) { seleccionada = opciones[i].value; break; }
+                }
+                
+                if (seleccionada && seleccionada === pregunta.respuestaCorrecta) {
+                    calificaciones[areaKey]++;
+                    calificaciones.total++;
+                }
+            });
+
+            let encuesta = {};
+            bancoEncuesta.forEach(pregunta => {
+                let opciones = document.getElementsByName(pregunta.id);
+                let respuestasTexto = [];
+                for (let i = 0; i < opciones.length; i++) {
+                    if (opciones[i].checked) {
+                        let letra = opciones[i].value;
+                        if(pregunta.opciones && pregunta.opciones[letra]) {
+                            respuestasTexto.push(pregunta.opciones[letra]);
+                        }
+                    }
+                }
+                encuesta[pregunta.id] = respuestasTexto.length > 0 ? respuestasTexto.join(", ") : "Sin respuesta";
+            });
+
+            const paquete = { 
+                alumno: { apellidoPaterno: paterno, apellidoMaterno: materno, nombres: nombres }, 
+                calificaciones: calificaciones, 
+                encuesta: encuesta 
+            };
+            
+            // Reutiliza tu mismo script URL
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzILWVACzWd-RRF7oYlaurg9HE3ZXMHD8l_Jr5MSOQznI0szWNIkOAGavFSHWCnOiIK/exec'; 
+            
+            const btn = document.querySelector('.btn-finalizar');
+            btn.innerText = "Enviando respuestas... ⏳";
+            btn.disabled = true;
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(paquete)
+            })
+            .then(() => {
+                alert("¡Felicidades! ¡Terminaste tu examen de Segundo Grado!");
+                window.location.reload(); 
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Hubo un error de conexión. Intenta enviar de nuevo.");
+                btn.innerText = "Terminar y Enviar Todo";
+                btn.disabled = false;
+            });
+        }
+        window.onload = renderizarExamen;
+    </script>
+</body>
+</html>
