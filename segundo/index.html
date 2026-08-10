@@ -46,7 +46,7 @@
         .seccion-datos { background-color: var(--verde-claro); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
         .grupo-input { margin-bottom: 15px; }
         label { display: block; font-weight: bold; margin-bottom: 5px; color: #5f6368; }
-        input[type="text"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
+        input[type="text"], select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
 
         /* Estilos de botones */
         .botones-nav { display: flex; justify-content: space-between; margin-top: 30px; }
@@ -103,6 +103,19 @@
                     <label>Nombre(s):</label>
                     <input type="text" id="nombres" placeholder="Ej. Juan Carlos">
                 </div>
+                <!-- NUEVO CAMPO DE GRUPO -->
+                <div class="grupo-input">
+                    <label>Grupo:</label>
+                    <select id="grupo">
+                        <option value="" disabled selected>Selecciona tu grupo...</option>
+                        <option value="2A">2°A</option>
+                        <option value="2B">2°B</option>
+                        <option value="2C">2°C</option>
+                        <option value="2D">2°D</option>
+                        <option value="2E">2°E</option>
+                        <option value="2F">2°F</option>
+                    </select>
+                </div>
             </div>
             <div style="text-align: right;">
                 <button class="btn-siguiente" onclick="cambiarPantalla(1)">Comenzar Examen ➔</button>
@@ -125,6 +138,16 @@
             <div class="botones-nav">
                 <button class="btn-atras" onclick="cambiarPantalla(5)">⬅ Atrás</button>
                 <button class="btn-finalizar" onclick="finalizarExamen()">Terminar y Enviar Todo</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA 7: ÉXITO (NUEVA PANTALLA FINAL) -->
+        <div id="pantalla-7" class="pantalla" style="text-align: center; padding: 40px 20px;">
+            <h1 style="color: var(--verde-primario); font-size: 40px; margin-bottom: 10px;">¡Examen Enviado! 🎉</h1>
+            <h3 style="color: #5f6368; margin-top: 0;">Tus respuestas se han guardado correctamente.</h3>
+            <div style="background-color: var(--verde-claro); padding: 20px; border-radius: 8px; margin-top: 30px; display: inline-block;">
+                <p style="font-size: 18px; margin: 0; font-weight: bold;">Felicidades por completar tu evaluación.</p>
+                <p style="font-size: 16px; margin-top: 10px;">Ya puedes cerrar esta pestaña y avisarle a tu maestro.</p>
             </div>
         </div>
 
@@ -181,7 +204,7 @@
           { id: "mat2_16", area: "Matemáticas", pregunta: "Mariano compró una camisa por $198.47; una corbata por $76.25 y pañuelos por $51.32. Si pagó con dos billetes de $200, ¿cuánto le devolvieron?", opciones: { a: "$73.96", b: "$72.43", c: "$150.21", d: "$125.28" }, respuestaCorrecta: "a" },
           { id: "mat2_17", area: "Matemáticas", pregunta: "Un jardinero sembró 10 árboles en dos días y medio. ¿Cuánto tardan en sembrar 15, suponiendo que mantiene el mismo ritmo de trabajo?", opciones: { a: "3 días", b: "3 3/4 días", c: "4 días", d: "4 1/2 días" }, respuestaCorrecta: "b" },
           { id: "mat2_18", area: "Matemáticas", pregunta: "Determina la solución del siguiente problema: 8 - 2 x 2 + 10 ÷ 5", opciones: { a: "2.6", b: "2.8", c: "5", d: "6" }, respuestaCorrecta: "d" },
-          { id: "mat2_19", area: "Matemáticas", pregunta: "Observa una gráfica de barras de ventas mensuales. Si marzo tiene 8, abril 7 y mayo 2. ¿En qué mes el decremento en las ventas fue mayor?", opciones: { a: "febrero", b: "marzo", c: "abril a mayo", d: "junio" }, respuestaCorrecta: "c" },
+          { id: "mat2_19", area: "Matemáticas", pregunta: "Observa una gráfica de barras de ventas mensuales. Si marzo tiene 8, abril 7 y mayo 2. ¿En qué mes el decremento en las ventas fue mayor?", imagen: "https://via.placeholder.com/400x200/2e7d32/ffffff?text=Grafica+de+Ventas", opciones: { a: "febrero", b: "marzo", c: "abril a mayo", d: "junio" }, respuestaCorrecta: "c" },
           { id: "mat2_20", area: "Matemáticas", pregunta: "En una gráfica circular de preferencia de colores, el azul tiene 49%. ¿Qué color prefiere aproximadamente la mitad del grupo?", opciones: { a: "azul", b: "rojo", c: "amarillo", d: "verde" }, respuestaCorrecta: "a" },
           { id: "mat2_21", area: "Matemáticas", pregunta: "Resuelve el siguiente problema: (-10)(3)(-2)", opciones: { a: "60", b: "-60", c: "30", d: "-30" }, respuestaCorrecta: "a" },
           { id: "mat2_22", area: "Matemáticas", pregunta: "Resuelve el siguiente problema: -40 ÷ 5", opciones: { a: "8", b: "-8", c: "80", d: "-80" }, respuestaCorrecta: "b" },
@@ -204,7 +227,7 @@
           { id: "cie2_12", area: "Ciencias", pregunta: "Resuelve la siguiente potencia: 5²", opciones: { a: "15", b: "25", c: "35", d: "45" }, respuestaCorrecta: "b" },
           { id: "cie2_13", area: "Ciencias", pregunta: "Resuelve la siguiente potencia: 10³", opciones: { a: "100", b: "1,000", c: "10,000", d: "100,000" }, respuestaCorrecta: "b" },
           { id: "cie2_14", area: "Ciencias", pregunta: "Cuál de las siguientes letras se utiliza para representar a los Celsius", opciones: { a: "°C", b: "°F", c: "K", d: "G" }, respuestaCorrecta: "a" },
-          { id: "cie2_15", area: "Ciencias", pregunta: "Termómetro que marca el punto de congelación en 0 y ebullición en 100", opciones: { a: "Termómetro A (Celsius)", b: "Termómetro B (Kelvin)", c: "Termómetro C (Fahrenheit)", d: "Ninguno" }, respuestaCorrecta: "a" },
+          { id: "cie2_15", area: "Ciencias", pregunta: "Termómetro que marca el punto de congelación en 0 y ebullición en 100", imagen: "https://via.placeholder.com/300x200/2e7d32/ffffff?text=Termometro", opciones: { a: "Termómetro A (Celsius)", b: "Termómetro B (Kelvin)", c: "Termómetro C (Fahrenheit)", d: "Ninguno" }, respuestaCorrecta: "a" },
           { id: "cie2_16", area: "Ciencias", pregunta: "Cuál de las siguientes letras se utiliza para representar a los Fahrenheit", opciones: { a: "K", b: "G", c: "°C", d: "°F" }, respuestaCorrecta: "d" },
           { id: "cie2_17", area: "Ciencias", pregunta: "¿Qué unidad de medición se utiliza regularmente para medir la temperatura corporal a los enfermos en México?", opciones: { a: "°F", b: "G", c: "K", d: "°C" }, respuestaCorrecta: "d" },
           { id: "cie2_18", area: "Ciencias", pregunta: "Cuál de las siguientes letras se utiliza para representar a los Kelvin", opciones: { a: "°C", b: "G", c: "°F", d: "K" }, respuestaCorrecta: "d" },
@@ -313,7 +336,7 @@
                     htmlMateria += `<div class="pregunta-card">`;
                     htmlMateria += `<h3 style="margin-top:0; color:#5f6368;">Pregunta ${i + 1}</h3>`;
                     if (item.lectura) htmlMateria += `<div class="lectura-box">${item.lectura}</div>`;
-                    if (item.imagen) htmlMateria += `<img src="${item.imagen}" style="max-width: 100%; margin-bottom: 15px; border-radius: 4px;">`;
+                    if (item.imagen) htmlMateria += `<img src="${item.imagen}" style="max-width: 100%; margin-bottom: 15px; border-radius: 4px; display: block; margin-left: auto; margin-right: auto;">`;
                     htmlMateria += `<p style="font-weight:bold; font-size:16px;">${item.pregunta}</p><div>`;
                     
                     for (let letra in item.opciones) {
@@ -361,8 +384,9 @@
             if (pantallaActual === 0 && numeroPantalla === 1) {
                 let paterno = document.getElementById('apellidoPaterno').value.trim();
                 let nombres = document.getElementById('nombres').value.trim();
-                if (!paterno || !nombres) {
-                    alert("Por favor, ingresa al menos tu Apellido Paterno y Nombre(s) para comenzar.");
+                let grupo = document.getElementById('grupo').value;
+                if (!paterno || !nombres || !grupo) {
+                    alert("Por favor, ingresa al menos tu Apellido Paterno, Nombre(s) y selecciona tu Grupo para comenzar.");
                     return;
                 }
             }
@@ -371,7 +395,7 @@
             document.getElementById('pantalla-' + numeroPantalla).classList.add('activa');
             pantallaActual = numeroPantalla;
 
-            const titulosPasos = ["Datos del Alumno", "Sección: Español", "Sección: Matemáticas", "Sección: Ciencias", "Sección: Sociales e Historia", "Sección: Inglés", "Encuesta de Hábitos"];
+            const titulosPasos = ["Datos del Alumno", "Sección: Español", "Sección: Matemáticas", "Sección: Ciencias", "Sección: Sociales e Historia", "Sección: Inglés", "Encuesta de Hábitos", ""];
             
             document.getElementById('progreso').innerText = titulosPasos[numeroPantalla];
             window.scrollTo(0, 0);
@@ -384,14 +408,14 @@
             const paterno = document.getElementById('apellidoPaterno').value.trim().toUpperCase();
             const materno = document.getElementById('apellidoMaterno').value.trim().toUpperCase();
             const nombres = document.getElementById('nombres').value.trim().toUpperCase();
+            const grupo = document.getElementById('grupo').value;
 
-            if(!paterno || !nombres) {
-                alert("⚠️ Por favor, ingresa al menos tu Apellido Paterno y Nombres en el Paso 1.");
+            if(!paterno || !nombres || !grupo) {
+                alert("⚠️ Por favor, ingresa tus apellidos, nombres y selecciona tu grupo en el Paso 1.");
                 cambiarPantalla(1);
                 return;
             }
 
-            // Calificación (Agregué variable 'grado' para Sheets)
             let calificaciones = { grado: "Segundo", espanol: 0, matematicas: 0, ciencias: 0, sociales: 0, ingles: 0, total: 0 };
             bancoDePreguntas.forEach(pregunta => {
                 let areaKey = pregunta.area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -425,12 +449,12 @@
             });
 
             const paquete = { 
-                alumno: { apellidoPaterno: paterno, apellidoMaterno: materno, nombres: nombres }, 
+                alumno: { apellidoPaterno: paterno, apellidoMaterno: materno, nombres: nombres, grupo: grupo }, 
                 calificaciones: calificaciones, 
                 encuesta: encuesta 
             };
             
-            // Reutiliza tu mismo script URL
+            // LA URL DE GOOGLE APPS SCRIPT
             const scriptURL = 'https://script.google.com/macros/s/AKfycbx17wClFVrHC0kWu_HYAyx0wGOqBdNumSPUlel6lelgLbGT_AnBq6RqmEoYJpc_escQxw/exec'; 
             
             const btn = document.querySelector('.btn-finalizar');
@@ -444,8 +468,11 @@
                 body: JSON.stringify(paquete)
             })
             .then(() => {
-                alert("¡Felicidades! ¡Terminaste tu examen de Segundo Grado!");
-                window.location.reload(); 
+                // Se esconde todo y se muestra la pantalla de éxito
+                document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+                document.getElementById('progreso').style.display = 'none';
+                document.getElementById('pantalla-7').classList.add('activa');
+                window.scrollTo(0, 0);
             })
             .catch(error => {
                 console.error('Error:', error);
