@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evaluación Diagnóstica - Tercer Grado</title>
     <style>
-        /* ----- COLORES INSTITUCIONALES (VERDE) ----- */
+        /* COLORES INSTITUCIONALES (VERDE) */
         :root {
             --verde-primario: #2e7d32;
             --verde-hover: #1b5e20;
@@ -13,7 +13,6 @@
             --gris-texto: #333333;
         }
 
-        * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f2f5;
@@ -22,2019 +21,1859 @@
             padding: 20px;
         }
         .contenedor {
-            max-width: 850px;
+            max-width: 800px;
             margin: 0 auto;
             background: white;
-            padding: 30px 25px;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        /* ----- PANTALLAS ----- */
+        
+        /* Estilos para las pantallas */
         .pantalla { display: none; }
-        .pantalla.activa { display: block; animation: aparecer 0.45s ease-in-out; }
-        @keyframes aparecer {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .pantalla.activa { display: block; animation: aparecer 0.5s ease-in-out; }
+        @keyframes aparecer { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ----- PROGRESO ----- */
-        .progreso-texto {
-            text-align: center;
-            color: var(--verde-primario);
-            font-weight: bold;
-            font-size: 18px;
-            margin-bottom: 20px;
-            padding: 12px;
-            background: var(--verde-claro);
-            border-radius: 5px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        /* Indicador de sección */
+        .progreso-texto { text-align: center; color: var(--verde-primario); font-weight: bold; font-size: 18px; margin-bottom: 20px; padding: 12px; background: var(--verde-claro); border-radius: 5px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* ----- BIENVENIDA ----- */
-        .bienvenida-box {
-            background: white;
-            border: 2px solid var(--verde-claro);
-            padding: 25px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
+        /* Mensaje de Bienvenida */
+        .bienvenida-box { background-color: white; border: 2px solid var(--verde-claro); padding: 25px; border-radius: 8px; margin-bottom: 30px; }
         .bienvenida-box h2 { color: var(--verde-primario); margin-top: 0; }
-        .bienvenida-box ul { list-style: none; padding: 0; margin-top: 18px; }
+        .bienvenida-box ul { list-style: none; padding: 0; margin-top: 20px; }
         .bienvenida-box li { margin-bottom: 12px; font-size: 16px; }
 
-        /* ----- DATOS ----- */
-        .seccion-datos {
-            background: var(--verde-claro);
-            padding: 20px 22px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
+        .seccion-datos { background-color: var(--verde-claro); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
         .grupo-input { margin-bottom: 15px; }
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: #5f6368;
-        }
-        input[type="text"], select {
-            width: 100%;
-            padding: 10px 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-            background: white;
-        }
+        label { display: block; font-weight: bold; margin-bottom: 5px; color: #5f6368; }
+        input[type="text"], select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
 
-        /* ----- BOTONES ----- */
-        .botones-nav {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        button {
-            padding: 12px 28px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-siguiente { background: var(--verde-primario); color: white; }
-        .btn-siguiente:hover { background: var(--verde-hover); }
-        .btn-atras { background: #e0e0e0; color: #333; }
-        .btn-atras:hover { background: #ccc; }
-        .btn-finalizar {
-            background: #198754;
-            color: white;
-            width: 100%;
-            font-size: 18px;
-            margin-top: 15px;
-            padding: 14px;
-        }
-        .btn-finalizar:hover { background: #146c43; }
-        .btn-finalizar:disabled { opacity: 0.7; cursor: not-allowed; }
+        /* Estilos de botones */
+        .botones-nav { display: flex; justify-content: space-between; margin-top: 30px; }
+        button { padding: 12px 25px; font-size: 16px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .btn-siguiente { background-color: var(--verde-primario); color: white; }
+        .btn-siguiente:hover { background-color: var(--verde-hover); }
+        .btn-atras { background-color: #e0e0e0; color: #333; }
+        .btn-atras:hover { background-color: #ccc; }
+        .btn-finalizar { background-color: #198754; color: white; width: 100%; font-size: 18px; margin-top: 20px; }
+        .btn-finalizar:hover { background-color: #146c43; }
 
-        /* ----- PREGUNTAS ----- */
-        .pregunta-card {
-            background: white;
-            padding: 20px 22px;
-            margin-bottom: 22px;
-            border-radius: 8px;
-            border: 1px solid #ddd;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-        }
-        .lectura-box {
-            background: #fdf6e3;
-            padding: 14px 18px;
-            border-left: 4px solid #f39c12;
-            margin-bottom: 14px;
-            border-radius: 0 4px 4px 0;
-            font-style: italic;
-            white-space: pre-wrap;
-            font-size: 15px;
-        }
-        .instrucciones {
-            background: var(--verde-claro);
-            padding: 14px 18px;
-            border-left: 4px solid var(--verde-primario);
-            margin-bottom: 22px;
-            font-size: 15px;
-            border-radius: 0 4px 4px 0;
-        }
-        .img-pregunta {
-            max-width: 100%;
-            max-height: 200px;
-            margin: 10px auto 16px;
-            display: block;
-            border-radius: 6px;
-            background: #f5f5f5;
-            object-fit: contain;
-        }
-        .pregunta-card p {
-            font-weight: bold;
-            font-size: 16px;
-            margin: 0 0 12px 0;
-        }
-        .pregunta-card label {
-            display: block;
-            margin-bottom: 10px;
-            cursor: pointer;
-            font-weight: normal;
-            color: #222;
-        }
-        .pregunta-card input[type="radio"] {
-            margin-right: 10px;
-            transform: scale(1.15);
-            vertical-align: middle;
-        }
-
-        /* ----- PANTALLA FINAL (ÉXITO) ----- */
-        #pantalla-7 {
-            text-align: center;
-            padding: 50px 20px;
-        }
-        #pantalla-7 h1 { color: var(--verde-primario); font-size: 40px; margin-bottom: 10px; }
-        .exito-box {
-            background: var(--verde-claro);
-            padding: 25px 30px;
-            border-radius: 10px;
-            margin-top: 30px;
-            display: inline-block;
-            text-align: left;
-        }
-        .exito-box p { font-size: 17px; margin: 6px 0; }
-
-        /* ----- RESPONSIVE ----- */
-        @media (max-width: 600px) {
-            .contenedor { padding: 16px; }
-            .botones-nav button { width: 100%; justify-content: center; }
-            .botones-nav { flex-direction: column; }
-            .pregunta-card { padding: 14px; }
-        }
+        /* Estilos de preguntas */
+        .pregunta-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .lectura-box { background: #fdf6e3; padding: 15px; border-left: 4px solid #f39c12; margin-bottom: 15px; border-radius: 0 4px 4px 0; font-style: italic; white-space: pre-wrap; }
+        .instrucciones { background: var(--verde-claro); padding: 15px; border-left: 4px solid var(--verde-primario); margin-bottom: 20px; font-size: 15px; color: var(--gris-texto); }
     </style>
 </head>
 <body>
 
-<div class="contenedor">
-
-    <!-- ESCUDO Y TÍTULO -->
-    <div style="text-align:center; margin-bottom:18px;">
-        <img src="https://i.postimg.cc/gj4dt7hH/Secu-20-SF-Org.png"
-             alt="Escudo Secundaria"
-             style="max-width:130px;">
-    </div>
-    <h1 style="text-align:center; color:var(--verde-primario); border-bottom:2px solid var(--verde-claro); padding-bottom:12px; margin-top:0;">
-        Evaluación Diagnóstica - Tercer Grado
-    </h1>
-
-    <div id="progreso" class="progreso-texto">Datos del Alumno</div>
-
-    <!-- ================================================= -->
-    <!-- PANTALLA 0 : DATOS Y BIENVENIDA                   -->
-    <!-- ================================================= -->
-    <div id="pantalla-0" class="pantalla activa">
-        <div class="bienvenida-box">
-            <h2>¡Hola! 👋</h2>
-            <p>
-                Estás por comenzar tu <strong>Evaluación Diagnóstica</strong> para
-                <strong>Tercer Grado</strong>. El examen consta de <strong>125 preguntas</strong>
-                académicas y una breve encuesta de <strong>20 preguntas</strong> sobre
-                tus hábitos de estudio.
-            </p>
-            <p>
-                Es importante que respondas con calma y honestidad; así podremos
-                planear las mejores actividades para ti durante este ciclo escolar.
-            </p>
-            <ul>
-                <li>📌 <strong>Lee bien</strong> cada pregunta y sus opciones.</li>
-                <li>⏳ Administra tu tiempo: completa todas las materias.</li>
-            </ul>
-            <h3 style="text-align:center; color:var(--verde-primario); font-size:22px; margin-bottom:0;">
-                ¡Tú puedes! 💪
-            </h3>
+    <div class="contenedor">
+        <!-- ESCUDO Y TÍTULO -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <img src="https://i.postimg.cc/gj4dt7hH/Secu-20-SF-Org.png" alt="Escudo Secundaria" style="max-width: 150px;">
         </div>
+        <h1 style="text-align: center; color: var(--verde-primario); border-bottom: 2px solid var(--verde-claro); padding-bottom: 10px; margin-top: 0;">Evaluación Diagnóstica - Tercer Grado</h1>
+        
+        <div id="progreso" class="progreso-texto">Datos del Alumno</div>
 
-        <div class="seccion-datos">
-            <h2 style="margin-top:0; color:var(--verde-primario);">Ingresa tus datos</h2>
-            <div class="grupo-input">
-                <label>Apellido Paterno:</label>
-                <input type="text" id="apellidoPaterno" placeholder="Ej. García">
+        <!-- PANTALLA 0: DATOS Y BIENVENIDA -->
+        <div id="pantalla-0" class="pantalla activa">
+            
+            <div class="bienvenida-box">
+                <h2>¡Hola! 👋</h2>
+                <p>Estás por comenzar tu Evaluación Diagnóstica para <strong>Tercer Grado</strong>. Tu examen consta de <strong>125 preguntas</strong> y una breve encuesta de <strong>20 preguntas</strong> sobre tus hábitos de estudio.</p>
+                <p>Es muy importante que hagas tu mejor esfuerzo para planear las mejores actividades para ti durante este ciclo escolar.</p>
+                <ul>
+                    <li>📌 <strong>Lee bien</strong> cada pregunta y responde con calma.</li>
+                    <li>⏳ <strong>Administra tu tiempo:</strong> recuerda que debes completar todas las materias.</li>
+                </ul>
+                <h3 style="text-align: center; color: var(--verde-primario); font-size: 22px; margin-bottom: 0;">¡Tú puedes! 💪</h3>
             </div>
-            <div class="grupo-input">
-                <label>Apellido Materno:</label>
-                <input type="text" id="apellidoMaterno" placeholder="Ej. López">
+
+            <div class="seccion-datos">
+                <h2 style="margin-top: 0; color: var(--verde-primario);">Ingresa tus datos</h2>
+                <div class="grupo-input">
+                    <label>Apellido Paterno:</label>
+                    <input type="text" id="apellidoPaterno" placeholder="Ej. García">
+                </div>
+                <div class="grupo-input">
+                    <label>Apellido Materno:</label>
+                    <input type="text" id="apellidoMaterno" placeholder="Ej. López">
+                </div>
+                <div class="grupo-input">
+                    <label>Nombre(s):</label>
+                    <input type="text" id="nombres" placeholder="Ej. Juan Carlos">
+                </div>
+                <!-- CAMPO DE GRUPO ACTUALIZADO PARA 3ER GRADO -->
+                <div class="grupo-input">
+                    <label>Grupo:</label>
+                    <select id="grupo">
+                        <option value="" disabled selected>Selecciona tu grupo...</option>
+                        <option value="3A">3°A</option>
+                        <option value="3B">3°B</option>
+                        <option value="3C">3°C</option>
+                        <option value="3D">3°D</option>
+                        <option value="3E">3°E</option>
+                        <option value="3F">3°F</option>
+                    </select>
+                </div>
             </div>
-            <div class="grupo-input">
-                <label>Nombre(s):</label>
-                <input type="text" id="nombres" placeholder="Ej. Juan Carlos">
-            </div>
-            <div class="grupo-input">
-                <label>Grupo:</label>
-                <select id="grupo">
-                    <option value="" disabled selected>Selecciona tu grupo…</option>
-                    <option value="3A">3°A</option>
-                    <option value="3B">3°B</option>
-                    <option value="3C">3°C</option>
-                    <option value="3D">3°D</option>
-                    <option value="3E">3°E</option>
-                    <option value="3F">3°F</option>
-                </select>
+            <div style="text-align: right;">
+                <button class="btn-siguiente" onclick="cambiarPantalla(1)">Comenzar Examen ➔</button>
             </div>
         </div>
-        <div style="text-align:right;">
-            <button class="btn-siguiente" onclick="cambiarPantalla(1)">
-                Comenzar Examen ➔
-            </button>
-        </div>
-    </div>
 
-    <!-- ================================================= -->
-    <!-- PANTALLAS 1–5 : ACADÉMICAS                        -->
-    <!-- ================================================= -->
-    <div id="pantalla-1" class="pantalla"><div id="contenido-espanol"></div></div>
-    <div id="pantalla-2" class="pantalla"><div id="contenido-matematicas"></div></div>
-    <div id="pantalla-3" class="pantalla"><div id="contenido-ciencias"></div></div>
-    <div id="pantalla-4" class="pantalla"><div id="contenido-sociales"></div></div>
-    <div id="pantalla-5" class="pantalla"><div id="contenido-ingles"></div></div>
+        <!-- PANTALLAS 1 AL 5: ACADÉMICAS -->
+        <div id="pantalla-1" class="pantalla"><div id="contenido-espanol"></div></div>
+        <div id="pantalla-2" class="pantalla"><div id="contenido-matematicas"></div></div>
+        <div id="pantalla-3" class="pantalla"><div id="contenido-ciencias"></div></div>
+        <div id="pantalla-4" class="pantalla"><div id="contenido-sociales"></div></div>
+        <div id="pantalla-5" class="pantalla"><div id="contenido-ingles"></div></div>
 
-    <!-- ================================================= -->
-    <!-- PANTALLA 6 : ENCUESTA                             -->
-    <!-- ================================================= -->
-    <div id="pantalla-6" class="pantalla">
-        <div class="instrucciones">
-            <strong>Instrucciones:</strong> Responde con sinceridad.
-            <strong>No hay respuestas correctas o incorrectas.</strong>
-        </div>
-        <div id="contenido-encuesta"></div>
-        <div class="botones-nav">
-            <button class="btn-atras" onclick="cambiarPantalla(5)">⬅ Atrás</button>
-            <button class="btn-finalizar" onclick="finalizarExamen()">
-                Terminar y Enviar Todo
-            </button>
-        </div>
-    </div>
-
-    <!-- ================================================= -->
-    <!-- PANTALLA 7 : ÉXITO                               -->
-    <!-- ================================================= -->
-    <div id="pantalla-7" class="pantalla">
-        <h1>¡Examen Enviado! 🎉</h1>
-        <h3 style="color:#5f6368; margin-top:0;">Tus respuestas se guardaron correctamente.</h3>
-        <div class="exito-box">
-            <p style="font-size:18px; font-weight:bold;">Felicidades por completar tu evaluación.</p>
-            <p>Ya puedes cerrar esta pestaña y avisar a tu maestro.</p>
-        </div>
-    </div>
-
-</div> <!-- fin .contenedor -->
-
-<script>
-// ============================================================
-// BANCO DE PREGUNTAS ACADÉMICAS – 25 por materia
-// ============================================================
-
-const bancoDePreguntas = [
-
-    // ===================== ESPAÑOL (25) =====================
-    {
-        id: "esp_1",
-        area: "Español",
-        lectura: "Lee el cuento del escritor colombiano, premio Nobel de Literatura en 1982, Gabriel García Márquez \"La muerte en Samarra\" (Adaptación).\n\nEl criado llega aterrorizado a casa de su amo.\n—Señor —dice— he visto a la Muerte en el mercado y me ha hecho una señal de amenaza.\nEl amo le da un caballo y dinero, y le dice:\n—Huye a Samarra.\nEl criado huye. Esa tarde, temprano, el señor se encuentra a la Muerte en el mercado.\n—Esta mañana le hiciste a mi criado una señal de amenaza —dice.\n—No era de amenaza —responde la Muerte— sino de sorpresa. Porque lo veía ahí, tan lejos de Samarra, y esta misma tarde tengo que recogerlo allá.",
-        pregunta: "¿Quiénes son los personajes del cuento?",
-        opciones: {
-            a: "Samarra y la muerte.",
-            b: "El criado y el patrón.",
-            c: "La muerte y los comerciantes.",
-            d: "La muerte."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "esp_2",
-        area: "Español",
-        lectura: "Lee el cuento del escritor colombiano, premio Nobel de Literatura en 1982, Gabriel García Márquez \"La muerte en Samarra\" (Adaptación).\n\nEl criado llega aterrorizado a casa de su amo.\n—Señor —dice— he visto a la Muerte en el mercado y me ha hecho una señal de amenaza.\nEl amo le da un caballo y dinero, y le dice:\n—Huye a Samarra.\nEl criado huye. Esa tarde, temprano, el señor se encuentra a la Muerte en el mercado.\n—Esta mañana le hiciste a mi criado una señal de amenaza —dice.\n—No era de amenaza —responde la Muerte— sino de sorpresa. Porque lo veía ahí, tan lejos de Samarra, y esta misma tarde tengo que recogerlo allá.",
-        pregunta: "Identifica el tema del cuento \"La muerte en Samarra\".",
-        opciones: {
-            a: "El desamor.",
-            b: "La solidaridad.",
-            c: "La cobardía.",
-            d: "La muerte."
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "esp_3",
-        area: "Español",
-        lectura: "Lee el cuento del escritor colombiano, premio Nobel de Literatura en 1982, Gabriel García Márquez \"La muerte en Samarra\" (Adaptación).\n\nEl criado llega aterrorizado a casa de su amo.\n—Señor —dice— he visto a la Muerte en el mercado y me ha hecho una señal de amenaza.\nEl amo le da un caballo y dinero, y le dice:\n—Huye a Samarra.\nEl criado huye. Esa tarde, temprano, el señor se encuentra a la Muerte en el mercado.\n—Esta mañana le hiciste a mi criado una señal de amenaza —dice.\n—No era de amenaza —responde la Muerte— sino de sorpresa. Porque lo veía ahí, tan lejos de Samarra, y esta misma tarde tengo que recogerlo allá.",
-        pregunta: "¿Cuál es el espacio en el que transcurre el cuento?",
-        opciones: {
-            a: "Un rancho.",
-            b: "La ciudad.",
-            c: "Un pueblo.",
-            d: "Una plaza."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "esp_4",
-        area: "Español",
-        lectura: "Lee el cuento del escritor colombiano, premio Nobel de Literatura en 1982, Gabriel García Márquez \"La muerte en Samarra\" (Adaptación).\n\nEl criado llega aterrorizado a casa de su amo.\n—Señor —dice— he visto a la Muerte en el mercado y me ha hecho una señal de amenaza.\nEl amo le da un caballo y dinero, y le dice:\n—Huye a Samarra.\nEl criado huye. Esa tarde, temprano, el señor se encuentra a la Muerte en el mercado.\n—Esta mañana le hiciste a mi criado una señal de amenaza —dice.\n—No era de amenaza —responde la Muerte— sino de sorpresa. Porque lo veía ahí, tan lejos de Samarra, y esta misma tarde tengo que recogerlo allá.",
-        pregunta: "¿Qué ambiente social puedes identificar en el cuento?",
-        opciones: {
-            a: "Un ambiente citadino.",
-            b: "Un ambiente de pueblo.",
-            c: "Un ambiente de pobreza.",
-            d: "Un ambiente de riqueza."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "esp_5",
-        area: "Español",
-        pregunta: "Ordena el proceso lógico para realizar un reportaje:\n1) Buscar información\n2) Seleccionar el tema\n3) Redactar el reportaje\n4) Presentar el borrador para corregir la redacción\n5) Realizar entrevistas",
-        opciones: {
-            a: "1, 3, 5, 2, 4",
-            b: "2, 1, 5, 3, 4",
-            c: "5, 2, 1, 3, 4",
-            d: "2, 5, 1, 4, 3"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "esp_6",
-        area: "Español",
-        pregunta: "De las siguientes opciones, señala la que <strong>no</strong> corresponde a las características de una noticia.",
-        opciones: {
-            a: "El periodista emite su opinión en el relato.",
-            b: "Fácil de comprender.",
-            c: "Debe responder a las preguntas: ¿cuándo?, ¿Cómo?, ¿Dónde?, ¿Por qué?, ¿A qué?",
-            d: "Los acontecimientos se exponen en forma clara y lógica."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "esp_7",
-        area: "Español",
-        lectura: "Lee el siguiente fragmento del cuento \"Un día de estos\" de Gabriel García Márquez.\n\nEl lunes amaneció tibio y sin lluvia. Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis. Sacó de la vidriera una dentadura postiza montada aún en el molde de yeso y puso sobre la mesa un puñado de instrumentos que ordenó de mayor a menor, como en una exposición. Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.\n\nCuando tuvo las cosas dispuestas sobre la mesa rodó la fresa hacia el sillón de resortes y se sentó a pulir la dentadura postiza. Parecía no pensar en lo que hacía, pero trabajaba con obstinación, pedaleando en la fresa incluso cuando no se servía de ella.\n\nDespués de las ocho hizo una pausa para mirar el cielo por la ventana y vio dos gallinazos pensativos que se secaban al sol en el caballete de la casa vecina. Siguió trabajando con la idea de que antes del almuerzo volvería a llover. La voz destemplada de su hijo de once años lo sacó de su abstracción.\n\n—Papá.\n—¿Qué?\n—Dice el alcalde, que si le sacas una muela.\n—Dile que no estoy aquí.\n\nEstaba puliendo un diente de oro. Lo retiró a la distancia del brazo y lo examinó con los ojos a medio cerrar. En la salita de espera volvió a gritar su hijo.\n\n—Dice que sí estás porque te está oyendo.",
-        pregunta: "¿Cuál de las siguientes opciones corresponde a la introducción o planteamiento de la trama del cuento?",
-        opciones: {
-            a: "El lunes amaneció tibio y sin lluvia.",
-            b: "Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis.",
-            c: "Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos.",
-            d: "—Dice el alcalde que si le sacas una muela."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "esp_8",
-        area: "Español",
-        lectura: "Lee el siguiente fragmento del cuento \"Un día de estos\" de Gabriel García Márquez.\n\nEl lunes amaneció tibio y sin lluvia. Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis. Sacó de la vidriera una dentadura postiza montada aún en el molde de yeso y puso sobre la mesa un puñado de instrumentos que ordenó de mayor a menor, como en una exposición. Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.\n\nCuando tuvo las cosas dispuestas sobre la mesa rodó la fresa hacia el sillón de resortes y se sentó a pulir la dentadura postiza. Parecía no pensar en lo que hacía, pero trabajaba con obstinación, pedaleando en la fresa incluso cuando no se servía de ella.\n\nDespués de las ocho hizo una pausa para mirar el cielo por la ventana y vio dos gallinazos pensativos que se secaban al sol en el caballete de la casa vecina. Siguió trabajando con la idea de que antes del almuerzo volvería a llover. La voz destemplada de su hijo de once años lo sacó de su abstracción.\n\n—Papá.\n—¿Qué?\n—Dice el alcalde, que si le sacas una muela.\n—Dile que no estoy aquí.\n\nEstaba puliendo un diente de oro. Lo retiró a la distancia del brazo y lo examinó con los ojos a medio cerrar. En la salita de espera volvió a gritar su hijo.\n\n—Dice que sí estás porque te está oyendo.",
-        pregunta: "¿Cuál de las siguientes opciones es una muestra de diálogo?",
-        opciones: {
-            a: "Estaba puliendo un diente de oro. Lo retiró a la distancia del brazo y lo examinó con los ojos a medio cerrar.",
-            b: "Después de las ocho hizo una pausa para mirar el cielo por la ventana y vio dos gallinazos pensativos.",
-            c: "Cuando tuvo las cosas dispuestas sobre la mesa rodó la fresa hacia el sillón de resortes.",
-            d: "—Papá. —¿Qué? —Dice el alcalde, que si le sacas una muela. —Dile que no estoy aquí."
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "esp_9",
-        area: "Español",
-        lectura: "Lee el siguiente fragmento del cuento \"Un día de estos\" de Gabriel García Márquez.\n\nEl lunes amaneció tibio y sin lluvia. Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis. Sacó de la vidriera una dentadura postiza montada aún en el molde de yeso y puso sobre la mesa un puñado de instrumentos que ordenó de mayor a menor, como en una exposición. Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.",
-        pregunta: "¿En cuál de las siguientes opciones se realiza una descripción del personaje?",
-        opciones: {
-            a: "La voz destemplada de su hijo de once años lo sacó de su abstracción.",
-            b: "Siguió trabajando con la idea de que antes del almuerzo volvería a llover.",
-            c: "Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.",
-            d: "Después de las ocho hizo una pausa para mirar el cielo por la ventana."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "esp_10",
-        area: "Español",
-        pregunta: "¿En cuál de los siguientes enunciados se encuentra un <strong>nexo de simultaneidad</strong>?",
-        opciones: {
-            a: "Era domingo. Posteriormente se llamó a misa en la parroquia.",
-            b: "... justo entonces comenzó a trabajar en la conspiración.",
-            c: "Hidalgo sabía de la conjetura debido a que trataba con Allende.",
-            d: "El General dijo que entraran por la parte sur del pueblo ya que los esperaban."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "esp_11",
-        area: "Español",
-        pregunta: "Es el tiempo en que están conjugados los verbos subrayados en los enunciados anteriores.",
-        opciones: {
-            a: "Copretérito.",
-            b: "Pretérito.",
-            c: "Futuro.",
-            d: "Presente."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "esp_12",
-        area: "Español",
-        pregunta: "Perífrasis verbal que significa la <strong>necesidad u obligación</strong> de realizar una acción:",
-        opciones: {
-            a: "deber de",
-            b: "tener que",
-            c: "estar con",
-            d: "poder a"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "esp_13",
-        area: "Español",
-        pregunta: "Determina la jerarquización por su orden de aparición de las siguientes partes de la CONSTITUCIÓN POLÍTICA DE LOS ESTADOS UNIDOS MEXICANOS.\n\n1. Artículo 30: La nacionalidad mexicana se adquiere por nacimiento o por naturalización.\n2. Son mexicanos por nacimiento:\n3. CONSTITUCIÓN MEXICANA DE LOS ESTADOS UNIDOS\n4. I. Los que nazcan en territorio de la República…\n5. Capítulo II: De los Mexicanos",
-        opciones: {
-            a: "1 – 2 – 3 – 4 – 5",
-            b: "2 – 5 – 1 – 4 – 3",
-            c: "3 – 2 – 5 – 1 – 4",
-            d: "3 – 5 – 1 – 2 – 4"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "esp_14",
-        area: "Español",
-        pregunta: "Elige el enunciado en el que existe una <strong>aposición</strong>, un <strong>adjetivo calificativo</strong> y un <strong>participio</strong>.",
-        opciones: {
-            a: "Hidalgo, iniciador de la Independencia de México, sacerdote que recibe el grado de bachiller en Teología.",
-            b: "Don Miguel Hidalgo, el cura Hidalgo, hombre valiente, audaz e iniciador de la Independencia de México, siempre apoyado por grandes personajes como Allende y la Corregidora.",
-            c: "En el pequeño pueblo de Atotonilco se encontró la imagen que sería el estandarte del ejército.",
-            d: "Al pasar por Atotonilco Hidalgo halló una imagen de Nuestra Señora de Guadalupe y la hizo suspender del asta de una lanza."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "esp_15",
-        area: "Español",
-        pregunta: "Un texto argumentativo suele presentar la siguiente estructura:",
-        opciones: {
-            a: "Introducción, Cuerpo argumentativo, Conclusión y Bibliografía.",
-            b: "Portada, Introducción, Desarrollo y Conclusión.",
-            c: "Introducción, Desarrollo del tema, Conclusión y Notas.",
-            d: "Portada, Título, Desarrollo y Conclusión."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "esp_16",
-        area: "Español",
-        pregunta: "Es una narración literaria breve que implica un argumento intenso y pocos personajes.",
-        opciones: {
-            a: "Cuento.",
-            b: "Poema.",
-            c: "Fábula.",
-            d: "Novela."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "esp_17",
-        area: "Español",
-        lectura: "Lee el siguiente texto tomado del periódico \"El Norte\".\n\nTratan de imitar al cerebro humano\nBuscan que el dispositivo realice múltiples tareas al mismo tiempo como lo hace el cerebro humano.\n\nDiana Saavedra\nCiudad de México (10 agosto 2011).— Aprovechando el desarrollo de sistemas de información nanotecnológicos, el investigador y artista James K. Gimzewski busca crear un dispositivo que imite la inteligencia humana.\n\n\"Sé que es difícil porque al inicio es necesario definir qué es inteligencia y eso parece más un razonamiento filosófico\", estimó Gimzewski al ofrecer la conferencia.\n\n\"El principal reto que hemos encontrado hasta ahora es que el cerebro humano se dedica a resolver muchas variables al mismo momento, sin perder enfoque en lo principal, algo que es muy difícil para las máquinas\".",
-        pregunta: "¿Quién da la opinión en el siguiente texto?\n\n\"Sé que es difícil porque al inicio es necesario definir qué es inteligencia y eso parece más un razonamiento filosófico\".",
-        opciones: {
-            a: "James K. Gimzewski.",
-            b: "Luis Buñuel.",
-            c: "Diana Saavedra.",
-            d: "Editorial del periódico."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "esp_18",
-        area: "Español",
-        pregunta: "Selecciona la opción en la que aparecen <strong>solo</strong> palabras de origen indígena.",
-        opciones: {
-            a: "Chiquihuite, transbordador, cohete, elote.",
-            b: "Xochimilco, nixtamal, televisión, dólares.",
-            c: "Nixtamal, canoa, maguey, chalupa.",
-            d: "Celular, cacao, mandioca, hamaca."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "esp_19",
-        area: "Español",
-        lectura: "Texto 1:\nTodo pasa y todo queda,\npero lo nuestro es pasar,\npasar haciendo caminos,\ncaminos sobre el mar.\n\nTexto 2:\nCaminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar.\n\nTexto 3:\nEs el camino de la muerte,\nEs el camino de la vida…\nEn la frescura de las rosas va reparando.\nY en las lindas adolescentes.\nY en los suaves aromas de las tardes tibias.\n\nTexto 4:\nDe los sabores y colores gusta.\nY de la embriaguez divina.\nEscucha las músicas dulces.\nGoza de la melancolía de no saber, de no creer, de soñar un poco.\nAma y olvida, y atrás no mires.\nY no creas que tiene raíces la dicha.\nNo habrás llegado hasta que todo lo hayas perdido.\nVe, camina…\nEs el camino de la muerte.\nEs el camino de la vida.",
-        pregunta: "¿En cuál de los textos se nos da un consejo de cómo disfrutar la vida?",
-        opciones: {
-            a: "Texto 1",
-            b: "Texto 2",
-            c: "Texto 3",
-            d: "Texto 4"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "esp_20",
-        area: "Español",
-        lectura: "Texto 1:\nTodo pasa y todo queda,\npero lo nuestro es pasar,\npasar haciendo caminos,\ncaminos sobre el mar.\n\nTexto 2:\nCaminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar.\n\nTexto 3:\nEs el camino de la muerte,\nEs el camino de la vida…\nEn la frescura de las rosas va reparando.\nY en las lindas adolescentes.\nY en los suaves aromas de las tardes tibias.\n\nTexto 4:\nDe los sabores y colores gusta.\nY de la embriaguez divina.\nEscucha las músicas dulces.\nGoza de la melancolía de no saber, de no creer, de soñar un poco.\nAma y olvida, y atrás no mires.\nY no creas que tiene raíces la dicha.\nNo habrás llegado hasta que todo lo hayas perdido.\nVe, camina…\nEs el camino de la muerte.\nEs el camino de la vida.",
-        pregunta: "¿Cuál es el tema que predomina en los cuatro textos?",
-        opciones: {
-            a: "Vida.",
-            b: "Muerte.",
-            c: "Gloria.",
-            d: "Felicidad."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "esp_21",
-        area: "Español",
-        lectura: "Texto 1:\nTodo pasa y todo queda,\npero lo nuestro es pasar,\npasar haciendo caminos,\ncaminos sobre el mar.\n\nTexto 2:\nCaminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar.\n\nTexto 3:\nEs el camino de la muerte,\nEs el camino de la vida…\nEn la frescura de las rosas va reparando.\nY en las lindas adolescentes.\nY en los suaves aromas de las tardes tibias.\n\nTexto 4:\nDe los sabores y colores gusta.\nY de la embriaguez divina.\nEscucha las músicas dulces.\nGoza de la melancolía de no saber, de no creer, de soñar un poco.\nAma y olvida, y atrás no mires.\nY no creas que tiene raíces la dicha.\nNo habrás llegado hasta que todo lo hayas perdido.\nVe, camina…\nEs el camino de la muerte.\nEs el camino de la vida.",
-        pregunta: "¿En cuáles de los textos se expresa que la meta final del camino es la muerte?",
-        opciones: {
-            a: "1 y 2",
-            b: "2 y 3",
-            c: "3 y 4",
-            d: "2 y 4"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "esp_22",
-        area: "Español",
-        lectura: "Texto 1:\nTodo pasa y todo queda,\npero lo nuestro es pasar,\npasar haciendo caminos,\ncaminos sobre el mar.\n\nTexto 2:\nCaminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar.\n\nTexto 3:\nEs el camino de la muerte,\nEs el camino de la vida…\nEn la frescura de las rosas va reparando.\nY en las lindas adolescentes.\nY en los suaves aromas de las tardes tibias.\n\nTexto 4:\nDe los sabores y colores gusta.\nY de la embriaguez divina.\nEscucha las músicas dulces.\nGoza de la melancolía de no saber, de no creer, de soñar un poco.\nAma y olvida, y atrás no mires.\nY no creas que tiene raíces la dicha.\nNo habrás llegado hasta que todo lo hayas perdido.\nVe, camina…\nEs el camino de la muerte.\nEs el camino de la vida.",
-        pregunta: "¿En cuál de los textos se expresa la <strong>fugacidad</strong> de la vida?",
-        opciones: {
-            a: "Texto 1",
-            b: "Texto 2",
-            c: "Texto 3",
-            d: "Texto 4"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "esp_23",
-        area: "Español",
-        lectura: "Entrevista con el Jefe de Bomberos\nSentados ante una mesa, café de por medio, iniciamos nuestra conversación con el bombero Jorge Sánchez Magariños, jefe del Cuartel de Bomberos Voluntarios Melipal.\n\n— ¿Cuánto hace que es bombero voluntario?\n— Hace 19 años.\n\n— ¿El bombero conoce realmente los riesgos que enfrenta en cada siniestro?\n— Por supuesto. No somos \"temerarios\" ni inconscientes en la medida que conocemos plenamente los riesgos a los cuales nos enfrentamos. Eso hace que uno pueda medir los imponderables de las situaciones en las cuales está y saber cuándo avanzar y cuándo no.\n\n— ¿Cómo se realiza la capacitación de un bombero?\n— Existe en el cuerpo una estructura de mando con un jefe y un segundo jefe. Luego viene la plana mayor de cuatro oficiales y treinta y ocho bomberos, organizados mediante un escalafón con distintos grados. El que ingresa como aspirante debe hacer un curso de un año en la escuela de capacitación del cuartel. Luego, siendo bombero, debe asistir a cursos en distintos lugares del país.",
-        pregunta: "Tipo de entrevista que se muestra en el texto anterior:",
-        opciones: {
-            a: "Encuesta.",
-            b: "Divulgación.",
-            c: "Informativa.",
-            d: "Semblanza."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "esp_24",
-        area: "Español",
-        lectura: "Entrevista con el Jefe de Bomberos\nSentados ante una mesa, café de por medio, iniciamos nuestra conversación con el bombero Jorge Sánchez Magariños, jefe del Cuartel de Bomberos Voluntarios Melipal.",
-        pregunta: "Nombre de la persona a quien se considera el <strong>entrevistado</strong>:",
-        opciones: {
-            a: "Jorge Sánchez Magariños.",
-            b: "Bariloche.",
-            c: "Melipal.",
-            d: "No se menciona."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "esp_25",
-        area: "Español",
-        lectura: "Entrevista con el Jefe de Bomberos\nSentados ante una mesa, café de por medio, iniciamos nuestra conversación con el bombero Jorge Sánchez Magariños, jefe del Cuartel de Bomberos Voluntarios Melipal.\n\n— ¿Cuánto hace que es bombero voluntario?\n— Hace 19 años.",
-        pregunta: "Función que realiza el <strong>guión</strong> dentro de la entrevista:",
-        opciones: {
-            a: "Sirve para dar aclaraciones o explicación dentro de la encuesta.",
-            b: "Señala el inicio del diálogo de los personajes involucrados.",
-            c: "Se utiliza para interrogar al entrevistado.",
-            d: "No realiza ninguna función dentro de la entrevista."
-        },
-        respuestaCorrecta: "b"
-    },
-
-
-    // ===================== MATEMÁTICAS (25) =====================
-    {
-        id: "mat_1",
-        area: "Matemáticas",
-        pregunta: "Llega a una gasolinera una carga de 180,000 litros de gasolina. ¿Cuántos camiones se ocupan para transportarla, si cada camión tiene capacidad de 900 litros?",
-        opciones: {
-            a: "200",
-            b: "180",
-            c: "240",
-            d: "160"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "mat_2",
-        area: "Matemáticas",
-        pregunta: "Seis personas pueden vivir en una cabaña durante una semana por $28,000. ¿Cuánto costará por 4 días?",
-        opciones: {
-            a: "$16,000",
-            b: "$18,000",
-            c: "$14,000",
-            d: "$12,000"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "mat_3",
-        area: "Matemáticas",
-        pregunta: "Se construye un edificio con 10 obreros y se tardan 336 días. ¿Cuánto se tardarán en construirlo 30 obreros?",
-        opciones: {
-            a: "112 días",
-            b: "168 días",
-            c: "84 días",
-            d: "56 días"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "mat_4",
-        area: "Matemáticas",
-        pregunta: "Para pintar una pared, 5 obreros emplean 6 horas. ¿Cuánto habrían tardado 3 obreros?",
-        opciones: {
-            a: "5 horas",
-            b: "7 horas",
-            c: "8 horas",
-            d: "10 horas"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "mat_5",
-        area: "Matemáticas",
-        pregunta: "Laura, Raúl y Miguel compraron un terreno de 900 m² con valor de $900,000. Laura puso $300,000, Raúl puso $150,000 y Miguel $450,000. ¿Qué cantidad de terreno le corresponde a Laura?",
-        opciones: {
-            a: "600 m²",
-            b: "300 m²",
-            c: "500 m²",
-            d: "30 m²"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "mat_6",
-        area: "Matemáticas",
-        pregunta: "Del problema anterior, ¿qué cantidad de terreno le corresponde a Miguel?",
-        opciones: {
-            a: "600 m²",
-            b: "333.3 m²",
-            c: "450 m²",
-            d: "30 m²"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "mat_7",
-        area: "Matemáticas",
-        pregunta: "Al convertir 35 hectolitros a litros es: (1 l = 0.01 hectolitros)",
-        opciones: {
-            a: "3,500 l",
-            b: "500 l",
-            c: "0.005 l",
-            d: "350 l"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "mat_8",
-        area: "Matemáticas",
-        pregunta: "Un bebé pesó 4.5 kg al nacer. A los 45 días el doctor lo pesó y fueron 5,600 miligramos. ¿Cuánto pesó en kg? (1 kg = 1,000 mg)",
-        opciones: {
-            a: "0.5600 kg",
-            b: "5.060 kg",
-            c: "56 kg",
-            d: "5.6 kg"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "mat_9",
-        area: "Matemáticas",
-        pregunta: "¿Cuál es la raíz cuadrada de 121?",
-        opciones: {
-            a: "12",
-            b: "10",
-            c: "11",
-            d: "10 × 10"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "mat_10",
-        area: "Matemáticas",
-        pregunta: "Las calificaciones de Ramiro son: 5, 5, 7, 5, 6, 6, 9, 10, 7, 10. ¿Cuál es la media o promedio?",
-        opciones: {
-            a: "7",
-            b: "6",
-            c: "8",
-            d: "9"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "mat_11",
-        area: "Matemáticas",
-        pregunta: "Con las calificaciones de Ramiro (5, 5, 7, 5, 6, 6, 9, 10, 7, 10), ¿cuál es la <strong>moda</strong>?",
-        opciones: {
-            a: "5",
-            b: "6",
-            c: "7",
-            d: "9"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "mat_12",
-        area: "Matemáticas",
-        pregunta: "Con las calificaciones de Ramiro (5, 5, 7, 5, 6, 6, 9, 10, 7, 10), ¿cuál es la <strong>mediana</strong>?",
-        opciones: {
-            a: "4.5",
-            b: "6.5",
-            c: "7.5",
-            d: "8.5"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "mat_13",
-        area: "Matemáticas",
-        pregunta: "En una urna hay 3 fichas naranja (15% descuento), 3 azules (10% descuento) y 4 verdes (5% descuento). ¿Qué probabilidad hay de sacar una ficha verde?",
-        opciones: {
-            a: "3/10",
-            b: "1/3",
-            c: "1/4",
-            d: "2/5"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "mat_14",
-        area: "Matemáticas",
-        pregunta: "Al lanzar 2 dados, ¿qué probabilidad hay de que caiga un número par en cualquiera de los dos dados?",
-        opciones: {
-            a: "1/3",
-            b: "1/8",
-            c: "1/4",
-            d: "1/2"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "mat_15",
-        area: "Matemáticas",
-        pregunta: "Al multiplicar: (8x²)(5x² – 2x + 6)",
-        opciones: {
-            a: "13x⁴ – 6x² + 14",
-            b: "13x² – 10x + 14",
-            c: "40x⁴ – 16x³ + 48x²",
-            d: "40x² – 16x + 48"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "mat_16",
-        area: "Matemáticas",
-        pregunta: "Indica el resultado correcto de: (a + 2)(a – 3)",
-        opciones: {
-            a: "a² – a – 6",
-            b: "a² + a – 6",
-            c: "a² + 5a – 6",
-            d: "a² – 5a – 6"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "mat_17",
-        area: "Matemáticas",
-        pregunta: "Las siguientes cantidades son medidas de los lados de un triángulo, pero solo una es posible. ¿Cuál es?",
-        opciones: {
-            a: "2, 4 y 7",
-            b: "2, 6 y 6",
-            c: "3, 5 y 8",
-            d: "3, 4 y 7"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "mat_18",
-        area: "Matemáticas",
-        pregunta: "Para sostener perpendicularmente un poste se requieren cables. Uno de los ángulos entre el cable y el poste mide 52°. ¿Cuánto mide el ángulo con el suelo?",
-        opciones: {
-            a: "38°",
-            b: "128°",
-            c: "180°",
-            d: "360°"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "mat_19",
-        area: "Matemáticas",
-        imagen: "https://i.postimg.cc/xCdNfSdH/8-cm.png",
-        pregunta: "Tienes una repisa de madera como la de la ilustración, que tiene de base 12cm y de altura 8cm.\n\n¿Cuál opción <strong>no</strong> es válida para calcular el área?",
-        opciones: {
-            a: "(12cm)(8cm)/2",
-            b: "(12cm/2)(8cm)",
-            c: "(12cm) + (8cm/2)",
-            d: "(12cm)(8cm/2)"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "mat_20",
-        area: "Matemáticas",
-        pregunta: "La fórmula para el perímetro de un círculo es P = πd. Esto significa que:",
-        opciones: {
-            a: "El área es igual a π.",
-            b: "π es la relación entre el perímetro y el diámetro.",
-            c: "π sale de la división del diámetro entre el radio.",
-            d: "El diámetro es igual a π."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "mat_21",
-        area: "Matemáticas",
-        pregunta: "Un agricultor tiene un terreno cuadrado de 4,624 m² de área. ¿Con qué operación puede saber cuánto mide por lado su terreno?",
-        opciones: {
-            a: "√68",
-            b: "4,624 × 4,624",
-            c: "√4,624",
-            d: "4,624 ÷ 4"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "mat_22",
-        area: "Matemáticas",
-        pregunta: "Método para resolver un sistema de ecuaciones que consiste en <strong>sumar ambas ecuaciones</strong>:",
-        opciones: {
-            a: "Método de Suma y Resta",
-            b: "Método de sustitución",
-            c: "Método gráfico",
-            d: "Método de igualación"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "mat_23",
-        area: "Matemáticas",
-        pregunta: "Método para resolver un sistema de ecuaciones que consiste en <strong>despejar la misma variable</strong> en ambas ecuaciones para después igualarlas:",
-        opciones: {
-            a: "Método de Suma y Resta",
-            b: "Método de sustitución",
-            c: "Método gráfico",
-            d: "Método de igualación"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "mat_24",
-        area: "Matemáticas",
-        pregunta: "Método para resolver un sistema de ecuaciones que consiste en <strong>despejar la 'y'</strong> en ambas ecuaciones para tabular y localizar los puntos en el plano cartesiano:",
-        opciones: {
-            a: "Método de Suma y Resta",
-            b: "Método de sustitución",
-            c: "Método gráfico",
-            d: "Método de igualación"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "mat_25",
-        area: "Matemáticas",
-        pregunta: "Método para resolver un sistema de ecuaciones que consiste en <strong>despejar una variable</strong> de una ecuación para sustituirla en la otra:",
-        opciones: {
-            a: "Método de Suma y Resta",
-            b: "Método de sustitución",
-            c: "Método gráfico",
-            d: "Método de igualación"
-        },
-        respuestaCorrecta: "b"
-    },
-
-
-    // ===================== CIENCIAS (25) =====================
-    {
-        id: "cie_1",
-        area: "Ciencias",
-        pregunta: "¿Cuándo se transforma la energía eléctrica?",
-        opciones: {
-            a: "Cuando un generador se apaga.",
-            b: "Cuando se abre un circuito eléctrico.",
-            c: "Cuando se cierra un circuito eléctrico.",
-            d: "Cuando se desconecta un electrodoméstico."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "cie_2",
-        area: "Ciencias",
-        pregunta: "¿Qué es un material conductor?",
-        opciones: {
-            a: "Una sustancia que tiene pocos electrones libres.",
-            b: "Una sustancia que no permite el paso de la corriente eléctrica.",
-            c: "Un material que facilita el movimiento de electrones.",
-            d: "Un material que se calienta al paso de la corriente eléctrica."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "cie_3",
-        area: "Ciencias",
-        pregunta: "¿Qué aplicaciones tiene la electricidad según la lectura?",
-        opciones: {
-            a: "Solo se usa en iluminación.",
-            b: "Se utiliza únicamente en aparatos de cocina.",
-            c: "Se aplica en el funcionamiento de diversos electrodomésticos.",
-            d: "Solo se emplea en sistemas de calefacción."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "cie_4",
-        area: "Ciencias",
-        pregunta: "Una de las principales aportaciones de Thomson al modelo atómico fue el descubrimiento de una partícula con carga negativa. ¿Cuál fue?",
-        opciones: {
-            a: "Electrón",
-            b: "Protón",
-            c: "Neutrón",
-            d: "Ion"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_5",
-        area: "Ciencias",
-        pregunta: "Características del electrón, <strong>excepto</strong> una:",
-        opciones: {
-            a: "Viajan en órbitas electrónicas alrededor del núcleo.",
-            b: "Son mayores que el núcleo en masa y volumen.",
-            c: "Tienen carga negativa.",
-            d: "Generan el flujo eléctrico."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "cie_6",
-        area: "Ciencias",
-        pregunta: "¿Cuál es la partícula subatómica que tiene carga neutra?",
-        opciones: {
-            a: "Neutrón",
-            b: "Protón",
-            c: "Electrón",
-            d: "Ninguna de las anteriores"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_7",
-        area: "Ciencias",
-        pregunta: "Cuando un cuerpo adquiere electrones, pero no fluyen a través de él, sino que permanecen estáticos, se dice que adquirió:",
-        opciones: {
-            a: "Carga electrostática",
-            b: "Flujo eléctrico",
-            c: "Iones",
-            d: "Carga negativa"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_8",
-        area: "Ciencias",
-        pregunta: "¿Qué es un electrón de valencia?",
-        opciones: {
-            a: "Electrón de última órbita",
-            b: "Electrón sin carga",
-            c: "Electrón que no se puede donar",
-            d: "Ninguna de las anteriores"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_9",
-        area: "Ciencias",
-        pregunta: "Al campo magnético que se genera por el paso de electricidad a través de un conductor se le llama:",
-        opciones: {
-            a: "Electromagnetismo",
-            b: "Electricidad",
-            c: "Magnetismo",
-            d: "Ninguna de las anteriores"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_10",
-        area: "Ciencias",
-        pregunta: "Materiales que <strong>impiden por completo</strong> el flujo eléctrico se clasifican como:",
-        opciones: {
-            a: "Conductores",
-            b: "Aislantes",
-            c: "Eléctricos",
-            d: "Ninguno de los anteriores"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "cie_11",
-        area: "Ciencias",
-        pregunta: "El magnetismo se define como:",
-        opciones: {
-            a: "La propiedad de un material para ejercer una corriente eléctrica.",
-            b: "La propiedad de un cuerpo para generar una carga eléctrica.",
-            c: "La propiedad de un cuerpo para crear a su alrededor un campo magnético y atraer materiales.",
-            d: "La propiedad de un cuerpo para que fluyan electrones a través de él."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "cie_12",
-        area: "Ciencias",
-        pregunta: "¿Cómo se les llama a los objetos que son capaces por sí solos de atraer objetos metálicos sin necesidad de corriente?",
-        opciones: {
-            a: "Imanes",
-            b: "Electrones",
-            c: "Aniones",
-            d: "Receptores de carga"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_13",
-        area: "Ciencias",
-        pregunta: "Modelo que busca explicar la estructura de la materia mediante el movimiento de sus partículas:",
-        opciones: {
-            a: "Modelo cinético",
-            b: "Modelo corpuscular",
-            c: "Modelo estático",
-            d: "Modelo atómico"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_14",
-        area: "Ciencias",
-        pregunta: "Todo aquello que ocupa un lugar en el espacio se le llama:",
-        opciones: {
-            a: "Volumen",
-            b: "Átomo",
-            c: "Materia",
-            d: "Molécula"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "cie_15",
-        area: "Ciencias",
-        pregunta: "Estado de agregación en el cual las partículas están muy separadas y se mueven libremente:",
-        opciones: {
-            a: "Gas",
-            b: "Plasma",
-            c: "Sólido",
-            d: "Líquido"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_16",
-        area: "Ciencias",
-        pregunta: "Estado de agregación en el cual las moléculas están tan fuertemente unidas que solo vibran:",
-        opciones: {
-            a: "Sólido",
-            b: "Plasma",
-            c: "Gas",
-            d: "Líquido"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_17",
-        area: "Ciencias",
-        pregunta: "Estado de agregación en el que la materia no se comprime y adopta la forma del recipiente:",
-        opciones: {
-            a: "Gas",
-            b: "Plasma",
-            c: "Sólido",
-            d: "Líquido"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "cie_18",
-        area: "Ciencias",
-        pregunta: "Propiedad que se define como el espacio que ocupa un cuerpo:",
-        opciones: {
-            a: "Materia",
-            b: "Volumen",
-            c: "Masa",
-            d: "Peso"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "cie_19",
-        area: "Ciencias",
-        pregunta: "Es la cantidad de materia que tiene un cuerpo:",
-        opciones: {
-            a: "Masa",
-            b: "Volumen",
-            c: "Densidad",
-            d: "Peso"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_20",
-        area: "Ciencias",
-        pregunta: "En la fotosíntesis, las plantas:",
-        opciones: {
-            a: "Absorben oxígeno del aire.",
-            b: "Producen oxígeno.",
-            c: "Absorben azúcares del suelo.",
-            d: "Producen dióxido de carbono."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "cie_21",
-        area: "Ciencias",
-        pregunta: "Alimentos que se caracterizan por su aporte de carbohidratos y brindan energía:",
-        opciones: {
-            a: "Pescado, leche, carne roja.",
-            b: "Avena, trigo, cereal.",
-            c: "Naranjas, limones y manzanas.",
-            d: "Mantequilla, nueces, aceitunas."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "cie_22",
-        area: "Ciencias",
-        pregunta: "Se tiene 1 kg de agua y 1 kg de mercurio. El mercurio ocupa menos espacio. ¿A qué propiedad se hace referencia?",
-        opciones: {
-            a: "Masa",
-            b: "Volumen",
-            c: "Densidad",
-            d: "Peso"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "cie_23",
-        area: "Ciencias",
-        pregunta: "De acuerdo al modelo cinético molecular, en un cuerpo sólido sus partículas:",
-        opciones: {
-            a: "No se mueven.",
-            b: "Solo vibran.",
-            c: "Se mueven libremente.",
-            d: "Se mueven a altas velocidades chocando entre sí."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "cie_24",
-        area: "Ciencias",
-        pregunta: "El aceite de coco se solidifica al enfriarse porque sus partículas:",
-        opciones: {
-            a: "pierden energía cinética, reduciendo el espacio entre ellas.",
-            b: "aumentan su velocidad y las colisiones, aumentando la distancia.",
-            c: "absorben energía del medio, aumentando su energía cinética.",
-            d: "se mueven con mayor velocidad y disminuyen el espacio entre ellas."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "cie_25",
-        area: "Ciencias",
-        pregunta: "¿Cuál es el nombre del termómetro que marca el punto de congelación en 0° y ebullición en 100°?",
-        opciones: {
-            a: "Termómetro Celsius (°C)",
-            b: "Termómetro Kelvin (K)",
-            c: "Termómetro Fahrenheit (°F)",
-            d: "Ninguno"
-        },
-        respuestaCorrecta: "a"
-    },
-
-
-    // ===================== SOCIALES (25) =====================
-    {
-        id: "soc_1",
-        area: "Sociales",
-        pregunta: "Para tomar una decisión personal <strong>asertiva</strong> se necesita:",
-        opciones: {
-            a: "plantear metas claras, valorar alternativas, analizar ventajas y desventajas, considerar la intuición.",
-            b: "plantear metas claras, tener en cuenta la opinión de otras personas, esperar que alguien haga una propuesta.",
-            c: "plantear metas claras, valorar alternativas, analizar ventajas y desventajas, considerar posibilidades de éxito, reflexionar sobre los riesgos.",
-            d: "informarse sobre las opciones, analizar ventajas y desventajas, tener en cuenta la intuición, elegir al azar."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "soc_2",
-        area: "Sociales",
-        pregunta: "¿Cómo puedes llevar a cabo un <strong>diálogo</strong>?",
-        opciones: {
-            a: "Siempre que respete a las otras personas y las considere como iguales.",
-            b: "Imponiendo ideas que favorezcan el desarrollo de las comunidades.",
-            c: "Dejando que las personas critiquen a los demás.",
-            d: "Cuando se trate de personas de iguales condiciones económicas."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "soc_3",
-        area: "Sociales",
-        pregunta: "De las siguientes acciones, ¿cuál es un ejemplo de <strong>tolerancia</strong>?",
-        opciones: {
-            a: "Participar en una marcha en favor de los derechos de las personas con VIH para ser atendidos en hospitales.",
-            b: "Participar en una manifestación y ensuciar la embajada de Estados Unidos.",
-            c: "Rechazar la violencia de los grupos policiales contra los grafiteros.",
-            d: "Invitar a las personas que compran en una carnicería a no comer carne."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "soc_4",
-        area: "Sociales",
-        pregunta: "¿Qué es la <strong>equidad de género</strong>?",
-        opciones: {
-            a: "Justicia para ofrecer el acceso y control de recursos a mujeres y hombres por parte del gobierno, instituciones y sociedad.",
-            b: "Proporcionar un ambiente tranquilo para ambos géneros.",
-            c: "Que si el hombre trabaja la mujer atiende la casa y viceversa.",
-            d: "Tener las mismas obligaciones los hombres y las mujeres."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "soc_5",
-        area: "Sociales",
-        pregunta: "¿En qué situación <strong>no</strong> se muestra un trato equitativo entre hombres y mujeres?",
-        opciones: {
-            a: "Se instauró un transporte único para mujeres en avenidas principales.",
-            b: "Un grupo religioso solo acepta a personas mayores de 18 años.",
-            c: "En la escuela ofrecen becas a los alumnos de mejor promedio, pero solo las entregan a los niños.",
-            d: "En casa de Carlos, todos ayudan a su mamá con la limpieza, sin importar el género."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "soc_6",
-        area: "Sociales",
-        pregunta: "¿Qué es el <strong>liderazgo</strong>?",
-        opciones: {
-            a: "Pérdida de la motivación de interesarse por otros.",
-            b: "Motivar a un grupo para que hagan trabajos en beneficio de quien los guía.",
-            c: "El proceso de influir en otros y apoyarlos para que trabajen con entusiasmo en el logro de objetivos comunes.",
-            d: "La actitud del que se adapta a cualquier circunstancia con excesiva facilidad."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "soc_7",
-        area: "Sociales",
-        pregunta: "Entendemos por <strong>diversidad cultural</strong>:",
-        opciones: {
-            a: "la existencia de múltiples formas de vivir que ha descubierto el ser humano al convivir en comunidad.",
-            b: "la búsqueda de la colaboración de todos los miembros.",
-            c: "la conformación de distintas culturas con un fin común.",
-            d: "la conjunción de diversas culturas dentro de las cuales podemos escoger alguna."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "soc_8",
-        area: "Sociales",
-        pregunta: "¿Cuál de los siguientes ejemplos corresponde a la <strong>empatía</strong>?",
-        opciones: {
-            a: "Cuando tu mamá te dice que no andes tarde y decides regresar temprano pues tu mamá estará preocupada.",
-            b: "Menospreciar el trabajo que hacen las personas con discapacidad.",
-            c: "Ver a un anciano que no puede cruzar la calle solo y no ayudarlo.",
-            d: "Preferir tirar la comida que dársela a la persona que pide limosna."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "soc_9",
-        area: "Sociales",
-        pregunta: "Elementos que ayudan a conformar la <strong>identidad</strong>:",
-        opciones: {
-            a: "Reglas, asertividad, agresividad, comunidad, historia, derechos humanos.",
-            b: "Amigos, familia, escuela, seres vivos, leyes, negociación.",
-            c: "Justicia, violencia, responsabilidad, equidad.",
-            d: "Familia, amigos, tradiciones, costumbres, escuela, historias compartidas."
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "soc_10",
-        area: "Sociales",
-        pregunta: "¿Razón fundamental por la que hay una constitución política en México?",
-        opciones: {
-            a: "Establecer un marco de prohibiciones y castigos para los que no mantengan los usos y costumbres.",
-            b: "Establecer un orden jurídico que respete las garantías individuales de cada ciudadano.",
-            c: "Aparentar que se mantiene orden y control, aunque no se cumpla.",
-            d: "Posibilitar el respeto y la aprehensión de personas extranjeras que no cumplan."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "soc_11",
-        area: "Sociales",
-        pregunta: "La soberanía nacional reside en el pueblo, pero se deposita el poder para ser ejercido en:",
-        opciones: {
-            a: "El Poder Ejecutivo, Poder Legislativo y Poder Judicial.",
-            b: "El Congreso de la Unión.",
-            c: "Los estados, municipios, delegaciones.",
-            d: "La legislación federal, estatal y municipal."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "soc_12",
-        area: "Sociales",
-        pregunta: "En la clase de deportes, Pedro le dice a Juan que es chaparro y débil. Juan no responde. Este tipo de situaciones fomentan:",
-        opciones: {
-            a: "la honestidad y la conformidad de aceptarse como se es.",
-            b: "las malas relaciones afectivas entre compañeros.",
-            c: "el desarrollo social entre alumnos de la misma clase.",
-            d: "la competencia entre los estudiantes de la misma clase."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "soc_13",
-        area: "Sociales",
-        pregunta: "¿En qué puede afectar a tu entorno familiar el consumo de drogas?",
-        opciones: {
-            a: "Discusiones frecuentes, la comunicación se interrumpe, pérdida de confianza, alejamiento.",
-            b: "Tu pareja podría manipularte más fácilmente.",
-            c: "Todos viven juntos para cuidarse mutuamente.",
-            d: "Tu familia se sentiría orgullosa de ti porque tomas tus propias decisiones."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "soc_14",
-        area: "Sociales",
-        pregunta: "¿Cuál fue el primer homínido que <strong>conoció el fuego</strong> pero no llegó a producirlo?",
-        opciones: {
-            a: "Homo sapiens",
-            b: "Homo erectus",
-            c: "Homo sapiens sapiens",
-            d: "Homo habilis"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "soc_15",
-        area: "Sociales",
-        pregunta: "¿Cómo se llama el primer homínido que fabricó armas y herramientas con madera, hueso y piedra para cazar, además de ser el primero en enterrar a sus muertos?",
-        opciones: {
-            a: "Homo erectus",
-            b: "Homo sapiens sapiens",
-            c: "Homo sapiens",
-            d: "Homo habilis"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "soc_16",
-        area: "Sociales",
-        pregunta: "Condiciones que permitieron que hace 30 mil años el hombre empezara a poblar lo que hoy es México:",
-        opciones: {
-            a: "En América del Norte, la época invernal es prolongada y los hielos permanecen en primavera.",
-            b: "En el norte hay bosque, pero pocos animales para cazar.",
-            c: "Es una zona rica en minas de plata y oro, lo que permitió el sedentarismo.",
-            d: "Es una zona con clima templado y agua en abundancia."
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "soc_17",
-        area: "Sociales",
-        pregunta: "Para que los pueblos nómadas se transformaran en sedentarios, ¿qué actividad fue fundamental?",
-        opciones: {
-            a: "Silvicultura",
-            b: "Agricultura",
-            c: "Ganadería",
-            d: "Metalurgia"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "soc_18",
-        area: "Sociales",
-        pregunta: "Cultura que practicaba la momificación pensando que después de la muerte aún había vida:",
-        opciones: {
-            a: "India",
-            b: "Mesopotamia",
-            c: "China",
-            d: "Egipto"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "soc_19",
-        area: "Sociales",
-        pregunta: "Condición que influyó en el surgimiento de ciudades-Estado como Atenas o Esparta:",
-        opciones: {
-            a: "Las formas de gobierno que conocieron gracias al comercio.",
-            b: "Cumplir con las disposiciones de sus dioses guerreros.",
-            c: "Una necesidad de dominio sobre los pueblos vecinos.",
-            d: "La formación de grandes grupos humanos aislados geográficamente."
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "soc_20",
-        area: "Sociales",
-        pregunta: "Monumento símbolo de la política de \"pan y circo\" en la Roma imperial:",
-        opciones: {
-            a: "El Coliseo",
-            b: "El Tabulario",
-            c: "El Foro",
-            d: "El Odeón"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "soc_21",
-        area: "Sociales",
-        pregunta: "Instrumento inventado en la época de las civilizaciones del mundo antiguo:",
-        opciones: {
-            a: "La rueda",
-            b: "El telescopio",
-            c: "El hacha",
-            d: "El astrolabio"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "soc_22",
-        area: "Sociales",
-        pregunta: "Característica física que permitió el desarrollo de las culturas mesoamericanas:",
-        opciones: {
-            a: "Ser pueblos aislados por grandes montañas.",
-            b: "Contar con un territorio propicio para la agricultura y ganadería.",
-            c: "Vivir en regiones que les permitieron ser pescadores y cazadores.",
-            d: "Dominar una gran extensión territorial para construir ciudades."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "soc_23",
-        area: "Sociales",
-        pregunta: "¿Qué pueblo mesoamericano produjo la llamada <strong>cultura madre</strong>?",
-        opciones: {
-            a: "Teotihuacano",
-            b: "Olmeca",
-            c: "Zapoteca",
-            d: "Mexica"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "soc_24",
-        area: "Sociales",
-        pregunta: "Principal causa que propició la caída del Imperio Romano de Occidente:",
-        opciones: {
-            a: "El gasto enorme para mantener a la nobleza y al rey.",
-            b: "Las constantes invasiones de bárbaros germánicos.",
-            c: "El creciente ejército que costaba mucho mantener.",
-            d: "Las extensas fronteras difíciles de mantener seguras."
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "soc_25",
-        area: "Sociales",
-        pregunta: "Datos importantes de la civilización islámica:",
-        opciones: {
-            a: "Se inició en Israel y su centro religioso fue el Vaticano.",
-            b: "Se desarrolló en Líbano, su libro sagrado era el Talmud.",
-            c: "Fue agrícola y se destacaba el culto a un profeta llamado Elías.",
-            d: "Su líder religioso fue Mahoma y su libro sagrado era el Corán."
-        },
-        respuestaCorrecta: "d"
-    },
-
-
-    // ===================== INGLÉS (25) =====================
-    {
-        id: "ing_1",
-        area: "Inglés",
-        pregunta: "A: Hello. I'm Chris. B: Hi. Nice to meet you. I'm Sarah. A: ___",
-        opciones: {
-            a: "Have a nice day",
-            b: "Take care",
-            c: "Nice to meet you",
-            d: "Goodbye"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "ing_2",
-        area: "Inglés",
-        pregunta: "A: Hi. Are you here for an English class? B: ___",
-        opciones: {
-            a: "Yes, I am.",
-            b: "No, I isn't.",
-            c: "Yes, you are.",
-            d: "Yes, he is."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_3",
-        area: "Inglés",
-        pregunta: "The door is ___",
-        opciones: {
-            a: "open",
-            b: "closed",
-            c: "big",
-            d: "small"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "ing_4",
-        area: "Inglés",
-        pregunta: "A: Is your mother's name Sandra? B: ___",
-        opciones: {
-            a: "Yes, it is.",
-            b: "No, they aren't.",
-            c: "Yes, she is.",
-            d: "Yes, I am."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "ing_5",
-        area: "Inglés",
-        pregunta: "My friends and I go to the movies ___ weeks.",
-        opciones: {
-            a: "every",
-            b: "on",
-            c: "in",
-            d: "by"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_6",
-        area: "Inglés",
-        pregunta: "How often ___ your father work late?",
-        opciones: {
-            a: "is",
-            b: "does",
-            c: "do",
-            d: "has"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "ing_7",
-        area: "Inglés",
-        pregunta: "He ___ play football in the morning.",
-        opciones: {
-            a: "don't",
-            b: "doesn't",
-            c: "isn't",
-            d: "aren't"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "ing_8",
-        area: "Inglés",
-        pregunta: "A: I'm a big baseball fan. B: Really? ___",
-        opciones: {
-            a: "I do too.",
-            b: "Neither do I.",
-            c: "That's interesting.",
-            d: "I don't."
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "ing_9",
-        area: "Inglés",
-        pregunta: "A: What are you playing? B: ___ football.",
-        opciones: {
-            a: "I'm playing",
-            b: "I play",
-            c: "We am playing",
-            d: "We play"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_10",
-        area: "Inglés",
-        pregunta: "A: Our team isn't playing well this season. B: Oh, ___",
-        opciones: {
-            a: "that's great",
-            b: "that's too bad",
-            c: "that's interesting",
-            d: "that's nice"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "ing_11",
-        area: "Inglés",
-        pregunta: "A: Does your brother have to wear a uniform to school? B: Yes, he ___ to wear a white shirt and blue pants.",
-        opciones: {
-            a: "have",
-            b: "has",
-            c: "is",
-            d: "does"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "ing_12",
-        area: "Inglés",
-        pregunta: "There's so much to do in our city. We ___ go to the movies or museums.",
-        opciones: {
-            a: "must",
-            b: "can",
-            c: "should",
-            d: "would"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "ing_13",
-        area: "Inglés",
-        pregunta: "I went shopping yesterday and ___ a new pair of shoes.",
-        opciones: {
-            a: "buy",
-            b: "bought",
-            c: "buying",
-            d: "have bought"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "ing_14",
-        area: "Inglés",
-        pregunta: "A: I have an exam tomorrow. B: ___",
-        opciones: {
-            a: "Congratulations",
-            b: "Thank goodness",
-            c: "Good luck",
-            d: "Ouch"
-        },
-        respuestaCorrecta: "c"
-    },
-    {
-        id: "ing_15",
-        area: "Inglés",
-        pregunta: "My sister only 17 when she graduated from high school.",
-        opciones: {
-            a: "had",
-            b: "is",
-            c: "were",
-            d: "was"
-        },
-        respuestaCorrecta: "d"
-    },
-    {
-        id: "ing_16",
-        area: "Inglés",
-        pregunta: "A: Would you like to go out for dinner? B: Yes, ___",
-        opciones: {
-            a: "I'd love to.",
-            b: "I love too.",
-            c: "I'd rather stay home.",
-            d: "I like to."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_17",
-        area: "Inglés",
-        pregunta: "A: I don't watch much television. B: ___",
-        opciones: {
-            a: "Neither do I.",
-            b: "So do I.",
-            c: "I don't.",
-            d: "I do."
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_18",
-        area: "Inglés",
-        pregunta: "He's good ___",
-        opciones: {
-            a: "at",
-            b: "in",
-            c: "on",
-            d: "for"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_19",
-        area: "Inglés",
-        pregunta: "___ likes some form of music.",
-        opciones: {
-            a: "Everyone",
-            b: "Someone",
-            c: "Anyone",
-            d: "No one"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_20",
-        area: "Inglés",
-        pregunta: "If you feel stressed, it ___ bad for you.",
-        opciones: {
-            a: "is",
-            b: "are",
-            c: "was",
-            d: "were"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_21",
-        area: "Inglés",
-        pregunta: "A: What's the weather forecast for tomorrow night? B: It ___ tomorrow night.",
-        opciones: {
-            a: "will rain",
-            b: "rains",
-            c: "rained",
-            d: "is raining"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_22",
-        area: "Inglés",
-        pregunta: "A: Is Alicia going to take the Chemistry exam tomorrow? B: No, she isn't going to take ___ until next week.",
-        opciones: {
-            a: "them",
-            b: "it",
-            c: "her",
-            d: "him"
-        },
-        respuestaCorrecta: "b"
-    },
-    {
-        id: "ing_23",
-        area: "Inglés",
-        pregunta: "A: What would you like to study? B: ___ study French.",
-        opciones: {
-            a: "I'd like to",
-            b: "I like",
-            c: "I would",
-            d: "I'd rather"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_24",
-        area: "Inglés",
-        pregunta: "A: Is there a theater around here? B: Yes, ___ one across the street.",
-        opciones: {
-            a: "there's",
-            b: "there are",
-            c: "it's",
-            d: "they're"
-        },
-        respuestaCorrecta: "a"
-    },
-    {
-        id: "ing_25",
-        area: "Inglés",
-        pregunta: "A: What do you usually do with your old clothes? B: I throw them away, but my sisters give ___ to charity.",
-        opciones: {
-            a: "them",
-            b: "it",
-            c: "they",
-            d: "their"
-        },
-        respuestaCorrecta: "a"
-    }
-];
-
-// ============================================================
-// ENCUESTA DE HÁBITOS Y ESTILOS DE APRENDIZAJE (20 preguntas)
-// ============================================================
-const bancoEncuesta = [
-    { id: "enc_1", pregunta: "1. Aprendo mejor cuando...", opciones: { a: "Uso imágenes, colores o mapas.", b: "Escucho música o sonidos.", c: "Me muevo o actúo.", d: "Trabajo en equipo." } },
-    { id: "enc_2", pregunta: "2. En mi tiempo libre prefiero...", opciones: { a: "Dibujar o hacer manualidades.", b: "Escuchar música o cantar.", c: "Hacer ejercicio o deportes.", d: "Estar con amigos." } },
-    { id: "enc_3", pregunta: "3. Cuando tengo que aprender algo nuevo, me ayuda más...", opciones: { a: "Verlo con imágenes o esquemas.", b: "Escucharlo.", c: "Hacerlo con las manos o el cuerpo.", d: "Que alguien me lo explique." } },
-    { id: "enc_4", pregunta: "4. En la escuela, disfruto más...", opciones: { a: "Hacer dibujos y carteles.", b: "Cantar o tocar instrumentos.", c: "Actividades físicas o juegos.", d: "Trabajos en equipo." } },
-    { id: "enc_5", pregunta: "5. Me va mejor en actividades donde puedo...", opciones: { a: "Imaginar y representar ideas con dibujos.", b: "Escuchar sonidos o música.", c: "Moverme o construir.", d: "Compartir ideas con otras personas." } },
-    { id: "enc_6", pregunta: "6. Me siento más seguro cuando...", opciones: { a: "Puedo ver cómo se hacen las cosas.", b: "Hay música que me ayuda.", c: "Puedo moverme o tocar materiales.", d: "Trabajo con compañeros." } },
-    { id: "enc_7", pregunta: "7. En mi casa, suelo...", opciones: { a: "Dibujar o usar colores.", b: "Escuchar música o cantar.", c: "Brincar, correr o moverme mucho.", d: "Platicar con familia o amigos." } },
-    { id: "enc_8", pregunta: "8. Cuando tengo un problema, lo resuelvo...", opciones: { a: "Dibujando lo que pasa.", b: "Escuchando música para relajarme.", c: "Haciendo algo físico.", d: "Pidiendo ayuda a alguien." } },
-    { id: "enc_9", pregunta: "9. Me identifico más con personas que...", opciones: { a: "Son creativas con lo visual.", b: "Aman la música.", c: "Son activas y deportivas.", d: "Son sociables." } },
-    { id: "enc_10", pregunta: "10. Cuando estoy en clase, aprendo mejor si...", opciones: { a: "Hay imágenes o videos.", b: "Hay canciones o ritmos.", c: "Me dejan moverme o actuar.", d: "Trabajo con otros compañeros." } },
-    { id: "enc_11", pregunta: "11. ¿En qué momento del día prefieres estudiar o hacer tarea?", opciones: { a: "Por la mañana", b: "Al llegar de la escuela", c: "Por la tarde", d: "Por la noche" } },
-    { id: "enc_12", pregunta: "12. ¿Dónde te concentras mejor para estudiar?", opciones: { a: "En un lugar en silencio", b: "Escuchando música suave", c: "Estudiando en grupo", d: "Mientras me muevo" } },
-    { id: "enc_13", pregunta: "13. ¿Con quién prefieres estudiar?", opciones: { a: "Solo", b: "Con uno o dos amigos", c: "En grupo", d: "Con un adulto" } },
-    { id: "enc_14", pregunta: "14. ¿Cómo prefieres aprender algo nuevo?", opciones: { a: "Leyendo", b: "Viendo imágenes o videos", c: "Haciendo ejercicios o practicando", d: "Debatiendo con alguien" } },
-    { id: "enc_15", pregunta: "15. ¿Con qué frecuencia estudias en casa o haces tarea?", opciones: { a: "Todos los días", b: "3 o 4 veces por semana", c: "Solo cuando tengo examen", d: "Casi nunca" } },
-    { id: "enc_16", pregunta: "16. ¿Cuántos libros lees al año?", opciones: { a: "Ninguno", b: "1 a 2", c: "3 a 5", d: "Más de 5" } },
-    { id: "enc_17", pregunta: "17. ¿En qué formato prefieres leer?", opciones: { a: "Libro impreso", b: "Celular", c: "Tableta", d: "Lector digital" } },
-    { id: "enc_18", pregunta: "18. ¿Qué tipo de lectura te llama más la atención?", opciones: { a: "Narrativa", b: "Informativa", c: "Biográfica", d: "Actividades/Juegos" } },
-    { id: "enc_19", pregunta: "19. ¿Qué géneros literarios disfrutas más?", opciones: { a: "Cuentos/Novelas", b: "Poesía/Teatro", c: "Cómics", d: "Misterio" } },
-    { id: "enc_20", pregunta: "20. ¿Qué temas te interesan más al leer?", opciones: { a: "Ciencia ficción", b: "Historia/Personajes", c: "Naturaleza/Animales", d: "Tecnología/Inventos" } }
-];
-
-// ============================================================
-// MOTOR DE DIBUJO Y NAVEGACIÓN
-// ============================================================
-const areas = ["Español", "Matemáticas", "Ciencias", "Sociales", "Inglés"];
-let pantallaActual = 0;
-
-function renderizarExamen() {
-    // Dibujar materias académicas
-    areas.forEach((area, index) => {
-        let htmlMateria = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">${area}</h2>`;
-        let preguntasArea = bancoDePreguntas.filter(p => p.area === area);
-
-        preguntasArea.forEach((item, i) => {
-            htmlMateria += `<div class="pregunta-card">`;
-            htmlMateria += `<h3 style="margin-top:0; color:#5f6368;">Pregunta ${i + 1}</h3>`;
-            if (item.lectura) htmlMateria += `<div class="lectura-box">${item.lectura}</div>`;
-            if (item.imagen) htmlMateria += `<img src="${item.imagen}" alt="Imagen de la pregunta" class="img-pregunta">`;
-            htmlMateria += `<p>${item.pregunta}</p><div>`;
-
-            for (let letra in item.opciones) {
-                htmlMateria += `
-                    <label>
-                        <input type="radio" name="${item.id}" value="${letra}">
-                        <strong>${letra})</strong> ${item.opciones[letra]}
-                    </label>`;
-            }
-            htmlMateria += `</div></div>`;
-        });
-
-        htmlMateria += `
+        <!-- PANTALLA 6: ENCUESTA -->
+        <div id="pantalla-6" class="pantalla">
+            <div class="instrucciones">
+                <strong>Instrucciones:</strong> A continuación encontrarás una serie de preguntas sobre tus hábitos de estudio y formas preferidas de aprender. <strong>No hay respuestas correctas o incorrectas.</strong> Responde con sinceridad.
+            </div>
+            <div id="contenido-encuesta"></div>
             <div class="botones-nav">
-                <button class="btn-atras" onclick="cambiarPantalla(${index})">⬅ Atrás</button>
-                <button class="btn-siguiente" onclick="cambiarPantalla(${index + 2})">Siguiente ➔</button>
-            </div>`;
+                <button class="btn-atras" onclick="cambiarPantalla(5)">⬅ Atrás</button>
+                <button class="btn-finalizar" onclick="finalizarExamen()">Terminar y Enviar Todo</button>
+            </div>
+        </div>
 
-        let idDiv = "contenido-" + area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        document.getElementById(idDiv).innerHTML = htmlMateria;
-    });
+        <!-- PANTALLA 7: ÉXITO -->
+        <div id="pantalla-7" class="pantalla" style="text-align: center; padding: 40px 20px;">
+            <h1 style="color: var(--verde-primario); font-size: 40px; margin-bottom: 10px;">¡Examen Enviado! 🎉</h1>
+            <h3 style="color: #5f6368; margin-top: 0;">Tus respuestas se han guardado correctamente.</h3>
+            <div style="background-color: var(--verde-claro); padding: 20px; border-radius: 8px; margin-top: 30px; display: inline-block;">
+                <p style="font-size: 18px; margin: 0; font-weight: bold;">Felicidades por completar tu evaluación.</p>
+                <p style="font-size: 16px; margin-top: 10px;">Ya puedes cerrar esta pestaña y avisarle a tu maestro.</p>
+            </div>
+        </div>
 
-    // Dibujar encuesta
-    let htmlEncuesta = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">Encuesta de Hábitos y Lectura</h2>`;
-    bancoEncuesta.forEach((item) => {
-        htmlEncuesta += `<div class="pregunta-card">`;
-        htmlEncuesta += `<p>${item.pregunta}</p><div>`;
-        for (let letra in item.opciones) {
-            htmlEncuesta += `
-                <label>
-                    <input type="radio" name="${item.id}" value="${letra}">
-                    <strong>${letra})</strong> ${item.opciones[letra]}
-                </label>`;
+    </div>
+
+    <script>
+        // ==========================================
+        // BANCO DE PREGUNTAS ACADÉMICAS - TERCER GRADO
+        // ==========================================
+        const bancoDePreguntas = [
+            // ===================== ESPAÑOL (25 preguntas) =====================
+            {
+                id: "esp_1",
+                area: "Español",
+                lectura: "Lee el cuento del escritor colombiano, premio Nobel de Literatura en 1982, Gabriel García Márquez \"La muerte en Samarra\" (Adaptación).\n\nEl criado llega aterrorizado a casa de su amo.\n—Señor —dice— he visto a la Muerte en el mercado y me ha hecho una señal de amenaza.\nEl amo le da un caballo y dinero, y le dice:\n—Huye a Samarra.\nEl criado huye. Esa tarde, temprano, el señor se encuentra a la Muerte en el mercado.\n—Esta mañana le hiciste a mi criado una señal de amenaza —dice.\n—No era de amenaza —responde la Muerte— sino de sorpresa. Porque lo veía ahí, tan lejos de Samarra, y esta misma tarde tengo que recogerlo allá.",
+                pregunta: "¿Quiénes son los personajes del cuento?",
+                opciones: {
+                    a: "Samarra y la muerte.",
+                    b: "El criado y el patrón.",
+                    c: "La muerte y los comerciantes.",
+                    d: "La muerte."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "esp_2",
+                area: "Español",
+                lectura: "Lee el cuento del escritor colombiano, premio Nobel de Literatura en 1982, Gabriel García Márquez \"La muerte en Samarra\" (Adaptación).\n\nEl criado llega aterrorizado a casa de su amo.\n—Señor —dice— he visto a la Muerte en el mercado y me ha hecho una señal de amenaza.\nEl amo le da un caballo y dinero, y le dice:\n—Huye a Samarra.\nEl criado huye. Esa tarde, temprano, el señor se encuentra a la Muerte en el mercado.\n—Esta mañana le hiciste a mi criado una señal de amenaza —dice.\n—No era de amenaza —responde la Muerte— sino de sorpresa. Porque lo veía ahí, tan lejos de Samarra, y esta misma tarde tengo que recogerlo allá.",
+                pregunta: "Identifica el tema del cuento \"La muerte en Samarra\".",
+                opciones: {
+                    a: "El desamor.",
+                    b: "La solidaridad.",
+                    c: "La cobardía.",
+                    d: "La muerte."
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "esp_3",
+                area: "Español",
+                lectura: "Lee el cuento del escritor colombiano, premio Nobel de Literatura en 1982, Gabriel García Márquez \"La muerte en Samarra\" (Adaptación).\n\nEl criado llega aterrorizado a casa de su amo.\n—Señor —dice— he visto a la Muerte en el mercado y me ha hecho una señal de amenaza.\nEl amo le da un caballo y dinero, y le dice:\n—Huye a Samarra.\nEl criado huye. Esa tarde, temprano, el señor se encuentra a la Muerte en el mercado.\n—Esta mañana le hiciste a mi criado una señal de amenaza —dice.\n—No era de amenaza —responde la Muerte— sino de sorpresa. Porque lo veía ahí, tan lejos de Samarra, y esta misma tarde tengo que recogerlo allá.",
+                pregunta: "¿Cuál es el espacio en el que transcurre el cuento?",
+                opciones: {
+                    a: "Un rancho.",
+                    b: "La ciudad.",
+                    c: "Un pueblo.",
+                    d: "Una plaza."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "esp_4",
+                area: "Español",
+                lectura: "Lee el cuento del escritor colombiano, premio Nobel de Literatura en 1982, Gabriel García Márquez \"La muerte en Samarra\" (Adaptación).\n\nEl criado llega aterrorizado a casa de su amo.\n—Señor —dice— he visto a la Muerte en el mercado y me ha hecho una señal de amenaza.\nEl amo le da un caballo y dinero, y le dice:\n—Huye a Samarra.\nEl criado huye. Esa tarde, temprano, el señor se encuentra a la Muerte en el mercado.\n—Esta mañana le hiciste a mi criado una señal de amenaza —dice.\n—No era de amenaza —responde la Muerte— sino de sorpresa. Porque lo veía ahí, tan lejos de Samarra, y esta misma tarde tengo que recogerlo allá.",
+                pregunta: "¿Qué ambiente social puedes identificar en el cuento?",
+                opciones: {
+                    a: "Un ambiente citadino.",
+                    b: "Un ambiente de pueblo.",
+                    c: "Un ambiente de pobreza.",
+                    d: "Un ambiente de riqueza."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "esp_5",
+                area: "Español",
+                pregunta: "Ordena el proceso lógico para realizar un reportaje:\n1) Buscar información\n2) Seleccionar el tema\n3) Redactar el reportaje\n4) Presentar el borrador para corregir la redacción\n5) Realizar entrevistas",
+                opciones: {
+                    a: "1, 3, 5, 2, 4",
+                    b: "2, 1, 5, 3, 4",
+                    c: "5, 2, 1, 3, 4",
+                    d: "2, 5, 1, 4, 3"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "esp_6",
+                area: "Español",
+                pregunta: "De las siguientes opciones, señala la que <strong>no</strong> corresponde a las características de una noticia.",
+                opciones: {
+                    a: "El periodista emite su opinión en el relato.",
+                    b: "Fácil de comprender.",
+                    c: "Debe responder a las preguntas: ¿cuándo?, ¿Cómo?, ¿Dónde?, ¿Por qué?, ¿A qué?",
+                    d: "Los acontecimientos se exponen en forma clara y lógica."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "esp_7",
+                area: "Español",
+                lectura: "Lee el siguiente fragmento del cuento \"Un día de estos\" de Gabriel García Márquez.\n\nEl lunes amaneció tibio y sin lluvia. Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis. Sacó de la vidriera una dentadura postiza montada aún en el molde de yeso y puso sobre la mesa un puñado de instrumentos que ordenó de mayor a menor, como en una exposición. Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.\n\nCuando tuvo las cosas dispuestas sobre la mesa rodó la fresa hacia el sillón de resortes y se sentó a pulir la dentadura postiza. Parecía no pensar en lo que hacía, pero trabajaba con obstinación, pedaleando en la fresa incluso cuando no se servía de ella.\n\nDespués de las ocho hizo una pausa para mirar el cielo por la ventana y vio dos gallinazos pensativos que se secaban al sol en el caballete de la casa vecina. Siguió trabajando con la idea de que antes del almuerzo volvería a llover. La voz destemplada de su hijo de once años lo sacó de su abstracción.\n\n—Papá.\n—¿Qué?\n—Dice el alcalde, que si le sacas una muela.\n—Dile que no estoy aquí.\n\nEstaba puliendo un diente de oro. Lo retiró a la distancia del brazo y lo examinó con los ojos a medio cerrar. En la salita de espera volvió a gritar su hijo.\n\n—Dice que sí estás porque te está oyendo.",
+                pregunta: "¿Cuál de las siguientes opciones corresponde a la introducción o planteamiento de la trama del cuento?",
+                opciones: {
+                    a: "El lunes amaneció tibio y sin lluvia.",
+                    b: "Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis.",
+                    c: "Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos.",
+                    d: "—Dice el alcalde que si le sacas una muela."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "esp_8",
+                area: "Español",
+                lectura: "Lee el siguiente fragmento del cuento \"Un día de estos\" de Gabriel García Márquez.\n\nEl lunes amaneció tibio y sin lluvia. Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis. Sacó de la vidriera una dentadura postiza montada aún en el molde de yeso y puso sobre la mesa un puñado de instrumentos que ordenó de mayor a menor, como en una exposición. Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.\n\nCuando tuvo las cosas dispuestas sobre la mesa rodó la fresa hacia el sillón de resortes y se sentó a pulir la dentadura postiza. Parecía no pensar en lo que hacía, pero trabajaba con obstinación, pedaleando en la fresa incluso cuando no se servía de ella.\n\nDespués de las ocho hizo una pausa para mirar el cielo por la ventana y vio dos gallinazos pensativos que se secaban al sol en el caballete de la casa vecina. Siguió trabajando con la idea de que antes del almuerzo volvería a llover. La voz destemplada de su hijo de once años lo sacó de su abstracción.\n\n—Papá.\n—¿Qué?\n—Dice el alcalde, que si le sacas una muela.\n—Dile que no estoy aquí.\n\nEstaba puliendo un diente de oro. Lo retiró a la distancia del brazo y lo examinó con los ojos a medio cerrar. En la salita de espera volvió a gritar su hijo.\n\n—Dice que sí estás porque te está oyendo.",
+                pregunta: "¿Cuál de las siguientes opciones es una muestra de diálogo?",
+                opciones: {
+                    a: "Estaba puliendo un diente de oro. Lo retiró a la distancia del brazo y lo examinó con los ojos a medio cerrar.",
+                    b: "Después de las ocho hizo una pausa para mirar el cielo por la ventana y vio dos gallinazos pensativos.",
+                    c: "Cuando tuvo las cosas dispuestas sobre la mesa rodó la fresa hacia el sillón de resortes.",
+                    d: "—Papá. —¿Qué? —Dice el alcalde, que si le sacas una muela. —Dile que no estoy aquí."
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "esp_9",
+                area: "Español",
+                lectura: "Lee el siguiente fragmento del cuento \"Un día de estos\" de Gabriel García Márquez.\n\nEl lunes amaneció tibio y sin lluvia. Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis. Sacó de la vidriera una dentadura postiza montada aún en el molde de yeso y puso sobre la mesa un puñado de instrumentos que ordenó de mayor a menor, como en una exposición. Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.",
+                pregunta: "¿En cuál de las siguientes opciones se realiza una descripción del personaje?",
+                opciones: {
+                    a: "La voz destemplada de su hijo de once años lo sacó de su abstracción.",
+                    b: "Siguió trabajando con la idea de que antes del almuerzo volvería a llover.",
+                    c: "Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.",
+                    d: "Después de las ocho hizo una pausa para mirar el cielo por la ventana."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "esp_10",
+                area: "Español",
+                pregunta: "¿En cuál de los siguientes enunciados se encuentra un <strong>nexo de simultaneidad</strong>?",
+                opciones: {
+                    a: "Era domingo. Posteriormente se llamó a misa en la parroquia.",
+                    b: "... justo entonces comenzó a trabajar en la conspiración.",
+                    c: "Hidalgo sabía de la conjetura debido a que trataba con Allende.",
+                    d: "El General dijo que entraran por la parte sur del pueblo ya que los esperaban."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "esp_11",
+                area: "Español",
+                pregunta: "Es el tiempo en que están conjugados los verbos subrayados en los enunciados anteriores.",
+                opciones: {
+                    a: "Copretérito.",
+                    b: "Pretérito.",
+                    c: "Futuro.",
+                    d: "Presente."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "esp_12",
+                area: "Español",
+                pregunta: "Perífrasis verbal que significa la <strong>necesidad u obligación</strong> de realizar una acción:",
+                opciones: {
+                    a: "deber de",
+                    b: "tener que",
+                    c: "estar con",
+                    d: "poder a"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "esp_13",
+                area: "Español",
+                pregunta: "Determina la jerarquización por su orden de aparición de las siguientes partes de la CONSTITUCIÓN POLÍTICA DE LOS ESTADOS UNIDOS MEXICANOS.\n\n1. Artículo 30: La nacionalidad mexicana se adquiere por nacimiento o por naturalización.\n2. Son mexicanos por nacimiento:\n3. CONSTITUCIÓN MEXICANA DE LOS ESTADOS UNIDOS\n4. I. Los que nazcan en territorio de la República…\n5. Capítulo II: De los Mexicanos",
+                opciones: {
+                    a: "1 – 2 – 3 – 4 – 5",
+                    b: "2 – 5 – 1 – 4 – 3",
+                    c: "3 – 2 – 5 – 1 – 4",
+                    d: "3 – 5 – 1 – 2 – 4"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "esp_14",
+                area: "Español",
+                pregunta: "Elige el enunciado en el que existe una <strong>aposición</strong>, un <strong>adjetivo calificativo</strong> y un <strong>participio</strong>.",
+                opciones: {
+                    a: "Hidalgo, iniciador de la Independencia de México, sacerdote que recibe el grado de bachiller en Teología.",
+                    b: "Don Miguel Hidalgo, el cura Hidalgo, hombre valiente, audaz e iniciador de la Independencia de México, siempre apoyado por grandes personajes como Allende y la Corregidora.",
+                    c: "En el pequeño pueblo de Atotonilco se encontró la imagen que sería el estandarte del ejército.",
+                    d: "Al pasar por Atotonilco Hidalgo halló una imagen de Nuestra Señora de Guadalupe y la hizo suspender del asta de una lanza."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "esp_15",
+                area: "Español",
+                pregunta: "Un texto argumentativo suele presentar la siguiente estructura:",
+                opciones: {
+                    a: "Introducción, Cuerpo argumentativo, Conclusión y Bibliografía.",
+                    b: "Portada, Introducción, Desarrollo y Conclusión.",
+                    c: "Introducción, Desarrollo del tema, Conclusión y Notas.",
+                    d: "Portada, Título, Desarrollo y Conclusión."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "esp_16",
+                area: "Español",
+                pregunta: "Es una narración literaria breve que implica un argumento intenso y pocos personajes.",
+                opciones: {
+                    a: "Cuento.",
+                    b: "Poema.",
+                    c: "Fábula.",
+                    d: "Novela."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "esp_17",
+                area: "Español",
+                lectura: "Lee el siguiente texto tomado del periódico \"El Norte\".\n\nTratan de imitar al cerebro humano\nBuscan que el dispositivo realice múltiples tareas al mismo tiempo como lo hace el cerebro humano.\n\nDiana Saavedra\nCiudad de México (10 agosto 2011).— Aprovechando el desarrollo de sistemas de información nanotecnológicos, el investigador y artista James K. Gimzewski busca crear un dispositivo que imite la inteligencia humana.\n\n\"Sé que es difícil porque al inicio es necesario definir qué es inteligencia y eso parece más un razonamiento filosófico\", estimó Gimzewski al ofrecer la conferencia.\n\n\"El principal reto que hemos encontrado hasta ahora es que el cerebro humano se dedica a resolver muchas variables al mismo momento, sin perder enfoque en lo principal, algo que es muy difícil para las máquinas\".",
+                pregunta: "¿Quién da la opinión en el siguiente texto?\n\n\"Sé que es difícil porque al inicio es necesario definir qué es inteligencia y eso parece más un razonamiento filosófico\".",
+                opciones: {
+                    a: "James K. Gimzewski.",
+                    b: "Luis Buñuel.",
+                    c: "Diana Saavedra.",
+                    d: "Editorial del periódico."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "esp_18",
+                area: "Español",
+                pregunta: "Selecciona la option en la que aparecen <strong>solo</strong> palabras de origen indígena.",
+                opciones: {
+                    a: "Chiquihuite, transbordador, cohete, elote.",
+                    b: "Xochimilco, nixtamal, televisión, dólares.",
+                    c: "Nixtamal, canoa, maguey, chalupa.",
+                    d: "Celular, cacao, mandioca, hamaca."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "esp_19",
+                area: "Español",
+                lectura: "Texto 1:\nTodo pasa y todo queda,\npero lo nuestro es pasar,\npasar haciendo caminos,\ncaminos sobre el mar.\n\nTexto 2:\nCaminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar.\n\nTexto 3:\nEs el camino de la muerte,\nEs el camino de la vida…\nEn la frescura de las rosas va reparando.\nY en las lindas adolescentes.\nY en los suaves aromas de las tardes tibias.\n\nTexto 4:\nDe los sabores y colores gusta.\nY de la embriaguez divina.\nEscucha las músicas dulces.\nGoza de la melancolía de no saber, de no creer, de soñar un poco.\nAma y olvida, y atrás no mires.\nY no creas que tiene raíces la dicha.\nNo habrás llegado hasta que todo lo hayas perdido.\nVe, camina…\nEs el camino de la muerte.\nEs el camino de la vida.",
+                pregunta: "¿En cuál de los textos se nos da un consejo de cómo disfrutar la vida?",
+                opciones: {
+                    a: "Texto 1",
+                    b: "Texto 2",
+                    c: "Texto 3",
+                    d: "Texto 4"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "esp_20",
+                area: "Español",
+                lectura: "Texto 1:\nTodo pasa y todo queda,\npero lo nuestro es pasar,\npasar haciendo caminos,\ncaminos sobre el mar.\n\nTexto 2:\nCaminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar.\n\nTexto 3:\nEs el camino de la muerte,\nEs el camino de la vida…\nEn la frescura de las rosas va reparando.\nY en las lindas adolescentes.\nY en los suaves aromas de las tardes tibias.\n\nTexto 4:\nDe los sabores y colores gusta.\nY de la embriaguez divina.\nEscucha las músicas dulces.\nGoza de la melancolía de no saber, de no creer, de soñar un poco.\nAma y olvida, y atrás no mires.\nY no creas que tiene raíces la dicha.\nNo habrás llegado hasta que todo lo hayas perdido.\nVe, camina…\nEs el camino de la muerte.\nEs el camino de la vida.",
+                pregunta: "¿Cuál es el tema que predomina en los cuatro textos?",
+                opciones: {
+                    a: "Vida.",
+                    b: "Muerte.",
+                    c: "Gloria.",
+                    d: "Felicidad."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "esp_21",
+                area: "Español",
+                lectura: "Texto 1:\nTodo pasa y todo queda,\npero lo nuestro es pasar,\npasar haciendo caminos,\ncaminos sobre el mar.\n\nTexto 2:\nCaminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar.\n\nTexto 3:\nEs el camino de la muerte,\nEs el camino de la vida…\nEn la frescura de las rosas va reparando.\nY en las lindas adolescentes.\nY en los suaves aromas de las tardes tibias.\n\nTexto 4:\nDe los sabores y colores gusta.\nY de la embriaguez divina.\nEscucha las músicas dulces.\nGoza de la melancolía de no saber, de no creer, de soñar un poco.\nAma y olvida, y atrás no mires.\nY no creas que tiene raíces la dicha.\nNo habrás llegado hasta que todo lo hayas perdido.\nVe, camina…\nEs el camino de la muerte.\nEs el camino de la vida.",
+                pregunta: "¿En cuáles de los textos se expresa que la meta final del camino es la muerte?",
+                opciones: {
+                    a: "1 y 2",
+                    b: "2 y 3",
+                    c: "3 y 4",
+                    d: "2 y 4"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "esp_22",
+                area: "Español",
+                lectura: "Texto 1:\nTodo pasa y todo queda,\npero lo nuestro es pasar,\npasar haciendo caminos,\ncaminos sobre el mar.\n\nTexto 2:\nCaminante, son tus huellas\nel camino y nada más;\ncaminante, no hay camino,\nse hace camino al andar.\nAl andar se hace camino\ny al volver la vista atrás\nse ve la senda que nunca\nse ha de volver a pisar.\n\nTexto 3:\nEs el camino de la muerte,\nEs el camino de la vida…\nEn la frescura de las rosas va reparando.\nY en las lindas adolescentes.\nY en los suaves aromas de las tardes tibias.\n\nTexto 4:\nDe los sabores y colores gusta.\nY de la embriaguez divina.\nEscucha las músicas dulces.\nGoza de la melancolía de no saber, de no creer, de soñar un poco.\nAma y olvida, y atrás no mires.\nY no creas que tiene raíces la dicha.\nNo habrás llegado hasta que todo lo hayas perdido.\nVe, camina…\nEs el camino de la muerte.\nEs el camino de la vida.",
+                pregunta: "¿En cuál de los textos se expresa la <strong>fugacidad</strong> de la vida?",
+                opciones: {
+                    a: "Texto 1",
+                    b: "Texto 2",
+                    c: "Texto 3",
+                    d: "Texto 4"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "esp_23",
+                area: "Español",
+                lectura: "Entrevista con el Jefe de Bomberos\nSentados ante una mesa, café de por medio, iniciamos nuestra conversación con el bombero Jorge Sánchez Magariños, jefe del Cuartel de Bomberos Voluntarios Melipal.\n\n— ¿Cuánto hace que es bombero voluntario?\n— Hace 19 años.\n\n— ¿El bombero conoce realmente los riesgos que enfrenta en cada siniestro?\n— Por supuesto. No somos \"temerarios\" ni inconscientes en la medida que conocemos plenamente los riesgos a los cuales nos enfrentamos. Eso hace que uno pueda medir los imponderables de las situaciones en las cuales está y saber cuándo avanzar y cuándo no.\n\n— ¿Cómo se realiza la capacitación de un bombero?\n— Existe en el cuerpo una estructura de mando con un jefe y un segundo jefe. Luego viene la plana mayor de cuatro oficiales y treinta y ocho bomberos, organizados mediante un escalafón con distintos grados. El que ingresa como aspirante debe hacer un curso de un año en la escuela de capacitación del cuartel. Luego, siendo bombero, debe asistir a cursos en distintos lugares del país.",
+                pregunta: "Tipo de entrevista que se muestra en el texto anterior:",
+                opciones: {
+                    a: "Encuesta.",
+                    b: "Divulgación.",
+                    c: "Informativa.",
+                    d: "Semblanza."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "esp_24",
+                area: "Español",
+                lectura: "Entrevista con el Jefe de Bomberos\nSentados ante una mesa, café de por medio, iniciamos nuestra conversación con el bombero Jorge Sánchez Magariños, jefe del Cuartel de Bomberos Voluntarios Melipal.",
+                pregunta: "Nombre de la persona a quien se considera el <strong>entrevistado</strong>:",
+                opciones: {
+                    a: "Jorge Sánchez Magariños.",
+                    b: "Bariloche.",
+                    c: "Melipal.",
+                    d: "No se menciona."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "esp_25",
+                area: "Español",
+                lectura: "Entrevista con el Jefe de Bomberos\nSentados ante una mesa, café de por medio, iniciamos nuestra conversación con el bombero Jorge Sánchez Magariños, jefe del Cuartel de Bomberos Voluntarios Melipal.\n\n— ¿Cuánto hace que es bombero voluntario?\n— Hace 19 años.",
+                pregunta: "Función que realiza el <strong>guión</strong> dentro de la entrevista:",
+                opciones: {
+                    a: "Sirve para dar aclaraciones o explicación dentro de la encuesta.",
+                    b: "Señala el inicio del diálogo de los personajes involucrados.",
+                    c: "Se utiliza para interrogar al entrevistado.",
+                    d: "No realiza ninguna función dentro de la entrevista."
+                },
+                respuestaCorrecta: "b"
+            },
+
+            // ===================== MATEMÁTICAS (25 preguntas) =====================
+            {
+                id: "mat_1",
+                area: "Matemáticas",
+                pregunta: "Llega a una gasolinera una carga de 180,000 litros de gasolina. ¿Cuántos camiones se ocupan para transportarla, si cada camión tiene capacidad de 900 litros?",
+                opciones: {
+                    a: "200",
+                    b: "180",
+                    c: "240",
+                    d: "160"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "mat_2",
+                area: "Matemáticas",
+                pregunta: "Seis personas pueden vivir en una cabaña durante una semana por $28,000. ¿Cuánto costará por 4 días?",
+                opciones: {
+                    a: "$16,000",
+                    b: "$18,000",
+                    c: "$14,000",
+                    d: "$12,000"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "mat_3",
+                area: "Matemáticas",
+                pregunta: "Se construye un edificio con 10 obreros y se tardan 336 días. ¿Cuánto se tardarán en construirlo 30 obreros?",
+                opciones: {
+                    a: "112 días",
+                    b: "168 días",
+                    c: "84 días",
+                    d: "56 días"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "mat_4",
+                area: "Matemáticas",
+                pregunta: "Para pintar una pared, 5 obreros emplean 6 horas. ¿Cuánto habrían tardado 3 obreros?",
+                opciones: {
+                    a: "5 horas",
+                    b: "7 horas",
+                    c: "8 horas",
+                    d: "10 horas"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "mat_5",
+                area: "Matemáticas",
+                pregunta: "Laura, Raúl y Miguel compraron un terreno de 900 m² con valor de $900,000. Laura puso $300,000, Raúl puso $150,000 y Miguel $450,000. ¿Qué cantidad de terreno le corresponde a Laura?",
+                opciones: {
+                    a: "600 m²",
+                    b: "300 m²",
+                    c: "500 m²",
+                    d: "30 m²"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "mat_6",
+                area: "Matemáticas",
+                pregunta: "Del problema anterior, ¿qué cantidad de terreno le corresponde a Miguel?",
+                opciones: {
+                    a: "600 m²",
+                    b: "333.3 m²",
+                    c: "450 m²",
+                    d: "30 m²"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "mat_7",
+                area: "Matemáticas",
+                pregunta: "Al convertir 35 hectolitros a litros es: (1 l = 0.01 hectolitros)",
+                opciones: {
+                    a: "3,500 l",
+                    b: "500 l",
+                    c: "0.005 l",
+                    d: "350 l"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "mat_8",
+                area: "Matemáticas",
+                pregunta: "Un bebé pesó 4.5 kg al nacer. A los 45 días el doctor lo pesó y fueron 5,600 miligramos. ¿Cuánto pesó en kg? (1 kg = 1,000 mg)",
+                opciones: {
+                    a: "0.5600 kg",
+                    b: "5.060 kg",
+                    c: "56 kg",
+                    d: "5.6 kg"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "mat_9",
+                area: "Matemáticas",
+                pregunta: "¿Cuál es la raíz cuadrada de 121?",
+                opciones: {
+                    a: "12",
+                    b: "10",
+                    c: "11",
+                    d: "10 × 10"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "mat_10",
+                area: "Matemáticas",
+                pregunta: "Las calificaciones de Ramiro son: 5, 5, 7, 5, 6, 6, 9, 10, 7, 10. ¿Cuál es la media o promedio?",
+                opciones: {
+                    a: "7",
+                    b: "6",
+                    c: "8",
+                    d: "9"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "mat_11",
+                area: "Matemáticas",
+                pregunta: "Con las calificaciones de Ramiro (5, 5, 7, 5, 6, 6, 9, 10, 7, 10), ¿cuál es la <strong>moda</strong>?",
+                opciones: {
+                    a: "5",
+                    b: "6",
+                    c: "7",
+                    d: "9"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "mat_12",
+                area: "Matemáticas",
+                pregunta: "Con las calificaciones de Ramiro (5, 5, 7, 5, 6, 6, 9, 10, 7, 10), ¿cuál es la <strong>mediana</strong>?",
+                opciones: {
+                    a: "4.5",
+                    b: "6.5",
+                    c: "7.5",
+                    d: "8.5"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "mat_13",
+                area: "Matemáticas",
+                pregunta: "En una urna hay 3 fichas naranja (15% descuento), 3 azules (10% descuento) y 4 verdes (5% descuento). ¿Qué probabilidad hay de sacar una ficha verde?",
+                opciones: {
+                    a: "3/10",
+                    b: "1/3",
+                    c: "1/4",
+                    d: "2/5"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "mat_14",
+                area: "Matemáticas",
+                pregunta: "Al lanzar 2 dados, ¿qué probabilidad hay de que caiga un número par en cualquiera de los dos dados?",
+                opciones: {
+                    a: "1/3",
+                    b: "1/8",
+                    c: "1/4",
+                    d: "1/2"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "mat_15",
+                area: "Matemáticas",
+                pregunta: "Al multiplicar: (8x²)(5x² – 2x + 6)",
+                opciones: {
+                    a: "13x⁴ – 6x² + 14",
+                    b: "13x² – 10x + 14",
+                    c: "40x⁴ – 16x³ + 48x²",
+                    d: "40x² – 16x + 48"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "mat_16",
+                area: "Matemáticas",
+                pregunta: "Indica el resultado correcto de: (a + 2)(a – 3)",
+                opciones: {
+                    a: "a² – a – 6",
+                    b: "a² + a – 6",
+                    c: "a² + 5a – 6",
+                    d: "a² – 5a – 6"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "mat_17",
+                area: "Matemáticas",
+                pregunta: "Las siguientes cantidades son medidas de los lados de un triángulo, pero solo una es posible. ¿Cuál es?",
+                opciones: {
+                    a: "2, 4 y 7",
+                    b: "2, 6 y 6",
+                    c: "3, 5 y 8",
+                    d: "3, 4 y 7"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "mat_18",
+                area: "Matemáticas",
+                pregunta: "Para sostener perpendicularmente un poste se requieren cables. Uno de los ángulos entre el cable y el poste mide 52°. ¿Cuánto mide el ángulo con el suelo?",
+                opciones: {
+                    a: "38°",
+                    b: "128°",
+                    c: "180°",
+                    d: "360°"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "mat_19",
+                area: "Matemáticas",
+                imagen: "https://i.postimg.cc/xCdNfSdH/8-cm.png",
+                pregunta: "Tienes una repisa de madera como la de la ilustración, que tiene de base 12cm y de altura 8cm.\n\n¿Cuál opción <strong>no</strong> es válida para calcular el área?",
+                opciones: {
+                    a: "(12cm)(8cm)/2",
+                    b: "(12cm/2)(8cm)",
+                    c: "(12cm) + (8cm/2)",
+                    d: "(12cm)(8cm/2)"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "mat_20",
+                area: "Matemáticas",
+                pregunta: "La fórmula para el perímetro de un círculo es P = πd. Esto significa que:",
+                opciones: {
+                    a: "El área es igual a π.",
+                    b: "π es la relación entre el perímetro y el diámetro.",
+                    c: "π sale de la división del diámetro entre el radio.",
+                    d: "El diámetro es igual a π."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "mat_21",
+                area: "Matemáticas",
+                pregunta: "Un agricultor tiene un terreno cuadrado de 4,624 m² de área. ¿Con qué operación puede saber cuánto mide por lado su terreno?",
+                opciones: {
+                    a: "√68",
+                    b: "4,624 × 4,624",
+                    c: "√4,624",
+                    d: "4,624 ÷ 4"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "mat_22",
+                area: "Matemáticas",
+                pregunta: "Método para resolver un sistema de ecuaciones que consiste en <strong>sumar ambas ecuaciones</strong>:",
+                opciones: {
+                    a: "Método de Suma y Resta",
+                    b: "Método de sustitución",
+                    c: "Método gráfico",
+                    d: "Método de igualación"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "mat_23",
+                area: "Matemáticas",
+                pregunta: "Método para resolver un sistema de ecuaciones que consiste en <strong>despejar la misma variable</strong> en ambas ecuaciones para después igualarlas:",
+                opciones: {
+                    a: "Método de Suma y Resta",
+                    b: "Método de sustitución",
+                    c: "Método gráfico",
+                    d: "Método de igualación"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "mat_24",
+                area: "Matemáticas",
+                pregunta: "Método para resolver un sistema de ecuaciones que consiste en <strong>despejar la 'y'</strong> en ambas ecuaciones para tabular y localizar los puntos en el plano cartesiano:",
+                opciones: {
+                    a: "Método de Suma y Resta",
+                    b: "Método de sustitución",
+                    c: "Método gráfico",
+                    d: "Método de igualación"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "mat_25",
+                area: "Matemáticas",
+                pregunta: "Método para resolver un sistema de ecuaciones que consiste en <strong>despejar una variable</strong> de una ecuación para sustituirla en la otra:",
+                opciones: {
+                    a: "Método de Suma y Resta",
+                    b: "Método de sustitución",
+                    c: "Método gráfico",
+                    d: "Método de igualación"
+                },
+                respuestaCorrecta: "b"
+            },
+
+            // ===================== CIENCIAS (25 preguntas) =====================
+            {
+                id: "cie_1",
+                area: "Ciencias",
+                pregunta: "¿Cuándo se transforma la energía eléctrica?",
+                opciones: {
+                    a: "Cuando un generador se apaga.",
+                    b: "Cuando se abre un circuito eléctrico.",
+                    c: "Cuando se cierra un circuito eléctrico.",
+                    d: "Cuando se desconecta un electrodoméstico."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "cie_2",
+                area: "Ciencias",
+                pregunta: "¿Qué es un material conductor?",
+                opciones: {
+                    a: "Una sustancia que tiene pocos electrones libres.",
+                    b: "Una sustancia que no permite el paso de la corriente eléctrica.",
+                    c: "Un material que facilita el movimiento de electrones.",
+                    d: "Un material que se calienta al paso de la corriente eléctrica."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "cie_3",
+                area: "Ciencias",
+                pregunta: "¿Qué aplicaciones tiene la electricidad según la lectura?",
+                opciones: {
+                    a: "Solo se usa en iluminación.",
+                    b: "Se utiliza únicamente en aparatos de cocina.",
+                    c: "Se aplica en el funcionamiento de diversos electrodomésticos.",
+                    d: "Solo se emplea en sistemas de calefacción."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "cie_4",
+                area: "Ciencias",
+                pregunta: "Una de las principales aportaciones de Thomson al modelo atómico fue el descubrimiento de una partícula con carga negativa. ¿Cuál fue?",
+                opciones: {
+                    a: "Electrón",
+                    b: "Protón",
+                    c: "Neutrón",
+                    d: "Ion"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_5",
+                area: "Ciencias",
+                pregunta: "Características del electrón, <strong>excepto</strong> una:",
+                opciones: {
+                    a: "Viajan en órbitas electrónicas alrededor del núcleo.",
+                    b: "Son mayores que el núcleo en masa y volumen.",
+                    c: "Tienen carga negativa.",
+                    d: "Generan el flujo eléctrico."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "cie_6",
+                area: "Ciencias",
+                pregunta: "¿Cuál es la partícula subatómica que tiene carga neutra?",
+                opciones: {
+                    a: "Neutrón",
+                    b: "Protón",
+                    c: "Electrón",
+                    d: "Ninguna de las anteriores"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_7",
+                area: "Ciencias",
+                pregunta: "Cuando un cuerpo adquiere electrones, pero no fluyen a través de él, sino que permanecen estáticos, se dice que adquirió:",
+                opciones: {
+                    a: "Carga electrostática",
+                    b: "Flujo eléctrico",
+                    c: "Iones",
+                    d: "Carga negativa"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_8",
+                area: "Ciencias",
+                pregunta: "¿Qué es un electrón de valencia?",
+                opciones: {
+                    a: "Electrón de última órbita",
+                    b: "Electrón sin carga",
+                    c: "Electrón que no se puede donar",
+                    d: "Ninguna de las anteriores"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_9",
+                area: "Ciencias",
+                pregunta: "Al campo magnético que se genera por el paso de electricidad a través de un conductor se le llama:",
+                opciones: {
+                    a: "Electromagnetismo",
+                    b: "Electricidad",
+                    c: "Magnetismo",
+                    d: "Ninguna de las anteriores"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_10",
+                area: "Ciencias",
+                pregunta: "Materiales que <strong>impiden por completo</strong> el flujo eléctrico se clasifican como:",
+                opciones: {
+                    a: "Conductores",
+                    b: "Aislantes",
+                    c: "Eléctricos",
+                    d: "Ninguno de los anteriores"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "cie_11",
+                area: "Ciencias",
+                pregunta: "El magnetismo se define como:",
+                opciones: {
+                    a: "La propiedad de un material para ejercer una corriente eléctrica.",
+                    b: "La propiedad de un cuerpo para generar una carga eléctrica.",
+                    c: "La propiedad de un cuerpo para crear a su alrededor un campo magnético y atraer materiales.",
+                    d: "La propiedad de un cuerpo para que fluyan electrones a través de él."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "cie_12",
+                area: "Ciencias",
+                pregunta: "¿Cómo se les llama a los objetos que son capaces por sí solos de atraer objetos metálicos sin necesidad de corriente?",
+                opciones: {
+                    a: "Imanes",
+                    b: "Electrones",
+                    c: "Aniones",
+                    d: "Receptores de carga"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_13",
+                area: "Ciencias",
+                pregunta: "Modelo que busca explicar la estructura de la materia mediante el movimiento de sus partículas:",
+                opciones: {
+                    a: "Modelo cinético",
+                    b: "Modelo corpuscular",
+                    c: "Modelo estático",
+                    d: "Modelo atómico"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_14",
+                area: "Ciencias",
+                pregunta: "Todo aquello que ocupa un lugar en el espacio se le llama:",
+                opciones: {
+                    a: "Volumen",
+                    b: "Átomo",
+                    c: "Materia",
+                    d: "Molécula"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "cie_15",
+                area: "Ciencias",
+                pregunta: "Estado de agregación en el cual las partículas están muy separadas y se mueven libremente:",
+                opciones: {
+                    a: "Gas",
+                    b: "Plasma",
+                    c: "Sólido",
+                    d: "Líquido"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_16",
+                area: "Ciencias",
+                pregunta: "Estado de agregación en el cual las moléculas están tan fuertemente unidas que solo vibran:",
+                opciones: {
+                    a: "Sólido",
+                    b: "Plasma",
+                    c: "Gas",
+                    d: "Líquido"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_17",
+                area: "Ciencias",
+                pregunta: "Estado de agregación en el que la materia no se comprime y adopta la forma del recipiente:",
+                opciones: {
+                    a: "Gas",
+                    b: "Plasma",
+                    c: "Sólido",
+                    d: "Líquido"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "cie_18",
+                area: "Ciencias",
+                pregunta: "Propiedad que se define como el espacio que ocupa un cuerpo:",
+                opciones: {
+                    a: "Materia",
+                    b: "Volumen",
+                    c: "Masa",
+                    d: "Peso"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "cie_19",
+                area: "Ciencias",
+                pregunta: "Es la cantidad de materia que tiene un cuerpo:",
+                opciones: {
+                    a: "Masa",
+                    b: "Volumen",
+                    c: "Densidad",
+                    d: "Peso"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_20",
+                area: "Ciencias",
+                pregunta: "En la fotosíntesis, las plantas:",
+                opciones: {
+                    a: "Absorben oxígeno del aire.",
+                    b: "Producen oxígeno.",
+                    c: "Absorben azúcares del suelo.",
+                    d: "Producen dióxido de carbono."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "cie_21",
+                area: "Ciencias",
+                pregunta: "Alimentos que se caracterizan por su aporte de carbohidratos y brindan energía:",
+                opciones: {
+                    a: "Pescado, leche, carne roja.",
+                    b: "Avena, trigo, cereal.",
+                    c: "Naranjas, limones y manzanas.",
+                    d: "Mantequilla, nueces, aceitunas."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "cie_22",
+                area: "Ciencias",
+                pregunta: "Se tiene 1 kg de agua y 1 kg de mercurio. El mercurio ocupa menos espacio. ¿A qué propiedad se hace referencia?",
+                opciones: {
+                    a: "Masa",
+                    b: "Volumen",
+                    c: "Densidad",
+                    d: "Peso"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "cie_23",
+                area: "Ciencias",
+                pregunta: "De acuerdo al modelo cinético molecular, en un cuerpo sólido sus partículas:",
+                opciones: {
+                    a: "No se mueven.",
+                    b: "Solo vibran.",
+                    c: "Se mueven libremente.",
+                    d: "Se mueven a altas velocidades chocando entre sí."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "cie_24",
+                area: "Ciencias",
+                pregunta: "El aceite de coco se solidifica al enfriarse porque sus partículas:",
+                opciones: {
+                    a: "pierden energía cinética, reduciendo el espacio entre ellas.",
+                    b: "aumentan su velocidad y las colisiones, aumentando la distancia.",
+                    c: "absorben energía del medio, aumentando su energía cinética.",
+                    d: "se mueven con mayor velocidad y disminuyen el espacio entre ellas."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "cie_25",
+                area: "Ciencias",
+                pregunta: "¿Cuál es el nombre del termómetro que marca el punto de congelación en 0° y ebullición en 100°?",
+                opciones: {
+                    a: "Termómetro Celsius (°C)",
+                    b: "Termómetro Kelvin (K)",
+                    c: "Termómetro Fahrenheit (°F)",
+                    d: "Ninguno"
+                },
+                respuestaCorrecta: "a"
+            },
+
+            // ===================== SOCIALES (25 preguntas) =====================
+            {
+                id: "soc_1",
+                area: "Sociales",
+                pregunta: "Para tomar una decisión personal <strong>asertiva</strong> se necesita:",
+                opciones: {
+                    a: "plantear metas claras, valorar alternativas, analizar ventajas y desventajas, considerar la intuición.",
+                    b: "plantear metas claras, tener en cuenta la opinión de otras personas, esperar que alguien haga una propuesta.",
+                    c: "plantear metas claras, valorar alternativas, analizar ventajas y desventajas, considerar posibilidades de éxito, reflexionar sobre los riesgos.",
+                    d: "informarse sobre las opciones, analizar ventajas y desventajas, tener en cuenta la intuición, elegir al azar."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "soc_2",
+                area: "Sociales",
+                pregunta: "¿Cómo puedes llevar a cabo un <strong>diálogo</strong>?",
+                opciones: {
+                    a: "Siempre que respete a las otras personas y las considere como iguales.",
+                    b: "Imponiendo ideas que favorezcan el desarrollo de las comunidades.",
+                    c: "Dejando que las personas critiquen a los demás.",
+                    d: "Cuando se trate de personas de iguales condiciones económicas."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "soc_3",
+                area: "Sociales",
+                pregunta: "De las siguientes acciones, ¿cuál es un ejemplo de <strong>tolerancia</strong>?",
+                opciones: {
+                    a: "Participar en una marcha en favor de los derechos de las personas con VIH para ser atendidos en hospitales.",
+                    b: "Participar en una manifestación y ensuciar la embajada de Estados Unidos.",
+                    c: "Rechazar la violencia de los grupos policiales contra los grafiteros.",
+                    d: "Invitar a las personas que compran en una carnicería a no comer carne."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "soc_4",
+                area: "Sociales",
+                pregunta: "¿Qué es la <strong>equidad de género</strong>?",
+                opciones: {
+                    a: "Justicia para ofrecer el acceso y control de recursos a mujeres y hombres por parte del gobierno, instituciones y sociedad.",
+                    b: "Proporcionar un ambiente tranquilo para ambos géneros.",
+                    c: "Que si el hombre trabaja la mujer atiende la casa y viceversa.",
+                    d: "Tener las mismas obligaciones los hombres y las mujeres."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "soc_5",
+                area: "Sociales",
+                pregunta: "¿En qué situación <strong>no</strong> se muestra un trato equitativo entre hombres y mujeres?",
+                opciones: {
+                    a: "Se instauró un transporte único para mujeres en avenidas principales.",
+                    b: "Un grupo religioso solo acepta a personas mayores de 18 años.",
+                    c: "En la escuela ofrecen becas a los alumnos de mejor promedio, pero solo las entregan a los niños.",
+                    d: "En casa de Carlos, todos ayudan a su mamá con la limpieza, sin importar el género."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "soc_6",
+                area: "Sociales",
+                pregunta: "¿Qué es el <strong>liderazgo</strong>?",
+                opciones: {
+                    a: "Pérdida de la motivación de interesarse por otros.",
+                    b: "Motivar a un grupo para que hagan trabajos en beneficio de quien los guía.",
+                    c: "El proceso de influir en otros y apoyarlos para que trabajen con entusiasmo en el logro de objetivos comunes.",
+                    d: "La actitud del que se adapta a cualquier circunstancia con excesiva facilidad."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "soc_7",
+                area: "Sociales",
+                pregunta: "Entendemos por <strong>diversidad cultural</strong>:",
+                opciones: {
+                    a: "la existencia de múltiples formas de vivir que ha descubierto el ser humano al convivir en comunidad.",
+                    b: "la búsqueda de la colaboración de todos los miembros.",
+                    c: "la conformación de distintas culturas con un fin común.",
+                    d: "la conjunción de diversas culturas dentro de las cuales podemos escoger alguna."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "soc_8",
+                area: "Sociales",
+                pregunta: "¿Cuál de los siguientes ejemplos corresponde a la <strong>empatía</strong>?",
+                opciones: {
+                    a: "Cuando tu mamá te dice que no andes tarde y decides regresar temprano pues tu mamá estará preocupada.",
+                    b: "Menospreciar el trabajo que hacen las personas con discapacidad.",
+                    c: "Ver a un anciano que no puede cruzar la calle solo y no ayudarlo.",
+                    d: "Preferir tirar la comida que dársela a la persona que pide limosna."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "soc_9",
+                area: "Sociales",
+                pregunta: "Elementos que ayudan a conformar la <strong>identidad</strong>:",
+                opciones: {
+                    a: "Reglas, asertividad, agresividad, comunidad, historia, derechos humanos.",
+                    b: "Amigos, familia, escuela, seres vivos, leyes, negociación.",
+                    c: "Justicia, violencia, responsabilidad, equidad.",
+                    d: "Familia, amigos, tradiciones, costumbres, escuela, historias compartidas."
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "soc_10",
+                area: "Sociales",
+                pregunta: "¿Razón fundamental por la que hay una constitución política en México?",
+                opciones: {
+                    a: "Establecer un marco de prohibiciones y castigos para los que no mantengan los usos y costumbres.",
+                    b: "Establecer un orden jurídico que respete las garantías individuales de cada ciudadano.",
+                    c: "Aparentar que se mantiene orden y control, aunque no se cumpla.",
+                    d: "Posibilitar el respeto y la aprehensión de personas extranjeras que no cumplan."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "soc_11",
+                area: "Sociales",
+                pregunta: "La soberanía nacional reside en el pueblo, pero se deposita el poder para ser ejercido en:",
+                opciones: {
+                    a: "El Poder Ejecutivo, Poder Legislativo y Poder Judicial.",
+                    b: "El Congreso de la Unión.",
+                    c: "Los estados, municipios, delegaciones.",
+                    d: "La legislación federal, estatal y municipal."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "soc_12",
+                area: "Sociales",
+                pregunta: "En la clase de deportes, Pedro le dice a Juan que es chaparro y débil. Juan no responde. Este tipo de situaciones fomentan:",
+                opciones: {
+                    a: "la honestidad y la conformidad de aceptarse como se es.",
+                    b: "las malas relaciones afectivas entre compañeros.",
+                    c: "el desarrollo social entre alumnos de la misma clase.",
+                    d: "la competencia entre los estudiantes de la misma clase."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "soc_13",
+                area: "Sociales",
+                pregunta: "¿En qué puede afectar a tu entorno familiar el consumo de drogas?",
+                opciones: {
+                    a: "Discusiones frecuentes, la comunicación se interrumpe, pérdida de confianza, alejamiento.",
+                    b: "Tu pareja podría manipularte más fácilmente.",
+                    c: "Todos viven juntos para cuidarse mutuamente.",
+                    d: "Tu familia se sentiría orgullosa de ti porque tomas tus propias decisiones."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "soc_14",
+                area: "Sociales",
+                pregunta: "¿Cuál fue el primer homínido que <strong>conoció el fuego</strong> pero no llegó a producirlo?",
+                opciones: {
+                    a: "Homo sapiens",
+                    b: "Homo erectus",
+                    c: "Homo sapiens sapiens",
+                    d: "Homo habilis"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "soc_15",
+                area: "Sociales",
+                pregunta: "¿Cómo se llama el primer homínido que fabricó armas y herramientas con madera, hueso y piedra para cazar, además de ser el primero en enterrar a sus muertos?",
+                opciones: {
+                    a: "Homo erectus",
+                    b: "Homo sapiens sapiens",
+                    c: "Homo sapiens",
+                    d: "Homo habilis"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "soc_16",
+                area: "Sociales",
+                pregunta: "Condiciones que permitieron que hace 30 mil años el hombre empezara a poblar lo que hoy es México:",
+                opciones: {
+                    a: "En América del Norte, la época invernal es prolongada y los hielos permanecen en primavera.",
+                    b: "En el norte hay bosque, pero pocos animales para cazar.",
+                    c: "Es una zona rica en minas de plata y oro, lo que permitió el sedentarismo.",
+                    d: "Es una zona con clima templado y agua en abundancia."
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "soc_17",
+                area: "Sociales",
+                pregunta: "Para que los pueblos nómadas se transformaran en sedentarios, ¿qué actividad fue fundamental?",
+                opciones: {
+                    a: "Silvicultura",
+                    b: "Agricultura",
+                    c: "Ganadería",
+                    d: "Metalurgia"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "soc_18",
+                area: "Sociales",
+                pregunta: "Cultura que practicaba la momificación pensando que después de la muerte aún había vida:",
+                opciones: {
+                    a: "India",
+                    b: "Mesopotamia",
+                    c: "China",
+                    d: "Egipto"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "soc_19",
+                area: "Sociales",
+                pregunta: "Condición que influyó en el surgimiento de ciudades-Estado como Atenas o Esparta:",
+                opciones: {
+                    a: "Las formas de gobierno que conocieron gracias al comercio.",
+                    b: "Cumplir con las disposiciones de sus dioses guerreros.",
+                    c: "Una necesidad de dominio sobre los pueblos vecinos.",
+                    d: "La formación de grandes grupos humanos aislados geográficamente."
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "soc_20",
+                area: "Sociales",
+                pregunta: "Monumento símbolo de la política de \"pan y circo\" en la Roma imperial:",
+                opciones: {
+                    a: "El Coliseo",
+                    b: "El Tabulario",
+                    c: "El Foro",
+                    d: "El Odeón"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "soc_21",
+                area: "Sociales",
+                pregunta: "Instrumento inventado en la época de las civilizaciones del mundo antiguo:",
+                opciones: {
+                    a: "La rueda",
+                    b: "El telescopio",
+                    c: "El hacha",
+                    d: "El astrolabio"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "soc_22",
+                area: "Sociales",
+                pregunta: "Característica física que permitió el desarrollo de las culturas mesoamericanas:",
+                opciones: {
+                    a: "Ser pueblos aislados por grandes montañas.",
+                    b: "Contar con un territorio propicio para la agricultura y ganadería.",
+                    c: "Vivir en regiones que les permitieron ser pescadores y cazadores.",
+                    d: "Dominar una gran extensión territorial para construir ciudades."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "soc_23",
+                area: "Sociales",
+                pregunta: "¿Qué pueblo mesoamericano produjo la llamada <strong>cultura madre</strong>?",
+                opciones: {
+                    a: "Teotihuacano",
+                    b: "Olmeca",
+                    c: "Zapoteca",
+                    d: "Mexica"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "soc_24",
+                area: "Sociales",
+                pregunta: "Principal causa que propició la caída del Imperio Romano de Occidente:",
+                opciones: {
+                    a: "El gasto enorme para mantener a la nobleza y al rey.",
+                    b: "Las constantes invasiones de bárbaros germánicos.",
+                    c: "El creciente ejército que costaba mucho mantener.",
+                    d: "Las extensas fronteras difíciles de mantener seguras."
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "soc_25",
+                area: "Sociales",
+                pregunta: "Datos importantes de la civilización islámica:",
+                opciones: {
+                    a: "Se inició en Israel y su centro religioso fue el Vaticano.",
+                    b: "Se desarrolló en Líbano, su libro sagrado era el Talmud.",
+                    c: "Fue agrícola y se destacaba el culto a un profeta llamado Elías.",
+                    d: "Su líder religioso fue Mahoma y su libro sagrado era el Corán."
+                },
+                respuestaCorrecta: "d"
+            },
+
+            // ===================== INGLÉS (25 preguntas) =====================
+            {
+                id: "ing_1",
+                area: "Inglés",
+                pregunta: "A: Hello. I'm Chris. B: Hi. Nice to meet you. I'm Sarah. A: ___",
+                opciones: {
+                    a: "Have a nice day",
+                    b: "Take care",
+                    c: "Nice to meet you",
+                    d: "Goodbye"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "ing_2",
+                area: "Inglés",
+                pregunta: "A: Hi. Are you here for an English class? B: ___",
+                opciones: {
+                    a: "Yes, I am.",
+                    b: "No, I isn't.",
+                    c: "Yes, you are.",
+                    d: "Yes, he is."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_3",
+                area: "Inglés",
+                pregunta: "The door is ___",
+                opciones: {
+                    a: "open",
+                    b: "closed",
+                    c: "big",
+                    d: "small"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "ing_4",
+                area: "Inglés",
+                pregunta: "A: Is your mother's name Sandra? B: ___",
+                opciones: {
+                    a: "Yes, it is.",
+                    b: "No, they aren't.",
+                    c: "Yes, she is.",
+                    d: "Yes, I am."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "ing_5",
+                area: "Inglés",
+                pregunta: "My friends and I go to the movies ___ weeks.",
+                opciones: {
+                    a: "every",
+                    b: "on",
+                    c: "in",
+                    d: "by"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_6",
+                area: "Inglés",
+                pregunta: "How often ___ your father work late?",
+                opciones: {
+                    a: "is",
+                    b: "does",
+                    c: "do",
+                    d: "has"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "ing_7",
+                area: "Inglés",
+                pregunta: "He ___ play football in the morning.",
+                opciones: {
+                    a: "don't",
+                    b: "doesn't",
+                    c: "isn't",
+                    d: "aren't"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "ing_8",
+                area: "Inglés",
+                pregunta: "A: I'm a big baseball fan. B: Really? ___",
+                opciones: {
+                    a: "I do too.",
+                    b: "Neither do I.",
+                    c: "That's interesting.",
+                    d: "I don't."
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "ing_9",
+                area: "Inglés",
+                pregunta: "A: What are you playing? B: ___ football.",
+                opciones: {
+                    a: "I'm playing",
+                    b: "I play",
+                    c: "We am playing",
+                    d: "We play"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_10",
+                area: "Inglés",
+                pregunta: "A: Our team isn't playing well this season. B: Oh, ___",
+                opciones: {
+                    a: "that's great",
+                    b: "that's too bad",
+                    c: "that's interesting",
+                    d: "that's nice"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "ing_11",
+                area: "Inglés",
+                pregunta: "A: Does your brother have to wear a uniform to school? B: Yes, he ___ to wear a white shirt and blue pants.",
+                opciones: {
+                    a: "have",
+                    b: "has",
+                    c: "is",
+                    d: "does"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "ing_12",
+                area: "Inglés",
+                pregunta: "There's so much to do in our city. We ___ go to the movies or museums.",
+                opciones: {
+                    a: "must",
+                    b: "can",
+                    c: "should",
+                    d: "would"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "ing_13",
+                area: "Inglés",
+                pregunta: "I went shopping yesterday and ___ a new pair of shoes.",
+                opciones: {
+                    a: "buy",
+                    b: "bought",
+                    c: "buying",
+                    d: "have bought"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "ing_14",
+                area: "Inglés",
+                pregunta: "A: I have an exam tomorrow. B: ___",
+                opciones: {
+                    a: "Congratulations",
+                    b: "Thank goodness",
+                    c: "Good luck",
+                    d: "Ouch"
+                },
+                respuestaCorrecta: "c"
+            },
+            {
+                id: "ing_15",
+                area: "Inglés",
+                pregunta: "My sister only 17 when she graduated from high school.",
+                opciones: {
+                    a: "had",
+                    b: "is",
+                    c: "were",
+                    d: "was"
+                },
+                respuestaCorrecta: "d"
+            },
+            {
+                id: "ing_16",
+                area: "Inglés",
+                pregunta: "A: Would you like to go out for dinner? B: Yes, ___",
+                opciones: {
+                    a: "I'd love to.",
+                    b: "I love too.",
+                    c: "I'd rather stay home.",
+                    d: "I like to."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_17",
+                area: "Inglés",
+                pregunta: "A: I don't watch much television. B: ___",
+                opciones: {
+                    a: "Neither do I.",
+                    b: "So do I.",
+                    c: "I don't.",
+                    d: "I do."
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_18",
+                area: "Inglés",
+                pregunta: "He's good ___",
+                opciones: {
+                    a: "at",
+                    b: "in",
+                    c: "on",
+                    d: "for"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_19",
+                area: "Inglés",
+                pregunta: "___ likes some form of music.",
+                opciones: {
+                    a: "Everyone",
+                    b: "Someone",
+                    c: "Anyone",
+                    d: "No one"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_20",
+                area: "Inglés",
+                pregunta: "If you feel stressed, it ___ bad for you.",
+                opciones: {
+                    a: "is",
+                    b: "are",
+                    c: "was",
+                    d: "were"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_21",
+                area: "Inglés",
+                pregunta: "A: What's the weather forecast for tomorrow night? B: It ___ tomorrow night.",
+                opciones: {
+                    a: "will rain",
+                    b: "rains",
+                    c: "rained",
+                    d: "is raining"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_22",
+                area: "Inglés",
+                pregunta: "A: Is Alicia going to take the Chemistry exam tomorrow? B: No, she isn't going to take ___ until next week.",
+                opciones: {
+                    a: "them",
+                    b: "it",
+                    c: "her",
+                    d: "him"
+                },
+                respuestaCorrecta: "b"
+            },
+            {
+                id: "ing_23",
+                area: "Inglés",
+                pregunta: "A: What would you like to study? B: ___ study French.",
+                opciones: {
+                    a: "I'd like to",
+                    b: "I like",
+                    c: "I would",
+                    d: "I'd rather"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_24",
+                area: "Inglés",
+                pregunta: "A: Is there a theater around here? B: Yes, ___ one across the street.",
+                opciones: {
+                    a: "there's",
+                    b: "there are",
+                    c: "it's",
+                    d: "they're"
+                },
+                respuestaCorrecta: "a"
+            },
+            {
+                id: "ing_25",
+                area: "Inglés",
+                pregunta: "A: What do you usually do with your old clothes? B: I throw them away, but my sisters give ___ to charity.",
+                opciones: {
+                    a: "them",
+                    b: "it",
+                    c: "they",
+                    d: "their"
+                },
+                respuestaCorrecta: "a"
+            }
+        ];
+
+        // ==========================================
+        // ENCUESTA DE ESTILOS DE APRENDIZAJE E INTERESES
+        // ==========================================
+        const bancoEncuesta = [
+            { id: "enc_1", pregunta: "1. Aprendo mejor cuando...", tipo: "radio", opciones: { a: "Uso imágenes, colores o mapas.", b: "Escucho música o sonidos.", c: "Me muevo o actúo.", d: "Trabajo en equipo." } },
+            { id: "enc_2", pregunta: "2. En mi tiempo libre prefiero...", tipo: "radio", opciones: { a: "Dibujar o hacer manualidades.", b: "Escuchar música o cantar.", c: "Hacer ejercicio o deportes.", d: "Estar con amigos." } },
+            { id: "enc_3", pregunta: "3. Cuando tengo que aprender algo nuevo, me ayuda más...", tipo: "radio", opciones: { a: "Verlo con imágenes o esquemas.", b: "Escucharlo.", c: "Hacerlo con las manos o el cuerpo.", d: "Que alguien me lo explique." } },
+            { id: "enc_4", pregunta: "4. En la escuela, disfruto más...", tipo: "radio", opciones: { a: "Hacer dibujos y carteles.", b: "Cantar o tocar instrumentos.", c: "Actividades físicas o juegos.", d: "Trabajos en equipo." } },
+            { id: "enc_5", pregunta: "5. Me va mejor en actividades donde puedo...", tipo: "radio", opciones: { a: "Imaginar y representar ideas con dibujos.", b: "Escuchar sonidos o música.", c: "Moverme o construir.", d: "Compartir ideas con otras personas." } },
+            { id: "enc_6", pregunta: "6. Me siento más seguro cuando...", tipo: "radio", opciones: { a: "Puedo ver cómo se hacen las cosas.", b: "Hay música que me ayuda.", c: "Puedo moverme o tocar materiales.", d: "Trabajo con compañeros." } },
+            { id: "enc_7", pregunta: "7. En mi casa, suelo...", tipo: "radio", opciones: { a: "Dibujar o usar colores.", b: "Escuchar música o cantar.", c: "Brincar, correr o moverme mucho.", d: "Platicar con familia o amigos." } },
+            { id: "enc_8", pregunta: "8. Cuando tengo un problema, lo resuelvo...", tipo: "radio", opciones: { a: "Dibujando lo que pasa.", b: "Escuchando música para relajarme.", c: "Haciendo algo físico.", d: "Pidiendo ayuda a alguien." } },
+            { id: "enc_9", pregunta: "9. Me identifico más con personas que...", tipo: "radio", opciones: { a: "Son creativas con lo visual.", b: "Aman la música.", c: "Son activas y deportivas.", d: "Son sociables." } },
+            { id: "enc_10", pregunta: "10. Cuando estoy en clase, aprendo mejor si...", tipo: "radio", opciones: { a: "Hay imágenes o videos.", b: "Hay canciones o ritmos.", c: "Me dejan moverme o actuar.", d: "Trabajo con otros compañeros." } },
+            { id: "enc_11", pregunta: "11. ¿En qué momento del día prefieres estudiar o hacer tarea?", tipo: "radio", opciones: { a: "Por la mañana", b: "Al llegar de la escuela", c: "Por la tarde", d: "Por la noche" } },
+            { id: "enc_12", pregunta: "12. ¿Dónde te concentras mejor para estudiar?", tipo: "radio", opciones: { a: "En un lugar en silencio", b: "Escuchando música suave", c: "Estudiando en grupo", d: "Mientras me muevo" } },
+            { id: "enc_13", pregunta: "13. ¿Con quién prefieres estudiar?", tipo: "radio", opciones: { a: "Solo", b: "Con uno o dos amigos", c: "En grupo", d: "Con un adulto" } },
+            { id: "enc_14", pregunta: "14. ¿Cómo prefieres aprender algo nuevo?", tipo: "radio", opciones: { a: "Leyendo", b: "Viendo imágenes o videos", c: "Haciendo ejercicios o practicando", d: "Debatiendo con alguien" } },
+            { id: "enc_15", pregunta: "15. ¿Con qué frecuencia estudias en casa o haces tarea?", tipo: "radio", opciones: { a: "Todos los días", b: "3 o 4 veces por semana", c: "Solo cuando tengo examen", d: "Casi nunca" } },
+            { id: "enc_16", pregunta: "16. ¿Cuántos libros lees al año?", tipo: "radio", opciones: { a: "Ninguno", b: "1 a 2", c: "3 a 5", d: "Más de 5" } },
+            { id: "enc_17", pregunta: "17. ¿En qué formato prefieres leer?", tipo: "radio", opciones: { a: "Libro impreso", b: "Celular", c: "Tableta", d: "Lector digital" } },
+            { id: "enc_18", pregunta: "18. ¿Qué tipo de lectura te llama más la atención?", tipo: "radio", opciones: { a: "Narrativa", b: "Informativa", c: "Biográfica", d: "Actividades/Juegos" } },
+            { id: "enc_19", pregunta: "19. ¿Qué géneros literarios disfrutas más?", tipo: "radio", opciones: { a: "Cuentos/Novelas", b: "Poesía/Teatro", c: "Cómics", d: "Misterio" } },
+            { id: "enc_20", pregunta: "20. ¿Qué temas te interesan más al leer?", tipo: "radio", opciones: { a: "Ciencia ficción", b: "Historia/Personajes", c: "Naturaleza/Animales", d: "Tecnología/Inventos" } }
+        ];
+
+        // ==========================================
+        // MOTOR DE DIBUJO Y PAGINACIÓN
+        // ==========================================
+        const areas = ["Español", "Matemáticas", "Ciencias", "Sociales", "Inglés"];
+        let pantallaActual = 0;
+
+        function renderizarExamen() {
+            // 1. Dibujar materias académicas
+            areas.forEach((area, index) => {
+                let htmlMateria = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">${area}</h2>`;
+                let preguntasArea = bancoDePreguntas.filter(p => p.area === area);
+                
+                preguntasArea.forEach((item, i) => {
+                    htmlMateria += `<div class="pregunta-card">`;
+                    htmlMateria += `<h3 style="margin-top:0; color:#5f6368;">Pregunta ${i + 1}</h3>`;
+                    if (item.lectura) htmlMateria += `<div class="lectura-box">${item.lectura}</div>`;
+                    if (item.imagen) htmlMateria += `<img src="${item.imagen}" style="max-width: 100%; margin-bottom: 15px; border-radius: 4px; display: block; margin-left: auto; margin-right: auto;">`;
+                    htmlMateria += `<p style="font-weight:bold; font-size:16px;">${item.pregunta}</p><div>`;
+                    
+                    for (let letra in item.opciones) {
+                        htmlMateria += `
+                            <label style="display:block; margin-bottom:10px; cursor:pointer;">
+                                <input type="radio" name="${item.id}" value="${letra}" style="margin-right:10px; transform:scale(1.2);"> 
+                                <strong>${letra})</strong> ${item.opciones[letra]}
+                            </label>`;
+                    }
+                    htmlMateria += `</div></div>`;
+                });
+
+                htmlMateria += `
+                    <div class="botones-nav">
+                        <button class="btn-atras" onclick="cambiarPantalla(${index})">⬅ Atrás</button>
+                        <button class="btn-siguiente" onclick="cambiarPantalla(${index + 2})">Siguiente ➔</button>
+                    </div>`;
+
+                let idDiv = "contenido-" + area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                document.getElementById(idDiv).innerHTML = htmlMateria;
+            });
+
+            // 2. Dibujar Encuesta
+            let htmlEncuesta = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">Encuesta de Hábitos y Lectura</h2>`;
+            bancoEncuesta.forEach((item) => {
+                htmlEncuesta += `<div class="pregunta-card">`;
+                htmlEncuesta += `<p style="font-weight:bold; font-size:16px;">${item.pregunta}</p><div>`;
+                
+                let tipoInput = item.tipo;
+                
+                for (let letra in item.opciones) {
+                    htmlEncuesta += `
+                        <label style="display:block; margin-bottom:10px; cursor:pointer;">
+                            <input type="${tipoInput}" name="${item.id}" value="${letra}" style="margin-right:10px; transform:scale(1.2);"> 
+                            <strong>${letra})</strong> ${item.opciones[letra]}
+                        </label>`;
+                }
+                htmlEncuesta += `</div></div>`;
+            });
+            document.getElementById('contenido-encuesta').innerHTML = htmlEncuesta;
         }
-        htmlEncuesta += `</div></div>`;
-    });
-    document.getElementById('contenido-encuesta').innerHTML = htmlEncuesta;
-}
 
-function cambiarPantalla(numeroPantalla) {
-    // Validar datos en pantalla 0 al avanzar
-    if (pantallaActual === 0 && numeroPantalla === 1) {
-        let paterno = document.getElementById('apellidoPaterno').value.trim();
-        let nombres = document.getElementById('nombres').value.trim();
-        let grupo = document.getElementById('grupo').value;
-        if (!paterno || !nombres || !grupo) {
-            alert("Por favor, ingresa al menos tu Apellido Paterno, Nombre(s) y selecciona tu Grupo para comenzar.");
-            return;
-        }
-    }
-
-    document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
-    document.getElementById('pantalla-' + numeroPantalla).classList.add('activa');
-    pantallaActual = numeroPantalla;
-
-    const titulosPasos = ["Datos del Alumno", "Sección: Español", "Sección: Matemáticas", "Sección: Ciencias", "Sección: Sociales e Historia", "Sección: Inglés", "Encuesta de Hábitos", ""];
-    document.getElementById('progreso').innerText = titulosPasos[numeroPantalla] || "¡Completado!";
-    window.scrollTo(0, 0);
-}
-
-// ============================================================
-// ENVÍO A GOOGLE SHEETS VÍA APPS SCRIPT
-// ============================================================
-function finalizarExamen() {
-    const paterno = document.getElementById('apellidoPaterno').value.trim().toUpperCase();
-    const materno = document.getElementById('apellidoMaterno').value.trim().toUpperCase();
-    const nombres = document.getElementById('nombres').value.trim().toUpperCase();
-    const grupo = document.getElementById('grupo').value;
-
-    if (!paterno || !nombres || !grupo) {
-        alert("⚠️ Por favor, ingresa todos tus datos en el Paso 1.");
-        cambiarPantalla(0);
-        return;
-    }
-
-    let calificaciones = { grado: "Tercero", espanol: 0, matematicas: 0, ciencias: 0, sociales: 0, ingles: 0, total: 0 };
-    bancoDePreguntas.forEach(pregunta => {
-        let areaKey = pregunta.area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        if (areaKey.includes("sociales")) areaKey = "sociales";
-
-        let opciones = document.getElementsByName(pregunta.id);
-        let seleccionada = "";
-        for (let i = 0; i < opciones.length; i++) {
-            if (opciones[i].checked) { seleccionada = opciones[i].value; break; }
-        }
-        if (seleccionada && seleccionada === pregunta.respuestaCorrecta) {
-            calificaciones[areaKey]++;
-            calificaciones.total++;
-        }
-    });
-
-    let encuesta = {};
-    bancoEncuesta.forEach(pregunta => {
-        let opciones = document.getElementsByName(pregunta.id);
-        let respuestasTexto = [];
-        for (let i = 0; i < opciones.length; i++) {
-            if (opciones[i].checked) {
-                let letra = opciones[i].value;
-                if (pregunta.opciones && pregunta.opciones[letra]) {
-                    respuestasTexto.push(pregunta.opciones[letra]);
+        // Función para cambiar entre pestañas
+        function cambiarPantalla(numeroPantalla) {
+            if (pantallaActual === 0 && numeroPantalla === 1) {
+                let paterno = document.getElementById('apellidoPaterno').value.trim();
+                let nombres = document.getElementById('nombres').value.trim();
+                let grupo = document.getElementById('grupo').value;
+                if (!paterno || !nombres || !grupo) {
+                    alert("Por favor, ingresa al menos tu Apellido Paterno, Nombre(s) y selecciona tu Grupo para comenzar.");
+                    return;
                 }
             }
+
+            document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+            document.getElementById('pantalla-' + numeroPantalla).classList.add('activa');
+            pantallaActual = numeroPantalla;
+
+            const titulosPasos = ["Datos del Alumno", "Sección: Español", "Sección: Matemáticas", "Sección: Ciencias", "Sección: Sociales e Historia", "Sección: Inglés", "Encuesta de Hábitos", ""];
+            
+            document.getElementById('progreso').innerText = titulosPasos[numeroPantalla];
+            window.scrollTo(0, 0);
         }
-        encuesta[pregunta.id] = respuestasTexto.length > 0 ? respuestasTexto.join(", ") : "Sin respuesta";
-    });
 
-    const paquete = {
-        alumno: { apellidoPaterno: paterno, apellidoMaterno: materno, nombres: nombres, grupo: grupo },
-        calificaciones: calificaciones,
-        encuesta: encuesta
-    };
+        // ==========================================
+        // SISTEMA DE ENVÍO A GOOGLE SHEETS
+        // ==========================================
+        function finalizarExamen() {
+            const paterno = document.getElementById('apellidoPaterno').value.trim().toUpperCase();
+            const materno = document.getElementById('apellidoMaterno').value.trim().toUpperCase();
+            const nombres = document.getElementById('nombres').value.trim().toUpperCase();
+            const grupo = document.getElementById('grupo').value;
 
-    // === CAMBIA ESTA URL POR LA DE TU SCRIPT DE GOOGLE APPS SCRIPT ===
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbw6Zxeh2SSFVEYNgmC-0BJB3wbl2wmasDQeVgcn_lwNYZcxbYeTQYn_NVc3TkdESOssTA/exec';
+            if(!paterno || !nombres || !grupo) {
+                alert("⚠️ Por favor, ingresa tus apellidos, nombres y selecciona tu grupo en el Paso 1.");
+                cambiarPantalla(1);
+                return;
+            }
 
-    const btn = document.querySelector('.btn-finalizar');
-    btn.innerText = "Enviando respuestas... ⏳";
-    btn.disabled = true;
+            // SE ACTUALIZA EL NIVEL A "Tercero"
+            let calificaciones = { grado: "Tercero", espanol: 0, matematicas: 0, ciencias: 0, sociales: 0, ingles: 0, total: 0 };
+            bancoDePreguntas.forEach(pregunta => {
+                let areaKey = pregunta.area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                if(areaKey.includes("sociales")) areaKey = "sociales";
+                
+                let opciones = document.getElementsByName(pregunta.id);
+                let seleccionada = "";
+                for (let i = 0; i < opciones.length; i++) {
+                    if (opciones[i].checked) { seleccionada = opciones[i].value; break; }
+                }
+                
+                if (seleccionada && seleccionada === pregunta.respuestaCorrecta) {
+                    calificaciones[areaKey]++;
+                    calificaciones.total++;
+                }
+            });
 
-    fetch(scriptURL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(paquete)
-    })
-    .then(() => {
-        document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
-        document.getElementById('progreso').style.display = 'none';
-        document.getElementById('pantalla-7').classList.add('activa');
-        window.scrollTo(0, 0);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert("Hubo un error de conexión. Intenta enviar de nuevo.");
-        btn.innerText = "Terminar y Enviar Todo";
-        btn.disabled = false;
-    });
-}
+            let encuesta = {};
+            bancoEncuesta.forEach(pregunta => {
+                let opciones = document.getElementsByName(pregunta.id);
+                let respuestasTexto = [];
+                for (let i = 0; i < opciones.length; i++) {
+                    if (opciones[i].checked) {
+                        let letra = opciones[i].value;
+                        if(pregunta.opciones && pregunta.opciones[letra]) {
+                            respuestasTexto.push(pregunta.opciones[letra]);
+                        }
+                    }
+                }
+                encuesta[pregunta.id] = respuestasTexto.length > 0 ? respuestasTexto.join(", ") : "Sin respuesta";
+            });
 
-// Iniciar al cargar la página
-window.onload = renderizarExamen;
-</script>
+            const paquete = { 
+                alumno: { apellidoPaterno: paterno, apellidoMaterno: materno, nombres: nombres, grupo: grupo }, 
+                calificaciones: calificaciones, 
+                encuesta: encuesta 
+            };
+            
+            // LA URL DE GOOGLE APPS SCRIPT
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzb96utJCjkwWRwnXcVj9WP64JVelhsthsIrnbQuid61AgkV_4igrAoffFpz_FoG9Ow/exec'; 
+            
+            const btn = document.querySelector('.btn-finalizar');
+            btn.innerText = "Enviando respuestas... ⏳";
+            btn.disabled = true;
+
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(paquete)
+            })
+            .then(() => {
+                // Se esconde todo y se muestra la pantalla de éxito
+                document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+                document.getElementById('progreso').style.display = 'none';
+                document.getElementById('pantalla-7').classList.add('activa');
+                window.scrollTo(0, 0);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Hubo un error de conexión. Intenta enviar de nuevo.");
+                btn.innerText = "Terminar y Enviar Todo";
+                btn.disabled = false;
+            });
+        }
+        window.onload = renderizarExamen;
+    </script>
 </body>
 </html>
