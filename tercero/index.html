@@ -1845,35 +1845,27 @@
                 encuesta: encuesta 
             };
             
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbx_KP2OcU36tG0bKgjf-i4LiOphEGGzxFPd0y7WdYxfVF-NMKOSNBNMOyLQttRmwdst/exec'; 
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyfV8jVz6zSoeO0d-6qGGoULQuGYiMEoUn_FYi-VSiueKSMBfvFW-wq2K0nswzt4rC0/exec'; 
             
             const btn = document.querySelector('.btn-finalizar');
             btn.innerText = "Enviando respuestas... ⏳";
             btn.disabled = true;
 
-            // Envío por formulario oculto (Evita bloqueos de CORS del navegador)
-            let form = document.createElement("form");
-            form.method = "POST";
-            form.action = scriptURL;
-            form.target = "_blank";
-
-            let input = document.createElement("input");
-            input.type = "hidden";
-            input.name = "datos";
-            input.value = JSON.stringify(paquete);
-            form.appendChild(input);
-
-            document.body.appendChild(form);
-            form.submit();
-            document.body.removeChild(form);
-
-            // Mostrar pantalla de éxito
-            document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
-            document.getElementById('progreso').style.display = 'none';
-            document.getElementById('pantalla-7').classList.add('activa');
-            window.scrollTo(0, 0);
-        }
-        window.onload = renderizarExamen;
-    </script>
-</body>
-</html>
+            fetch(scriptURL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(paquete)
+            })
+            .then(() => {
+                document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+                document.getElementById('progreso').style.display = 'none';
+                document.getElementById('pantalla-7').classList.add('activa');
+                window.scrollTo(0, 0);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Hubo un error de conexión. Intenta enviar de nuevo.");
+                btn.innerText = "Terminar y Enviar Todo";
+                btn.disabled = false;
+            });
