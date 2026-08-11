@@ -238,7 +238,7 @@
             {
                 id: "esp_7",
                 area: "Español",
-                lectura: "Lee el siguiente fragmento del cuento \"Un día de estos\" de Gabriel García Márquez.\n\nEl lunes amaneció tibio y sin lluvia. Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis. Sacó de la vidriera una dentadura postiza montada aún en el molde de yeso y puso sobre la mesa un puñado de instrumentos que ordenó de mayor a menor, como en una exposición. Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.\n\nCuando tuvo las cosas dispuestas sobre la mesa rodó la fresa hacia el sillón de resortes y se sentó a pulir la dentadura postiza. Parecía no pensar en lo que hacía, pero trabajaba con obstinación, pedaleando en la fresa incluso cuando no se servía de ella.\n\nDespués de las ocho hizo una pausa para mirar el cielo por la ventana y vio dos gallinazos pensativos que se secaban al sol en el caballete de la casa vecina. Siguió trabajando con la idea de que antes del almuerzo volvería a llover. La voz destemplada de su hijo de once años lo sacó de su abstracción.\n\n—Papá.\n—¿Qué?\n—Dice el alcalde, que si le sacas una muela.\n—Dile que no estoy aquí.\n\nEstaba puliendo un diente de oro. Lo retiró a la distancia del brazo y lo examinó con los ojos a medio cerrar. En la salita de espera volvió a gritar su hijo.\n\n—Dice que sí estás porque te está oyendo.",
+                lectura: "Lee el siguiente fragmento del cuento \"Un día de estos\" de Gabriel García Márquez.\n\nEl lunes amaneció tibio y sin lluvia. Don Aurelio Escobar, dentista sin título y buen madrugador, abrió su gabinete a las seis. Sacó de la vidriera una dentadura postiza montada aún en el molde de yeso y puso sobre la mesa un puñado de instrumentos que ordenó de mayor a menor, como en una exposición. Llevaba una camisa a rayas, sin cuello, cerrada arriba con un botón dorado, y los pantalones sostenidos con cargadores elásticos. Era rígido, enjuto, con una mirada que raras veces correspondía a la situación, como la mirada de los sordos.\n\nCuando tuvo las cosas dispuestas sobre la mesa rodó la fresa hacia el sillón de resortes y se sentó a pulir la dentadura postiza. Parecía no pensar en lo que hacía, pero trabajaba con obstinación, pedaleando en la fresa incluso cuando no se servía de ella.\n\nDespués de las ocho hizo una pausa para mirar el cielo por la ventana y vio dos gallinazos pensativos que se secaban al sol en el caballete de la casa vecina. Siguió trabajando con la idea de que antes del almuerzo volvería a llover. La voz destemplada de su hijo de eleven años lo sacó de su abstracción.\n\n—Papá.\n—¿Qué?\n—Dice el alcalde, que si le sacas una muela.\n—Dile que no estoy aquí.\n\nEstaba puliendo un diente de oro. Lo retiró a la distancia del brazo y lo examinó con los ojos a medio cerrar. En la salita de espera volvió a gritar su hijo.\n\n—Dice que sí estás porque te está oyendo.",
                 pregunta: "¿Cuál de las siguientes opciones corresponde a la introducción o planteamiento de la trama del cuento?",
                 opciones: {
                     a: "El lunes amaneció tibio y sin lluvia.",
@@ -1793,7 +1793,7 @@
         }
 
         // ==========================================
-        // SISTEMA DE ENVÍO A GOOGLE SHEETS
+        // SISTEMA DE ENVÍO A GOOGLE SHEETS (MÉTODO FORMULARIO)
         // ==========================================
         function finalizarExamen() {
             const paterno = document.getElementById('apellidoPaterno').value.trim().toUpperCase();
@@ -1807,7 +1807,6 @@
                 return;
             }
 
-            // SE ACTUALIZA EL NIVEL A "Tercero"
             let calificaciones = { grado: "Tercero", espanol: 0, matematicas: 0, ciencias: 0, sociales: 0, ingles: 0, total: 0 };
             bancoDePreguntas.forEach(pregunta => {
                 let areaKey = pregunta.area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -1846,32 +1845,33 @@
                 encuesta: encuesta 
             };
             
-            // LA URL DE GOOGLE APPS SCRIPT
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbxOwkEwW-nfSmmf6Prlxq1kAreCO8bHkPOhZaEDOmfBJpVIEse2mZZ1wygFth9-osgT/exec'; 
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbxCKq2_fdklEJkrhoNu0epOgvtK76lDgsMcZ3h38yBeLNRh8BIRkP2O1zQFNgiOaYY2/exec'; 
             
             const btn = document.querySelector('.btn-finalizar');
             btn.innerText = "Enviando respuestas... ⏳";
             btn.disabled = true;
 
-            fetch(scriptURL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(paquete)
-            })
-            .then(() => {
-                // Se esconde todo y se muestra la pantalla de éxito
-                document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
-                document.getElementById('progreso').style.display = 'none';
-                document.getElementById('pantalla-7').classList.add('activa');
-                window.scrollTo(0, 0);
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert("Hubo un error de conexión. Intenta enviar de nuevo.");
-                btn.innerText = "Terminar y Enviar Todo";
-                btn.disabled = false;
-            });
+            // Envío por formulario oculto (Evita bloqueos de CORS del navegador)
+            let form = document.createElement("form");
+            form.method = "POST";
+            form.action = scriptURL;
+            form.target = "_blank";
+
+            let input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "datos";
+            input.value = JSON.stringify(paquete);
+            form.appendChild(input);
+
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
+
+            // Mostrar pantalla de éxito
+            document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
+            document.getElementById('progreso').style.display = 'none';
+            document.getElementById('pantalla-7').classList.add('activa');
+            window.scrollTo(0, 0);
         }
         window.onload = renderizarExamen;
     </script>
