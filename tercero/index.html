@@ -356,7 +356,7 @@
                 let nombres = document.getElementById('nombres').value.trim();
                 let grupo = document.getElementById('grupo').value;
                 if (!paterno || !nombres || !grupo) {
-                    alert("Por favor, ingresa al menos tu Apellido Paterno, Nombre(s) y selecciona tu Grupo para comenzar.");
+                    alert("Por favor, ingresa tu Apellido Paterno, Nombre(s) y selecciona tu Grupo para comenzar.");
                     return;
                 }
             }
@@ -383,16 +383,24 @@
             }
 
             let calificaciones = { grado: "Tercero", espanol: 0, matematicas: 0, ciencias: 0, sociales: 0, ingles: 0, total: 0 };
+            let respuestasExamen = {};
+
             bancoDePreguntas.forEach(pregunta => {
                 let areaKey = pregunta.area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if(areaKey.includes("sociales")) areaKey = "sociales";
                 
                 let opciones = document.getElementsByName(pregunta.id);
-                let seleccionada = "";
+                let seleccionada = "Sin responder";
+                
                 for (let i = 0; i < opciones.length; i++) {
-                    if (opciones[i].checked) { seleccionada = opciones[i].value; break; }
+                    if (opciones[i].checked) { 
+                        seleccionada = opciones[i].value; 
+                        break; 
+                    }
                 }
                 
+                respuestasExamen[pregunta.id] = seleccionada;
+
                 if (seleccionada && seleccionada === pregunta.respuestaCorrecta) {
                     calificaciones[areaKey]++;
                     calificaciones.total++;
@@ -417,10 +425,11 @@
             const paquete = { 
                 alumno: { apellidoPaterno: paterno, apellidoMaterno: materno, nombres: nombres, grupo: grupo }, 
                 calificaciones: calificaciones, 
+                respuestasExamen: respuestasExamen, 
                 encuesta: encuesta 
             };
             
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbz3KQwey8q_mOk1bcZ_1iGQhU0cn685-VzYIYFplxZfXEktMaam5s2WTFYN5_6apOmD/exec';[cite: 2]
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz3KQwey8q_mOk1bcZ_1iGQhU0cn685-VzYIYFplxZfXEktMaam5s2WTFYN5_6apOmD/exec';
             
             const btn = document.querySelector('.btn-finalizar');
             btn.innerText = "Enviando respuestas... ⏳";
