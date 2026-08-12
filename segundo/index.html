@@ -417,16 +417,26 @@
             }
 
             let calificaciones = { grado: "Segundo", espanol: 0, matematicas: 0, ciencias: 0, sociales: 0, ingles: 0, total: 0 };
+            let respuestasExamen = {}; // AQUÍ GUARDAREMOS LAS LETRAS (a, b, c, d)
+
             bancoDePreguntas.forEach(pregunta => {
                 let areaKey = pregunta.area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if(areaKey.includes("sociales")) areaKey = "sociales";
                 
                 let opciones = document.getElementsByName(pregunta.id);
-                let seleccionada = "";
+                let seleccionada = "Sin responder"; // Por si dejan la pregunta en blanco
+                
                 for (let i = 0; i < opciones.length; i++) {
-                    if (opciones[i].checked) { seleccionada = opciones[i].value; break; }
+                    if (opciones[i].checked) { 
+                        seleccionada = opciones[i].value; 
+                        break; 
+                    }
                 }
                 
+                // Guardamos la respuesta individual del alumno
+                respuestasExamen[pregunta.id] = seleccionada;
+
+                // Verificamos si es correcta para el total
                 if (seleccionada && seleccionada === pregunta.respuestaCorrecta) {
                     calificaciones[areaKey]++;
                     calificaciones.total++;
@@ -451,6 +461,7 @@
             const paquete = { 
                 alumno: { apellidoPaterno: paterno, apellidoMaterno: materno, nombres: nombres, grupo: grupo }, 
                 calificaciones: calificaciones, 
+                respuestasExamen: respuestasExamen, // AHORA SÍ ENVIAMOS LAS 125 RESPUESTAS
                 encuesta: encuesta 
             };
             
