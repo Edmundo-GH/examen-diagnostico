@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Evaluación Diagnóstica - Segundo Grado</title>
     <style>
-        /* COLORES INSTITUCIONALES (VERDE) */
         :root {
             --verde-primario: #2e7d32;
             --verde-hover: #1b5e20;
@@ -29,15 +28,12 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         
-        /* Estilos para las pantallas */
         .pantalla { display: none; }
         .pantalla.activa { display: block; animation: aparecer 0.5s ease-in-out; }
         @keyframes aparecer { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Indicador de sección */
         .progreso-texto { text-align: center; color: var(--verde-primario); font-weight: bold; font-size: 18px; margin-bottom: 20px; padding: 12px; background: var(--verde-claro); border-radius: 5px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Mensaje de Bienvenida */
         .bienvenida-box { background-color: white; border: 2px solid var(--verde-claro); padding: 25px; border-radius: 8px; margin-bottom: 30px; }
         .bienvenida-box h2 { color: var(--verde-primario); margin-top: 0; }
         .bienvenida-box ul { list-style: none; padding: 0; margin-top: 20px; }
@@ -48,7 +44,6 @@
         label { display: block; font-weight: bold; margin-bottom: 5px; color: #5f6368; }
         input[type="text"], select { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; font-size: 16px; }
 
-        /* Estilos de botones */
         .botones-nav { display: flex; justify-content: space-between; margin-top: 30px; }
         button { padding: 12px 25px; font-size: 16px; font-weight: bold; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; }
         .btn-siguiente { background-color: var(--verde-primario); color: white; }
@@ -58,7 +53,6 @@
         .btn-finalizar { background-color: #198754; color: white; width: 100%; font-size: 18px; margin-top: 20px; }
         .btn-finalizar:hover { background-color: #146c43; }
 
-        /* Estilos de preguntas */
         .pregunta-card { background: white; padding: 20px; margin-bottom: 20px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         .lectura-box { background: #fdf6e3; padding: 15px; border-left: 4px solid #f39c12; margin-bottom: 15px; border-radius: 0 4px 4px 0; font-style: italic; white-space: pre-wrap; }
         .instrucciones { background: var(--verde-claro); padding: 15px; border-left: 4px solid var(--verde-primario); margin-bottom: 20px; font-size: 15px; color: var(--gris-texto); }
@@ -67,7 +61,6 @@
 <body>
 
     <div class="contenedor">
-        <!-- ESCUDO Y TÍTULO -->
         <div style="text-align: center; margin-bottom: 20px;">
             <img src="https://i.postimg.cc/gj4dt7hH/Secu-20-SF-Org.png" alt="Escudo Secundaria" style="max-width: 150px;">
         </div>
@@ -75,9 +68,7 @@
         
         <div id="progreso" class="progreso-texto">Datos del Alumno</div>
 
-        <!-- PANTALLA 0: DATOS Y BIENVENIDA -->
         <div id="pantalla-0" class="pantalla activa">
-            
             <div class="bienvenida-box">
                 <h2>¡Hola! 👋</h2>
                 <p>Estás por comenzar tu Evaluación Diagnóstica para <strong>Segundo Grado</strong>. Tu examen consta de <strong>125 preguntas</strong> y una breve encuesta de <strong>20 preguntas</strong> sobre tus hábitos de estudio.</p>
@@ -103,7 +94,6 @@
                     <label>Nombre(s):</label>
                     <input type="text" id="nombres" placeholder="Ej. Juan Carlos">
                 </div>
-                <!-- NUEVO CAMPO DE GRUPO -->
                 <div class="grupo-input">
                     <label>Grupo:</label>
                     <select id="grupo">
@@ -122,14 +112,12 @@
             </div>
         </div>
 
-        <!-- PANTALLAS 1 AL 5: ACADÉMICAS -->
         <div id="pantalla-1" class="pantalla"><div id="contenido-espanol"></div></div>
         <div id="pantalla-2" class="pantalla"><div id="contenido-matematicas"></div></div>
         <div id="pantalla-3" class="pantalla"><div id="contenido-ciencias"></div></div>
         <div id="pantalla-4" class="pantalla"><div id="contenido-sociales"></div></div>
         <div id="pantalla-5" class="pantalla"><div id="contenido-ingles"></div></div>
 
-        <!-- PANTALLA 6: ENCUESTA -->
         <div id="pantalla-6" class="pantalla">
             <div class="instrucciones">
                 <strong>Instrucciones:</strong> A continuación encontrarás una serie de preguntas sobre tus hábitos de estudio y formas preferidas de aprender. <strong>No hay respuestas correctas o incorrectas.</strong> Responde con sinceridad.
@@ -137,11 +125,10 @@
             <div id="contenido-encuesta"></div>
             <div class="botones-nav">
                 <button class="btn-atras" onclick="cambiarPantalla(5)">⬅ Atrás</button>
-                <button class="btn-finalizar" onclick="finalizarExamen()">Terminar y Enviar Todo</button>
+                <button class="btn-finalizar" onclick="finalizarExamen()">Terminar y Enviar Todo V2</button>
             </div>
         </div>
 
-        <!-- PANTALLA 7: ÉXITO (NUEVA PANTALLA FINAL) -->
         <div id="pantalla-7" class="pantalla" style="text-align: center; padding: 40px 20px;">
             <h1 style="color: var(--verde-primario); font-size: 40px; margin-bottom: 10px;">¡Examen Enviado! 🎉</h1>
             <h3 style="color: #5f6368; margin-top: 0;">Tus respuestas se han guardado correctamente.</h3>
@@ -150,13 +137,9 @@
                 <p style="font-size: 16px; margin-top: 10px;">Ya puedes cerrar esta pestaña y avisarle a tu maestro.</p>
             </div>
         </div>
-
     </div>
 
     <script>
-        // ==========================================
-        // BANCO DE PREGUNTAS ACADÉMICAS - SEGUNDO GRADO
-        // ==========================================
         const bancoDePreguntas = [
           // ESPAÑOL (Segundo Grado)
           { id: "esp2_1", area: "Español", lectura: "Stefani, Marta. Historia de la ciencia y la tecnología: La revolución científica. SEP-Diana. México, 2002.", pregunta: "Es un ejemplo de ficha de:", opciones: { a: "Resumen", b: "Síntesis", c: "Bibliográfica", d: "Cartográfica" }, respuestaCorrecta: "c" },
@@ -294,9 +277,6 @@
           { id: "ing2_25", area: "Inglés", pregunta: "Select the correct number for the word: ten", opciones: { a: "1", b: "10", c: "11", d: "100" }, respuestaCorrecta: "b" }
         ];
 
-        // ==========================================
-        // ENCUESTA DE ESTILOS DE APRENDIZAJE E INTERESES
-        // ==========================================
         const bancoEncuesta = [
           { id: "enc_1", pregunta: "1. Aprendo mejor cuando...", tipo: "radio", opciones: { a: "Uso imágenes, colores o mapas.", b: "Escucho música o sonidos.", c: "Me muevo o actúo.", d: "Trabajo en equipo." } },
           { id: "enc_2", pregunta: "2. En mi tiempo libre prefiero...", tipo: "radio", opciones: { a: "Dibujar o hacer manualidades.", b: "Escuchar música o cantar.", c: "Hacer ejercicio o deportes.", d: "Estar con amigos." } },
@@ -320,14 +300,10 @@
           { id: "enc_20", pregunta: "20. ¿Qué temas te interesan más al leer?", tipo: "radio", opciones: { a: "Ciencia ficción", b: "Historia/Personajes", c: "Naturaleza/Animales", d: "Tecnología/Inventos" } }
         ];
 
-        // ==========================================
-        // MOTOR DE DIBUJO Y PAGINACIÓN
-        // ==========================================
         const areas = ["Español", "Matemáticas", "Ciencias", "Sociales", "Inglés"];
         let pantallaActual = 0;
 
         function renderizarExamen() {
-            // 1. Dibujar materias académicas
             areas.forEach((area, index) => {
                 let htmlMateria = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">${area}</h2>`;
                 let preguntasArea = bancoDePreguntas.filter(p => p.area === area);
@@ -359,7 +335,6 @@
                 document.getElementById(idDiv).innerHTML = htmlMateria;
             });
 
-            // 2. Dibujar Encuesta
             let htmlEncuesta = `<h2 style="color: var(--verde-primario); border-bottom: 2px solid #ccc;">Encuesta de Hábitos y Lectura</h2>`;
             bancoEncuesta.forEach((item) => {
                 htmlEncuesta += `<div class="pregunta-card">`;
@@ -379,7 +354,6 @@
             document.getElementById('contenido-encuesta').innerHTML = htmlEncuesta;
         }
 
-        // Función para cambiar entre pestañas
         function cambiarPantalla(numeroPantalla) {
             if (pantallaActual === 0 && numeroPantalla === 1) {
                 let paterno = document.getElementById('apellidoPaterno').value.trim();
@@ -401,9 +375,6 @@
             window.scrollTo(0, 0);
         }
 
-        // ==========================================
-        // SISTEMA DE ENVÍO A GOOGLE SHEETS
-        // ==========================================
         function finalizarExamen() {
             const paterno = document.getElementById('apellidoPaterno').value.trim().toUpperCase();
             const materno = document.getElementById('apellidoMaterno').value.trim().toUpperCase();
@@ -417,14 +388,14 @@
             }
 
             let calificaciones = { grado: "Segundo", espanol: 0, matematicas: 0, ciencias: 0, sociales: 0, ingles: 0, total: 0 };
-            let respuestasExamen = {}; // AQUÍ GUARDAREMOS LAS LETRAS (a, b, c, d)
+            let respuestasExamen = {}; 
 
             bancoDePreguntas.forEach(pregunta => {
                 let areaKey = pregunta.area.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 if(areaKey.includes("sociales")) areaKey = "sociales";
                 
                 let opciones = document.getElementsByName(pregunta.id);
-                let seleccionada = "Sin responder"; // Por si dejan la pregunta en blanco
+                let seleccionada = "Sin responder"; 
                 
                 for (let i = 0; i < opciones.length; i++) {
                     if (opciones[i].checked) { 
@@ -433,10 +404,8 @@
                     }
                 }
                 
-                // Guardamos la respuesta individual del alumno
                 respuestasExamen[pregunta.id] = seleccionada;
 
-                // Verificamos si es correcta para el total
                 if (seleccionada && seleccionada === pregunta.respuestaCorrecta) {
                     calificaciones[areaKey]++;
                     calificaciones.total++;
@@ -461,12 +430,11 @@
             const paquete = { 
                 alumno: { apellidoPaterno: paterno, apellidoMaterno: materno, nombres: nombres, grupo: grupo }, 
                 calificaciones: calificaciones, 
-                respuestasExamen: respuestasExamen, // AHORA SÍ ENVIAMOS LAS 125 RESPUESTAS
+                respuestasExamen: respuestasExamen, 
                 encuesta: encuesta 
             };
             
-            // LA URL DE GOOGLE APPS SCRIPT
-            const scriptURL = 'https://script.google.com/macros/s/AKfycbynB_-wxjRtY5JCvo6v9mnWWbJE_ZzF_htVh0VOTjWY05OLRiRCl-mF3LPodxIUA44Vdw/exec'; 
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbzcswx12mj9PxBs7caZl9MsSnAVkOI3AcQ871VWoUqlNrGc00eP-oYNOPCJHoGsNH9U3A/exec'; 
             
             const btn = document.querySelector('.btn-finalizar');
             btn.innerText = "Enviando respuestas... ⏳";
@@ -479,7 +447,6 @@
                 body: JSON.stringify(paquete)
             })
             .then(() => {
-                // Se esconde todo y se muestra la pantalla de éxito
                 document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
                 document.getElementById('progreso').style.display = 'none';
                 document.getElementById('pantalla-7').classList.add('activa');
@@ -488,7 +455,7 @@
             .catch(error => {
                 console.error('Error:', error);
                 alert("Hubo un error de conexión. Intenta enviar de nuevo.");
-                btn.innerText = "Terminar y Enviar Todo";
+                btn.innerText = "Terminar y Enviar Todo V2";
                 btn.disabled = false;
             });
         }
